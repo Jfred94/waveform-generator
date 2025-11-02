@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=3 uid="uid://bxe26m8m6xp61"]
+
+[ext_resource type="Script" uid="uid://cnfh6t8okrkua" path="res://Scenes/Game/TestVisualizer/test_visualizer.gd" id="1_nkguh"]
+[ext_resource type="Texture2D" uid="uid://22wkbwnopy7n" path="res://Sprites/tv_square.png" id="2_85g67"]
+[ext_resource type="Texture2D" uid="uid://dm2g724s5j4g8" path="res://Sprites/tv_circle.png" id="3_knai6"]
+
+[node name="Test Visualizer" type="Node2D"]
+script = ExtResource("1_nkguh")
+
+[node name="square" type="Sprite2D" parent="."]
+texture = ExtResource("2_85g67")
+
+[node name="center circle" type="Sprite2D" parent="."]
+texture = ExtResource("3_knai6")
+
+[node name="outer circle" type="Sprite2D" parent="."]
+position = Vector2(-80, 0)
+texture = ExtResource("3_knai6")
+
+[node name="outside circle" type="Sprite2D" parent="."]
+position = Vector2(-200, 0)
+texture = ExtResource("3_knai6")
+
+[node name="outside line" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, -200, 0)
+width = 4.0
+default_color = Color(1, 1, 1, 0.40392157)
+
+[node name="inside line" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, -80, 0)
+width = 4.0
+
+[node name="visualizer circle" type="Sprite2D" parent="."]
+position = Vector2(-80, 0)
+texture = ExtResource("3_knai6")
+
+[node name="visualizer line" type="Line2D" parent="."]
+width = 4.0
+
+[node name="connector line" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 160, 0)
+width = 4.0
+default_color = Color(1, 1, 1, 0.40392157)

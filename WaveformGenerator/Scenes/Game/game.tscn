@@ -1,6 +1,27 @@
-[gd_scene load_steps=2 format=3 uid="uid://e0j4pqwpg7y8"]
+[gd_scene load_steps=4 format=3 uid="uid://e0j4pqwpg7y8"]
 
 [ext_resource type="Script" uid="uid://bokmmg3v1fgoy" path="res://Scenes/Game/game.gd" id="1_mv0hc"]
+[ext_resource type="Texture2D" uid="uid://bpa4kdd11rwlo" path="res://Sprites/background.png" id="2_qxfds"]
+[ext_resource type="PackedScene" uid="uid://bxe26m8m6xp61" path="res://Scenes/Game/TestVisualizer/test_visualizer.tscn" id="3_qikps"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_mv0hc")
+
+[node name="GameCanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="background" type="TextureRect" parent="GameCanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1280.0
+offset_top = -720.0
+offset_right = 1280.0
+offset_bottom = 720.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_qxfds")
+
+[node name="Test Visualizer" parent="GameCanvasLayer/background" instance=ExtResource("3_qikps")]
+position = Vector2(1092, 782)
