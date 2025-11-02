@@ -10,6 +10,9 @@ extends Node2D
 @onready var visualizer_line = $"visualizer line"
 @onready var connector_line = $"connector line"
 @onready var shape_list = $ShapeList
+@onready var visualizer_circle2 = $"visualizer circle2"
+@onready var visualizer_line2 = $"visualizer line2"
+@onready var connector_line2 = $"connector line2"
 
 @export var shape_sprites: Array[Texture2D] = []
 
@@ -27,6 +30,7 @@ func _process(delta: float) -> void:
 	if timer >= 4:
 		timer -= 4
 		visualizer_line.clear_points()
+		visualizer_line2.clear_points()
 	
 	outside.position = Vector2(-200, 0).rotated(timer * PI)
 	outside_line.set_point_position(1, outside.position)
@@ -37,9 +41,13 @@ func _process(delta: float) -> void:
 	inside_line.set_point_position(1, outer.position)
 	
 	visualizer_circle.position = Vector2((2 + timer * 1.5) * radius, outer.position.y)
+	visualizer_circle2.position = Vector2(outer.position.x, -(2 + timer * 1.5) * radius)
 	visualizer_line.add_point(visualizer_circle.position)
+	visualizer_line2.add_point((visualizer_circle2.position))
 	connector_line.set_point_position(0, outer.position)
+	connector_line2.set_point_position(0, outer.position)
 	connector_line.set_point_position(1, visualizer_circle.position)
+	connector_line2.set_point_position(1, visualizer_circle2.position)
 	
 	outline.texture = shape_sprites[shape_list.get_selected_items()[0]]
 
@@ -47,6 +55,10 @@ func _process(delta: float) -> void:
 # 1 = small circle
 # 2 = square
 # 3 = diamond
+# 4 = inverted circle quadrants
+# 5 = oval
+# 6 = cut circle
+# 7 = rectangle
 func find_outside_position(angle: float, shape_type: int) ->  Vector2:
 	
 	if (shape_type == 0): # circle
@@ -56,52 +68,56 @@ func find_outside_position(angle: float, shape_type: int) ->  Vector2:
 		return Vector2(-radius * 0.5, 0).rotated(angle)
 		
 	elif (shape_type == 2): # square
-		if (angle >= 0.0 && angle <= PI / 4.0):
-			return Vector2(-radius, -abs(tan(angle)) * radius)
-		elif (angle > PI / 4.0 && angle <= PI / 2.0):
-			return Vector2(-abs(tan((PI / 2.0) - angle)) * radius, -radius)
-		elif (angle > PI / 2.0 && angle <= 3 * (PI / 4.0)):
-			return Vector2(abs(tan(angle - (PI / 2.0))) * radius, -radius)
-		elif (angle > 3 * (PI / 4.0) && angle <= PI):
-			return Vector2(radius, -abs(tan(PI - angle)) * radius)
-		elif (angle > PI && angle <= 5 * (PI / 4.0)):
-			return Vector2(radius, abs(tan(angle - PI)) * radius)
-		elif (angle > 5 * (PI / 4.0) && angle <= 3 * (PI / 2.0)):
-			return Vector2(abs(tan((3 * (PI / 2.0)) - angle)) * radius, radius)
-		elif (angle > 3 * (PI / 2.0) && angle <= 7 * (PI / 4.0)):
-			return Vector2(-abs(tan(angle - (3 * (PI / 2.0)))) * radius, radius)
+		if (angle >= PI / 4.0 && angle <= 3.0 * (PI / 4.0)):
+			return Geometry2D.segment_intersects_segment(Vector2.ZERO, Vector2(-radius, 0.0).rotated(angle) * 2.0, Vector2(-radius, -radius), Vector2(radius, -radius))
+		elif (angle > 3.0 * (PI / 4.0) && angle <= 5.0 * (PI / 4.0)):
+			return Geometry2D.segment_intersects_segment(Vector2.ZERO, Vector2(-radius, 0.0).rotated(angle) * 2.0, Vector2(radius, -radius), Vector2(radius, radius))
+		elif (angle > 5.0 * (PI / 4.0) && angle <= 7.0 * (PI / 4.0)):
+			return Geometry2D.segment_intersects_segment(Vector2.ZERO, Vector2(-radius, 0.0).rotated(angle) * 2.0, Vector2(radius, radius), Vector2(-radius, radius))
 		else:
-			return Vector2(-radius, abs(tan((2 * PI) - angle)) * radius)
+			return Geometry2D.segment_intersects_segment(Vector2.ZERO, Vector2(-radius, 0.0).rotated(angle) * 2.0, Vector2(-radius, radius), Vector2(-radius, -radius))
 	
 	elif (shape_type == 3): # diamond
 		if (angle >= 0.0 && angle <= PI / 2.0):
-			var c = (3 * (PI / 4.0)) - angle
-			var aside = (radius * sin(PI / 4.0)) / sin(c)
-			var bside = (radius * sin(angle)) / sin(c)
-			var area = (aside * bside * sin(c)) / 2.0
-			var height = (2.0 * area) / radius
-			return Vector2(-radius + height, -height)
+			return Geometry2D.segment_intersects_segment(Vector2.ZERO, Vector2(-radius, 0.0).rotated(angle) * 2.0, Vector2(-radius, 0.0), Vector2(0.0, -radius))
 		elif (angle > PI / 2.0 && angle <= PI):
-			var c = (3 * (PI / 4.0)) - (PI - angle)
-			var aside = (radius * sin(PI / 4.0)) / sin(c)
-			var bside = (radius * sin((PI - angle))) / sin(c)
-			var area = (aside * bside * sin(c)) / 2.0
-			var height = (2.0 * area) / radius
-			return Vector2(radius - height, -height)
+			return Geometry2D.segment_intersects_segment(Vector2.ZERO, Vector2(-radius, 0.0).rotated(angle) * 2.0, Vector2(0.0, -radius), Vector2(radius, 0.0))
 		elif (angle > PI && angle <= 3 * (PI / 2.0)):
-			var c = (3 * (PI / 4.0)) - (PI + angle)
-			var aside = (radius * sin(PI / 4.0)) / sin(c)
-			var bside = (radius * sin((PI + angle))) / sin(c)
-			var area = (aside * bside * sin(c)) / 2.0
-			var height = (2.0 * area) / radius
-			return Vector2(radius - height, height)
+			return Geometry2D.segment_intersects_segment(Vector2.ZERO, Vector2(-radius, 0.0).rotated(angle) * 2.0, Vector2(radius, 0.0), Vector2(0.0, radius))
 		else:
-			var c = (3 * (PI / 4.0)) - ((2.0 * PI) - angle)
-			var aside = (radius * sin(PI / 4.0)) / sin(c)
-			var bside = (radius * sin(((2.0 * PI) - angle))) / sin(c)
-			var area = (aside * bside * sin(c)) / 2.0
-			var height = (2.0 * area) / radius
-			return Vector2(-radius + height, height)
-			
+			return Geometry2D.segment_intersects_segment(Vector2.ZERO, Vector2(-radius, 0.0).rotated(angle) * 2.0, Vector2(0.0, radius), Vector2(-radius, 0.0))
+	
+	elif (shape_type == 4): # inverted circle quadrants
+		if (angle >= 0.0 && angle <= PI / 2.0):
+			var intersection_value = Geometry2D.segment_intersects_circle(Vector2.ZERO, Vector2(-radius, 0.0).rotated(angle), Vector2(-radius, -radius), radius)
+			return Vector2(-radius, 0.0).rotated(angle) * intersection_value
+		elif (angle > PI / 2.0 && angle <= PI):
+			var intersection_value = Geometry2D.segment_intersects_circle(Vector2.ZERO, Vector2(-radius, 0.0).rotated(angle), Vector2(radius, -radius), radius)
+			return Vector2(-radius, 0.0).rotated(angle) * intersection_value
+		elif (angle > PI && angle <= 3 * (PI / 2.0)):
+			var intersection_value = Geometry2D.segment_intersects_circle(Vector2.ZERO, Vector2(-radius, 0.0).rotated(angle), Vector2(radius, radius), radius)
+			return Vector2(-radius, 0.0).rotated(angle) * intersection_value
+		else:
+			var intersection_value = Geometry2D.segment_intersects_circle(Vector2.ZERO, Vector2(-radius, 0.0).rotated(angle), Vector2(-radius, radius), radius)
+			return Vector2(-radius, 0.0).rotated(angle) * intersection_value
+	
+	elif (shape_type == 5): # oval
+		var circlePosition = Vector2(-radius, 0).rotated(angle)
+		return Vector2(circlePosition.x, circlePosition.y * 0.5)
+	
+	elif (shape_type == 6): # cut circle
+		var circlePosition = Vector2(-radius, 0).rotated(angle)
+		if (circlePosition.y >= -radius * 0.5 && circlePosition.y <= radius * 0.5):
+			return circlePosition
+		else:
+			if (angle >= 0.0 && angle < PI):
+				return Geometry2D.segment_intersects_segment(Vector2.ZERO, Vector2(-radius, 0.0).rotated(angle), Vector2(-radius, -radius * 0.5), Vector2(radius, -radius * 0.5))
+			else:
+				return Geometry2D.segment_intersects_segment(Vector2.ZERO, Vector2(-radius, 0.0).rotated(angle), Vector2(-radius, radius * 0.5), Vector2(radius, radius * 0.5))
+	
+	elif (shape_type == 7): # rectangle
+		return Vector2.ZERO
+	
 	else:
 		return Vector2.ZERO
+	
