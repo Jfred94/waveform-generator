@@ -1,13 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://bxe26m8m6xp61"]
+[gd_scene load_steps=7 format=3 uid="uid://bxe26m8m6xp61"]
 
 [ext_resource type="Script" uid="uid://cnfh6t8okrkua" path="res://Scenes/Game/TestVisualizer/test_visualizer.gd" id="1_nkguh"]
+[ext_resource type="Texture2D" uid="uid://djnbtab758g0" path="res://Sprites/tv_bigcircle.png" id="2_6edpj"]
 [ext_resource type="Texture2D" uid="uid://22wkbwnopy7n" path="res://Sprites/tv_square.png" id="2_85g67"]
+[ext_resource type="Texture2D" uid="uid://bq6uynef2y473" path="res://Sprites/tv_smallcircle.png" id="3_h0er0"]
 [ext_resource type="Texture2D" uid="uid://dm2g724s5j4g8" path="res://Sprites/tv_circle.png" id="3_knai6"]
+[ext_resource type="Texture2D" uid="uid://ds0px2j3d0o4k" path="res://Sprites/tv_diamond.png" id="5_b6itu"]
 
 [node name="Test Visualizer" type="Node2D"]
 script = ExtResource("1_nkguh")
+shape_sprites = Array[Texture2D]([ExtResource("2_6edpj"), ExtResource("3_h0er0"), ExtResource("2_85g67"), ExtResource("5_b6itu")])
 
-[node name="square" type="Sprite2D" parent="."]
+[node name="outline" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.5372549)
 texture = ExtResource("2_85g67")
 
 [node name="center circle" type="Sprite2D" parent="."]
@@ -41,3 +46,15 @@ width = 4.0
 points = PackedVector2Array(0, 0, 160, 0)
 width = 4.0
 default_color = Color(1, 1, 1, 0.40392157)
+
+[node name="ShapeList" type="ItemList" parent="."]
+offset_left = -692.0
+offset_top = -536.0
+offset_right = -314.0
+offset_bottom = -179.0
+theme_override_font_sizes/font_size = 30
+item_count = 4
+item_0/text = "circle"
+item_1/text = "small circle"
+item_2/text = "square"
+item_3/text = "diamond"
