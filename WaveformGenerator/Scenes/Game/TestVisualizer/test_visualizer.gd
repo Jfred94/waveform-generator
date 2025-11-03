@@ -483,7 +483,8 @@ func get_invcircle_op(angle: float) -> Vector2:
 		var intersection_value = Geometry2D.segment_intersects_circle(Vector2.ZERO, Vector2(-radius, 0.0).rotated(angle), Vector2(-radius, radius), radius)
 		return Vector2(-radius, 0.0).rotated(angle) * intersection_value
 
-func get_rectangle_op(angle: float) -> Vector2:
+
+func get_horizontal_rectangle_op(angle: float) -> Vector2:
 	var topIntersection = Geometry2D.segment_intersects_segment(Vector2.ZERO, Vector2(-radius * 2.0, 0.0).rotated(angle), Vector2(-radius, -radius * 0.5), Vector2(radius, -radius * 0.5))
 	var rightIntersection = Geometry2D.segment_intersects_segment(Vector2.ZERO, Vector2(-radius * 2.0, 0.0).rotated(angle), Vector2(radius, -radius * 0.5), Vector2(radius, radius * 0.5))
 	var bottomIntersection = Geometry2D.segment_intersects_segment(Vector2.ZERO, Vector2(-radius * 2.0, 0.0).rotated(angle), Vector2(radius, radius * 0.5), Vector2(-radius, radius * 0.5))
@@ -497,7 +498,7 @@ func get_rectangle_op(angle: float) -> Vector2:
 	else:
 		return leftIntersection
 
-func get_rectanglef_op(angle: float) -> Vector2:
+func get_vertical_rectangle_op(angle: float) -> Vector2:
 	var topIntersection = Geometry2D.segment_intersects_segment(Vector2.ZERO, Vector2(-radius * 2.0, 0.0).rotated(angle), Vector2(-radius * 0.5, -radius), Vector2(radius * 0.5, -radius))
 	var rightIntersection = Geometry2D.segment_intersects_segment(Vector2.ZERO, Vector2(-radius * 2.0, 0.0).rotated(angle), Vector2(radius * 0.5, -radius), Vector2(radius * 0.5, radius))
 	var bottomIntersection = Geometry2D.segment_intersects_segment(Vector2.ZERO, Vector2(-radius * 2.0, 0.0).rotated(angle), Vector2(radius * 0.5, radius), Vector2(-radius * 0.5, radius))
@@ -510,3 +511,23 @@ func get_rectanglef_op(angle: float) -> Vector2:
 		return bottomIntersection
 	else:
 		return leftIntersection
+
+func get_rectangle_op(angle: float) -> Vector2:
+	if (angle >= 0.0 && angle <= PI / 2.0):
+		return get_horizontal_rectangle_op(angle)
+	elif (angle > PI / 2.0 && angle <= PI):
+		return get_vertical_rectangle_op(angle)
+	elif (angle > PI && angle <= 3 * (PI / 2.0)):
+		return get_horizontal_rectangle_op(angle)
+	else:
+		return get_vertical_rectangle_op(angle)
+
+func get_rectanglef_op(angle: float) -> Vector2:
+	if (angle >= 0.0 && angle <= PI / 2.0):
+		return get_vertical_rectangle_op(angle)
+	elif (angle > PI / 2.0 && angle <= PI):
+		return get_horizontal_rectangle_op(angle)
+	elif (angle > PI && angle <= 3 * (PI / 2.0)):
+		return get_vertical_rectangle_op(angle)
+	else:
+		return get_horizontal_rectangle_op(angle)
