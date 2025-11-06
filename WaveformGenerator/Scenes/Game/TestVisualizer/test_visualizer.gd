@@ -9,7 +9,10 @@ extends Node2D
 @onready var visualizer_circle = $"visualizer circle"
 @onready var visualizer_line = $"visualizer line"
 @onready var connector_line = $"connector line"
-@onready var shape_list = $ShapeList
+@onready var shape_list_tl = $ShapeListTL
+@onready var shape_list_tr = $ShapeListTR
+@onready var shape_list_br = $ShapeListBR
+@onready var shape_list_bl = $ShapeListBL
 @onready var visualizer_circle2 = $"visualizer circle2"
 @onready var visualizer_line2 = $"visualizer line2"
 @onready var connector_line2 = $"connector line2"
@@ -22,7 +25,10 @@ var radius = 80
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	timer = 0.0
-	shape_list.select(0)
+	shape_list_tl.select(0)
+	shape_list_tr.select(0)
+	shape_list_br.select(0)
+	shape_list_bl.select(0)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -37,7 +43,14 @@ func _process(delta: float) -> void:
 	var angle = timer * PI
 	if (angle > 2 * PI):
 		angle -= 2 * PI
-	outer.position = find_outside_position(angle, shape_list.get_selected_items()[0])
+	if (angle >= 0 && angle <= PI * 0.5):
+		outer.position = find_outside_position(angle, shape_list_tl.get_selected_items()[0])
+	elif (angle > PI * 0.5 && angle <= PI):
+		outer.position = find_outside_position(angle, shape_list_tr.get_selected_items()[0])
+	elif (angle > PI && angle <= PI * 1.5):
+		outer.position = find_outside_position(angle, shape_list_br.get_selected_items()[0])
+	else:
+		outer.position = find_outside_position(angle, shape_list_bl.get_selected_items()[0])
 	inside_line.set_point_position(1, outer.position)
 	
 	visualizer_circle.position = Vector2((2 + timer * 1.5) * radius, outer.position.y)
@@ -49,8 +62,8 @@ func _process(delta: float) -> void:
 	connector_line.set_point_position(1, visualizer_circle.position)
 	connector_line2.set_point_position(1, visualizer_circle2.position)
 	
-	if (shape_sprites.size() > shape_list.get_selected_items()[0]):
-		outline.texture = shape_sprites[shape_list.get_selected_items()[0]]
+	if (shape_sprites.size() > shape_list_tl.get_selected_items()[0]):
+		outline.texture = shape_sprites[shape_list_tl.get_selected_items()[0]]
 	else:
 		outline.texture = null
 
