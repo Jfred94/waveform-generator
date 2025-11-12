@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cnwanl8epiqaa"]
+[gd_scene load_steps=4 format=3 uid="uid://cnwanl8epiqaa"]
 
 [ext_resource type="Script" uid="uid://bungbeolaj0hd" path="res://Scenes/Game/GamePanel/rotate_panel.gd" id="1_5uy0o"]
 [ext_resource type="Texture2D" uid="uid://dbwuydyv2r8m8" path="res://Sprites/rotate panel.png" id="2_1jxo8"]
+[ext_resource type="PackedScene" uid="uid://bv3oflu42ydqa" path="res://Scenes/Game/Slot/slot.tscn" id="3_1jxo8"]
 
 [node name="RotatePanel" type="Node2D"]
 script = ExtResource("1_5uy0o")
@@ -9,3 +10,5 @@ metadata/_custom_type_script = "uid://vqkbotyl66y0"
 
 [node name="background" type="Sprite2D" parent="."]
 texture = ExtResource("2_1jxo8")
+
+[node name="Slot" parent="." instance=ExtResource("3_1jxo8")]

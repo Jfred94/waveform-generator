@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://e0j4pqwpg7y8"]
+[gd_scene load_steps=62 format=3 uid="uid://e0j4pqwpg7y8"]
 
 [ext_resource type="Script" uid="uid://bokmmg3v1fgoy" path="res://Scenes/Game/game.gd" id="1_mv0hc"]
 [ext_resource type="Texture2D" uid="uid://dy6gawgjmjt1r" path="res://Sprites/shapes/circle.png" id="2_8trit"]
@@ -57,6 +57,9 @@
 [ext_resource type="Texture2D" uid="uid://dcyv1u51ir6a3" path="res://Sprites/shapes/small rectangle x small rectangle f.png" id="44_l47d4"]
 [ext_resource type="Texture2D" uid="uid://dpqxrpnc8qmsr" path="res://Sprites/shapes/small rectangle x small inv circle.png" id="45_5s13o"]
 [ext_resource type="Texture2D" uid="uid://b2uov2hdrlyg6" path="res://Sprites/shapes/small rectangle f x small inv circle.png" id="46_bcbly"]
+[ext_resource type="Texture2D" uid="uid://ddwrmdspwf4x" path="res://Sprites/buttons/menu N.png" id="58_71giq"]
+[ext_resource type="Texture2D" uid="uid://bec13fwpu4uur" path="res://Sprites/buttons/menu P.png" id="59_a4qm0"]
+[ext_resource type="Texture2D" uid="uid://1uy7yv6aq3y" path="res://Sprites/buttons/menu H.png" id="60_2gid3"]
 
 [sub_resource type="Environment" id="Environment_qikps"]
 background_mode = 3
@@ -124,3 +127,13 @@ position = Vector2(780, 660)
 
 [node name="Visualizer" parent="GameCanvasLayer/background" instance=ExtResource("12_ypmwd")]
 position = Vector2(280, 1160)
+
+[node name="Menu Button" type="TextureButton" parent="GameCanvasLayer/background"]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 80.0
+offset_right = 160.0
+offset_bottom = 160.0
+texture_normal = ExtResource("58_71giq")
+texture_pressed = ExtResource("59_a4qm0")
+texture_hover = ExtResource("60_2gid3")

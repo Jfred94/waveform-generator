@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dyn3uru2wyu0i"]
+[gd_scene load_steps=4 format=3 uid="uid://dyn3uru2wyu0i"]
 
 [ext_resource type="Script" uid="uid://byw0m15gxdoii" path="res://Scenes/Game/GamePanel/shrink_panel.gd" id="1_o2brr"]
 [ext_resource type="Texture2D" uid="uid://dsadt3fno7fdv" path="res://Sprites/shrink panel.png" id="2_p8tky"]
+[ext_resource type="PackedScene" uid="uid://bv3oflu42ydqa" path="res://Scenes/Game/Slot/slot.tscn" id="3_p8tky"]
 
 [node name="ShrinkPanel" type="Node2D"]
 script = ExtResource("1_o2brr")
@@ -9,3 +10,5 @@ metadata/_custom_type_script = "uid://vqkbotyl66y0"
 
 [node name="background" type="Sprite2D" parent="."]
 texture = ExtResource("2_p8tky")
+
+[node name="Slot" parent="." instance=ExtResource("3_p8tky")]

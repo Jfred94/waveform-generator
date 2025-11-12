@@ -1,7 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://iv2mwcn34xpk"]
+[gd_scene load_steps=10 format=3 uid="uid://iv2mwcn34xpk"]
 
 [ext_resource type="Script" uid="uid://bun85ykhhopao" path="res://combine_panel.gd" id="1_t3nj2"]
 [ext_resource type="Texture2D" uid="uid://bj8i6ospeae23" path="res://Sprites/combine panel.png" id="2_fan46"]
+[ext_resource type="PackedScene" uid="uid://bv3oflu42ydqa" path="res://Scenes/Game/Slot/slot.tscn" id="3_fan46"]
+[ext_resource type="Texture2D" uid="uid://rstre226w5ku" path="res://Sprites/buttons/additive N.png" id="4_61cvg"]
+[ext_resource type="Texture2D" uid="uid://dm1irpa7kpt7e" path="res://Sprites/buttons/exclusive N.png" id="5_50t5j"]
+[ext_resource type="Texture2D" uid="uid://n6ipfli587h7" path="res://Sprites/buttons/additive P.png" id="5_n8ynb"]
+[ext_resource type="Texture2D" uid="uid://bdkueidlucaf0" path="res://Sprites/buttons/additive H.png" id="6_syrw3"]
+[ext_resource type="Texture2D" uid="uid://cbf30edvexueh" path="res://Sprites/buttons/exclusive P.png" id="8_lkntd"]
+[ext_resource type="Texture2D" uid="uid://crg64jk2ax2v7" path="res://Sprites/buttons/exclusive H.png" id="9_is6cw"]
 
 [node name="CombinePanel" type="Node2D"]
 script = ExtResource("1_t3nj2")
@@ -9,3 +16,27 @@ metadata/_custom_type_script = "uid://vqkbotyl66y0"
 
 [node name="background" type="Sprite2D" parent="."]
 texture = ExtResource("2_fan46")
+
+[node name="Slot" parent="." instance=ExtResource("3_fan46")]
+position = Vector2(-260, 0)
+
+[node name="Slot2" parent="." instance=ExtResource("3_fan46")]
+position = Vector2(-100, 0)
+
+[node name="Additive Button" type="TextureButton" parent="."]
+offset_left = 240.0
+offset_top = -100.0
+offset_right = 320.0
+offset_bottom = -20.0
+texture_normal = ExtResource("4_61cvg")
+texture_pressed = ExtResource("5_n8ynb")
+texture_hover = ExtResource("6_syrw3")
+
+[node name="Exclusive Button" type="TextureButton" parent="."]
+offset_left = 240.0
+offset_top = 20.0
+offset_right = 320.0
+offset_bottom = 100.0
+texture_normal = ExtResource("5_50t5j")
+texture_pressed = ExtResource("8_lkntd")
+texture_hover = ExtResource("9_is6cw")
