@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://dlp3ptm7lb6p0"]
+
+[ext_resource type="Script" uid="uid://dvmswan56sgth" path="res://Scenes/Game/GamePanel/inventory_panel.gd" id="1_vkvl0"]
+[ext_resource type="Texture2D" uid="uid://cfjeyf0e6tmcd" path="res://Sprites/inventory panel.png" id="2_clja0"]
+[ext_resource type="PackedScene" uid="uid://b043bud0v5l2j" path="res://Scenes/Game/TileSource/tile_source.tscn" id="3_clja0"]
+
+[node name="InventoryPanel" type="Node2D"]
+script = ExtResource("1_vkvl0")
+metadata/_custom_type_script = "uid://vqkbotyl66y0"
+
+[node name="background" type="Sprite2D" parent="."]
+texture = ExtResource("2_clja0")
+
+[node name="Tile Sources" type="Node2D" parent="."]
+
+[node name="TileSource" parent="Tile Sources" node_paths=PackedStringArray("inventory_panel") instance=ExtResource("3_clja0")]
+position = Vector2(-240, -200)
+inventory_panel = NodePath("../..")
+
+[node name="TileSource2" parent="Tile Sources" node_paths=PackedStringArray("inventory_panel") instance=ExtResource("3_clja0")]
+position = Vector2(-80, -200)
+shape_type = 1
+inventory_panel = NodePath("../..")
+
+[node name="TileSource3" parent="Tile Sources" node_paths=PackedStringArray("inventory_panel") instance=ExtResource("3_clja0")]
+position = Vector2(80, -200)
+shape_type = 2
+inventory_panel = NodePath("../..")
+
+[node name="TileSource4" parent="Tile Sources" node_paths=PackedStringArray("inventory_panel") instance=ExtResource("3_clja0")]
+position = Vector2(240, -200)
+shape_type = 3
+inventory_panel = NodePath("../..")

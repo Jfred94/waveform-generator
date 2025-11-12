@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://ce22ujjk7qnsh"]
+
+[ext_resource type="Script" uid="uid://b8uoa5quet82d" path="res://Scenes/Game/GamePanel/shape_panel.gd" id="1_dcaey"]
+[ext_resource type="Texture2D" uid="uid://dq06bdrvg8cqx" path="res://Sprites/shape panel.png" id="2_dfvqg"]
+
+[node name="ShapePanel" type="Node2D"]
+script = ExtResource("1_dcaey")
+metadata/_custom_type_script = "uid://vqkbotyl66y0"
+
+[node name="background" type="Sprite2D" parent="."]
+texture = ExtResource("2_dfvqg")

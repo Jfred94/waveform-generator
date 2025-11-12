@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://iv2mwcn34xpk"]
+
+[ext_resource type="Script" uid="uid://bun85ykhhopao" path="res://combine_panel.gd" id="1_t3nj2"]
+[ext_resource type="Texture2D" uid="uid://bj8i6ospeae23" path="res://Sprites/combine panel.png" id="2_fan46"]
+
+[node name="CombinePanel" type="Node2D"]
+script = ExtResource("1_t3nj2")
+metadata/_custom_type_script = "uid://vqkbotyl66y0"
+
+[node name="background" type="Sprite2D" parent="."]
+texture = ExtResource("2_fan46")

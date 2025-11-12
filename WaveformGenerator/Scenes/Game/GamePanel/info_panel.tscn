@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cek3b7a33ygge"]
+
+[ext_resource type="Script" uid="uid://dy2rhdk4qxj60" path="res://Scenes/Game/GamePanel/info_panel.gd" id="1_j7wq7"]
+[ext_resource type="Texture2D" uid="uid://dhhm73c021ato" path="res://Sprites/info panel.png" id="2_gtqtb"]
+
+[node name="InfoPanel" type="Node2D"]
+script = ExtResource("1_j7wq7")
+metadata/_custom_type_script = "uid://vqkbotyl66y0"
+
+[node name="background" type="Sprite2D" parent="."]
+texture = ExtResource("2_gtqtb")

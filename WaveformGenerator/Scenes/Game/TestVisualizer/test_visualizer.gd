@@ -29,6 +29,7 @@ func _ready() -> void:
 	shape_list_tr.select(0)
 	shape_list_br.select(0)
 	shape_list_bl.select(0)
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
