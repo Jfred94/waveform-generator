@@ -71,9 +71,10 @@ glow_hdr_threshold = 0.73
 glow_hdr_scale = 1.6
 adjustment_contrast = 1.33
 
-[node name="Game" type="Node2D"]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("tiles")]
 script = ExtResource("1_mv0hc")
 shape_textures = Array[Texture2D]([ExtResource("2_8trit"), ExtResource("3_71giq"), ExtResource("4_3mdsk"), ExtResource("5_a4qm0"), ExtResource("6_2gid3"), ExtResource("7_lis5c"), ExtResource("8_858on"), ExtResource("9_l5fxq"), ExtResource("10_jcrx1"), ExtResource("11_u2cvy"), ExtResource("12_wwos8"), ExtResource("13_d85t2"), ExtResource("14_53spd"), ExtResource("15_4qu01"), ExtResource("16_qqdjj"), ExtResource("17_x8opw"), ExtResource("18_ntkbw"), ExtResource("19_d4puy"), ExtResource("20_xft3b"), ExtResource("21_yuvyg"), ExtResource("22_hb4p8"), ExtResource("23_h1l72"), ExtResource("24_scdd5"), ExtResource("25_cjj5m"), ExtResource("26_fhxkh"), ExtResource("27_qspya"), ExtResource("28_tgfhl"), ExtResource("29_254l5"), ExtResource("30_5waul"), ExtResource("31_ytvwr"), ExtResource("32_pxakk"), ExtResource("33_4lqcr"), ExtResource("34_5stw6"), ExtResource("35_r1pxr"), ExtResource("36_8s3bd"), ExtResource("37_4ughv"), ExtResource("38_n6kei"), ExtResource("39_wqd0x"), ExtResource("40_c2yya"), ExtResource("41_yuuq1"), ExtResource("42_uur6h"), ExtResource("43_osbsx"), ExtResource("44_l47d4"), ExtResource("45_5s13o"), ExtResource("46_bcbly")])
+tiles = NodePath("GameCanvasLayer/background/Tiles")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_qikps")
@@ -107,23 +108,28 @@ position = Vector2(1280, 200)
 position = Vector2(2140, 380)
 game = NodePath("../../../..")
 
-[node name="RotatePanel" parent="GameCanvasLayer/background/Panels" instance=ExtResource("6_flgk0")]
+[node name="RotatePanel" parent="GameCanvasLayer/background/Panels" node_paths=PackedStringArray("game") instance=ExtResource("6_flgk0")]
 position = Vector2(1700, 900)
+game = NodePath("../../../..")
 
-[node name="ShrinkPanel" parent="GameCanvasLayer/background/Panels" instance=ExtResource("7_vifcx")]
+[node name="ShrinkPanel" parent="GameCanvasLayer/background/Panels" node_paths=PackedStringArray("game") instance=ExtResource("7_vifcx")]
 position = Vector2(2020, 900)
+game = NodePath("../../../..")
 
-[node name="FlipPanel" parent="GameCanvasLayer/background/Panels" instance=ExtResource("8_xfil1")]
+[node name="FlipPanel" parent="GameCanvasLayer/background/Panels" node_paths=PackedStringArray("game") instance=ExtResource("8_xfil1")]
 position = Vector2(2340, 900)
+game = NodePath("../../../..")
 
-[node name="CombinePanel" parent="GameCanvasLayer/background/Panels" instance=ExtResource("9_huoen")]
+[node name="CombinePanel" parent="GameCanvasLayer/background/Panels" node_paths=PackedStringArray("game") instance=ExtResource("9_huoen")]
 position = Vector2(2080, 1220)
+game = NodePath("../../../..")
 
 [node name="HintPanel" parent="GameCanvasLayer/background/Panels" instance=ExtResource("10_7jvlm")]
 position = Vector2(1460, 1220)
 
-[node name="ShapePanel" parent="GameCanvasLayer/background/Panels" instance=ExtResource("11_qtymf")]
+[node name="ShapePanel" parent="GameCanvasLayer/background/Panels" node_paths=PackedStringArray("game") instance=ExtResource("11_qtymf")]
 position = Vector2(780, 660)
+game = NodePath("../../../..")
 
 [node name="Visualizer" parent="GameCanvasLayer/background" instance=ExtResource("12_ypmwd")]
 position = Vector2(280, 1160)
@@ -137,3 +143,5 @@ offset_bottom = 160.0
 texture_normal = ExtResource("58_71giq")
 texture_pressed = ExtResource("59_a4qm0")
 texture_hover = ExtResource("60_2gid3")
+
+[node name="Tiles" type="Node2D" parent="GameCanvasLayer/background"]

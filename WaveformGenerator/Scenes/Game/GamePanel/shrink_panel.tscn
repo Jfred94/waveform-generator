@@ -4,8 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://dsadt3fno7fdv" path="res://Sprites/shrink panel.png" id="2_p8tky"]
 [ext_resource type="PackedScene" uid="uid://bv3oflu42ydqa" path="res://Scenes/Game/Slot/slot.tscn" id="3_p8tky"]
 
-[node name="ShrinkPanel" type="Node2D"]
+[node name="ShrinkPanel" type="Node2D" node_paths=PackedStringArray("slot")]
 script = ExtResource("1_o2brr")
+slot = NodePath("Slot")
 metadata/_custom_type_script = "uid://vqkbotyl66y0"
 
 [node name="background" type="Sprite2D" parent="."]

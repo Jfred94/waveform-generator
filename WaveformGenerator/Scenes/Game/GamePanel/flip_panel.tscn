@@ -4,11 +4,13 @@
 [ext_resource type="Texture2D" uid="uid://bith16k7ngnsn" path="res://Sprites/flip panel.png" id="2_grkiu"]
 [ext_resource type="PackedScene" uid="uid://bv3oflu42ydqa" path="res://Scenes/Game/Slot/slot.tscn" id="3_grkiu"]
 
-[node name="FlipPanel" type="Node2D"]
+[node name="FlipPanel" type="Node2D" node_paths=PackedStringArray("slot")]
 script = ExtResource("1_ryv10")
+slot = NodePath("Slot")
 metadata/_custom_type_script = "uid://vqkbotyl66y0"
 
 [node name="background" type="Sprite2D" parent="."]
 texture = ExtResource("2_grkiu")
 
-[node name="Slot" parent="." instance=ExtResource("3_grkiu")]
+[node name="Slot" parent="." node_paths=PackedStringArray("panel") instance=ExtResource("3_grkiu")]
+panel = NodePath("..")

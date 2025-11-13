@@ -47,10 +47,15 @@ enum Shape
 	SMALL_DIAMOND_X_SMALL_RECTANGLE_F,
 	SMALL_RECTANGLE_X_SMALL_RECTANGLE_F,
 	SMALL_RECTANGLE_X_SMALL_INV_CIRCLE,
-	SMALL_RECTANGLE_F_X_SMALL_INV_CIRCLE
+	SMALL_RECTANGLE_F_X_SMALL_INV_CIRCLE,
+	EMPTY
 }
 
 @export var shape_textures: Array[Texture2D]
+@export var tiles: Node2D
+
+var slots: Array[Slot]
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

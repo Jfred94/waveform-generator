@@ -4,21 +4,29 @@
 [ext_resource type="Texture2D" uid="uid://dq06bdrvg8cqx" path="res://Sprites/shape panel.png" id="2_dfvqg"]
 [ext_resource type="PackedScene" uid="uid://bv3oflu42ydqa" path="res://Scenes/Game/Slot/slot.tscn" id="3_dfvqg"]
 
-[node name="ShapePanel" type="Node2D"]
+[node name="ShapePanel" type="Node2D" node_paths=PackedStringArray("slot1", "slot2", "slot3", "slot4")]
 script = ExtResource("1_dcaey")
+slot1 = NodePath("Slot")
+slot2 = NodePath("Slot2")
+slot3 = NodePath("Slot3")
+slot4 = NodePath("Slot4")
 metadata/_custom_type_script = "uid://vqkbotyl66y0"
 
 [node name="background" type="Sprite2D" parent="."]
 texture = ExtResource("2_dfvqg")
 
-[node name="Slot" parent="." instance=ExtResource("3_dfvqg")]
+[node name="Slot" parent="." node_paths=PackedStringArray("panel") instance=ExtResource("3_dfvqg")]
 position = Vector2(-80, -80)
+panel = NodePath("..")
 
-[node name="Slot2" parent="." instance=ExtResource("3_dfvqg")]
+[node name="Slot2" parent="." node_paths=PackedStringArray("panel") instance=ExtResource("3_dfvqg")]
 position = Vector2(80, -80)
+panel = NodePath("..")
 
-[node name="Slot3" parent="." instance=ExtResource("3_dfvqg")]
+[node name="Slot3" parent="." node_paths=PackedStringArray("panel") instance=ExtResource("3_dfvqg")]
 position = Vector2(80, 80)
+panel = NodePath("..")
 
-[node name="Slot4" parent="." instance=ExtResource("3_dfvqg")]
+[node name="Slot4" parent="." node_paths=PackedStringArray("panel") instance=ExtResource("3_dfvqg")]
 position = Vector2(-80, 80)
+panel = NodePath("..")
