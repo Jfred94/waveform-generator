@@ -19,6 +19,12 @@ var bottom_left_shape: int = 0
 var angle: float = 0.0
 var radius: float = 160.0
 
+@export var shape_line2D: Line2D
+var visualizer_angle: float = 0.0
+var is_shape_line_finished = false
+
+@export var cord_line2D: Line2D
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -30,6 +36,13 @@ func _process(delta: float) -> void:
 	if (angle >= 2.0 * PI):
 		angle -= 2.0 * PI
 	
+	visualizer_angle += delta * PI * 0.5
+	if (visualizer_angle >= 2.0 * PI):
+		visualizer_angle -= 2.0 * PI
+		is_shape_line_finished = true
+		shape_line2D.closed = true
+		
+	
 	var shape_index: int
 	if (angle >= 0.0 && angle < PI * 0.5):
 		shape_index = top_left_shape
@@ -40,6 +53,11 @@ func _process(delta: float) -> void:
 	else:
 		shape_index = bottom_left_shape
 	shape_circle.position = find_outside_position(angle, shape_index)
+	
+	waveform_1_circle.position = Vector2(240 + angle * (320 / PI), shape_circle.position.y)
+	waveform_2_circle.position = Vector2(shape_circle.position.x, -240 - angle * (320 / PI))
+	
+	update_lines()
 
 func update_shapes(_tile1: Tile, _tile2: Tile, _tile3: Tile, _tile4: Tile) -> void:
 	
@@ -50,6 +68,10 @@ func update_shapes(_tile1: Tile, _tile2: Tile, _tile3: Tile, _tile4: Tile) -> vo
 		tile2 = _tile2
 		tile3 = _tile3
 		tile4 = _tile4
+		visualizer_angle = 0.0
+		shape_line2D.clear_points()
+		is_shape_line_finished = false
+		shape_line2D.closed = false
 		
 		if (tile1 != null && tile2 != null && tile3 != null && tile4 != null):
 			print("tile 1: type: " + str(tile1.shape_type) + " ; rot: " + str(tile1.shape_rotation))
@@ -131,6 +153,13 @@ func update_shapes(_tile1: Tile, _tile2: Tile, _tile3: Tile, _tile4: Tile) -> vo
 				else:
 					bottom_left_shape = -1
 		
+
+
+func update_lines() -> void:
+	if (!is_shape_line_finished):
+		shape_line2D.add_point(shape_circle.position)
+	cord_line2D.set_point_position(1, shape_circle.position)
+
 
 func find_outside_position(_angle: float, _type: int) -> Vector2:
 	if (_type == 0):
