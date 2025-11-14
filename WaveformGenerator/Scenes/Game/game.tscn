@@ -127,9 +127,10 @@ game = NodePath("../../../..")
 [node name="HintPanel" parent="GameCanvasLayer/background/Panels" instance=ExtResource("10_7jvlm")]
 position = Vector2(1460, 1220)
 
-[node name="ShapePanel" parent="GameCanvasLayer/background/Panels" node_paths=PackedStringArray("game") instance=ExtResource("11_qtymf")]
+[node name="ShapePanel" parent="GameCanvasLayer/background/Panels" node_paths=PackedStringArray("game", "visualizer") instance=ExtResource("11_qtymf")]
 position = Vector2(780, 660)
 game = NodePath("../../../..")
+visualizer = NodePath("../../Visualizer")
 
 [node name="Visualizer" parent="GameCanvasLayer/background" instance=ExtResource("12_ypmwd")]
 position = Vector2(280, 1160)

@@ -1,6 +1,26 @@
-[gd_scene load_steps=2 format=3 uid="uid://bp12trwllcpo7"]
+[gd_scene load_steps=3 format=3 uid="uid://bp12trwllcpo7"]
 
 [ext_resource type="Script" uid="uid://br160jgaorrb3" path="res://Scenes/Game/Visualizer/visualizer.gd" id="1_addbr"]
+[ext_resource type="Texture2D" uid="uid://dm2g724s5j4g8" path="res://Sprites/tv_circle.png" id="2_ub7tk"]
 
-[node name="Visualizer" type="Node2D"]
+[node name="Visualizer" type="Node2D" node_paths=PackedStringArray("static_circle", "shape_circle", "waveform_1_circle", "waveform_2_circle")]
 script = ExtResource("1_addbr")
+static_circle = NodePath("Static Circle")
+shape_circle = NodePath("Shape Circle")
+waveform_1_circle = NodePath("Waveform 1 Circle")
+waveform_2_circle = NodePath("Waveform 2 Circle")
+
+[node name="Static Circle" type="Sprite2D" parent="."]
+texture = ExtResource("2_ub7tk")
+
+[node name="Shape Circle" type="Sprite2D" parent="."]
+position = Vector2(-160, 0)
+texture = ExtResource("2_ub7tk")
+
+[node name="Waveform 1 Circle" type="Sprite2D" parent="."]
+position = Vector2(240, 0)
+texture = ExtResource("2_ub7tk")
+
+[node name="Waveform 2 Circle" type="Sprite2D" parent="."]
+position = Vector2(-160, -240)
+texture = ExtResource("2_ub7tk")
