@@ -1,9 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://bp12trwllcpo7"]
+[gd_scene load_steps=7 format=3 uid="uid://bp12trwllcpo7"]
 
 [ext_resource type="Script" uid="uid://br160jgaorrb3" path="res://Scenes/Game/Visualizer/visualizer.gd" id="1_addbr"]
 [ext_resource type="Texture2D" uid="uid://dm2g724s5j4g8" path="res://Sprites/tv_circle.png" id="2_ub7tk"]
 
-[node name="Visualizer" type="Node2D" node_paths=PackedStringArray("static_circle", "shape_circle", "waveform_1_circle", "waveform_2_circle", "shape_line2D", "cord_line2D")]
+[sub_resource type="Gradient" id="Gradient_ub7tk"]
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
+
+[sub_resource type="Gradient" id="Gradient_4ef88"]
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
+
+[sub_resource type="Gradient" id="Gradient_7scpc"]
+colors = PackedColorArray(0.43137255, 0.46666667, 1, 0, 0.43137255, 0.46666667, 1, 1)
+
+[sub_resource type="Gradient" id="Gradient_xln8d"]
+colors = PackedColorArray(0.43137255, 0.46666667, 1, 0, 0.43137255, 0.46666667, 1, 1)
+
+[node name="Visualizer" type="Node2D" node_paths=PackedStringArray("static_circle", "shape_circle", "waveform_1_circle", "waveform_2_circle", "shape_line2D", "cord_line2D", "waveform_1_line2D_1", "waveform_1_line2D_2", "waveform_2_line2D_1", "waveform_2_line2D_2", "link_line2D_1", "link_line2D_2")]
 script = ExtResource("1_addbr")
 static_circle = NodePath("Static Circle")
 shape_circle = NodePath("Shape Circle")
@@ -11,6 +23,12 @@ waveform_1_circle = NodePath("Waveform 1 Circle")
 waveform_2_circle = NodePath("Waveform 2 Circle")
 shape_line2D = NodePath("Shape Line2D")
 cord_line2D = NodePath("Cord Line2D")
+waveform_1_line2D_1 = NodePath("Waveform 1 Line2D 1")
+waveform_1_line2D_2 = NodePath("Waveform 1 Line2D 2")
+waveform_2_line2D_1 = NodePath("Waveform 2 Line2D 1")
+waveform_2_line2D_2 = NodePath("Waveform 2 Line2D 2")
+link_line2D_1 = NodePath("Link Line2D 1")
+link_line2D_2 = NodePath("Link Line2D 2")
 
 [node name="Static Circle" type="Sprite2D" parent="."]
 texture = ExtResource("2_ub7tk")
@@ -20,10 +38,12 @@ position = Vector2(-160, 0)
 texture = ExtResource("2_ub7tk")
 
 [node name="Waveform 1 Circle" type="Sprite2D" parent="."]
+z_index = 1
 position = Vector2(240, 0)
 texture = ExtResource("2_ub7tk")
 
 [node name="Waveform 2 Circle" type="Sprite2D" parent="."]
+z_index = 1
 position = Vector2(-160, -240)
 texture = ExtResource("2_ub7tk")
 
@@ -32,5 +52,37 @@ width = 6.0
 
 [node name="Cord Line2D" type="Line2D" parent="."]
 points = PackedVector2Array(0, 0, -160, 0)
+width = 4.0
+default_color = Color(1, 1, 1, 0.39215687)
+
+[node name="Waveform 1 Line2D 1" type="Line2D" parent="."]
+width = 6.0
+gradient = SubResource("Gradient_ub7tk")
+texture_mode = 2
+
+[node name="Waveform 1 Line2D 2" type="Line2D" parent="."]
+width = 6.0
+gradient = SubResource("Gradient_4ef88")
+texture_mode = 2
+
+[node name="Waveform 2 Line2D 1" type="Line2D" parent="."]
+width = 6.0
+default_color = Color(0.43137255, 0.46666667, 1, 1)
+gradient = SubResource("Gradient_7scpc")
+texture_mode = 2
+
+[node name="Waveform 2 Line2D 2" type="Line2D" parent="."]
+width = 6.0
+default_color = Color(0.43137255, 0.46666667, 1, 1)
+gradient = SubResource("Gradient_xln8d")
+texture_mode = 2
+
+[node name="Link Line2D 1" type="Line2D" parent="."]
+points = PackedVector2Array(-160, 0, 240, 0)
+width = 4.0
+default_color = Color(1, 1, 1, 0.39215687)
+
+[node name="Link Line2D 2" type="Line2D" parent="."]
+points = PackedVector2Array(-160, 0, -160, -240)
 width = 4.0
 default_color = Color(1, 1, 1, 0.39215687)

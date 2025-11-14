@@ -25,6 +25,16 @@ var is_shape_line_finished = false
 
 @export var cord_line2D: Line2D
 
+var is_first_waveform: bool = true # bool that dictates which waveform is currently playing over the other
+
+@export var waveform_1_line2D_1: Line2D
+@export var waveform_1_line2D_2: Line2D
+@export var waveform_2_line2D_1: Line2D
+@export var waveform_2_line2D_2: Line2D
+
+@export var link_line2D_1: Line2D
+@export var link_line2D_2: Line2D
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -35,6 +45,13 @@ func _process(delta: float) -> void:
 	angle += delta * PI * 0.5
 	if (angle >= 2.0 * PI):
 		angle -= 2.0 * PI
+		is_first_waveform = !is_first_waveform
+		if (is_first_waveform):
+			waveform_1_line2D_1.clear_points()
+			waveform_2_line2D_1.clear_points()
+		else:
+			waveform_1_line2D_2.clear_points()
+			waveform_2_line2D_2.clear_points()
 	
 	visualizer_angle += delta * PI * 0.5
 	if (visualizer_angle >= 2.0 * PI):
@@ -158,7 +175,44 @@ func update_shapes(_tile1: Tile, _tile2: Tile, _tile3: Tile, _tile4: Tile) -> vo
 func update_lines() -> void:
 	if (!is_shape_line_finished):
 		shape_line2D.add_point(shape_circle.position)
+		
 	cord_line2D.set_point_position(1, shape_circle.position)
+	
+	if (is_first_waveform):
+		waveform_1_line2D_1.add_point(waveform_1_circle.position)
+		waveform_2_line2D_1.add_point(waveform_2_circle.position)
+	else:
+		waveform_1_line2D_2.add_point(waveform_1_circle.position)
+		waveform_2_line2D_2.add_point(waveform_2_circle.position)
+	
+	link_line2D_1.set_point_position(0, shape_circle.position)
+	link_line2D_1.set_point_position(1, waveform_1_circle.position)
+	link_line2D_2.set_point_position(0, shape_circle.position)
+	link_line2D_2.set_point_position(1, waveform_2_circle.position)
+	
+	#waveform_1_line2D_1.gradient.set_offset(0, 0.5)
+	
+	if (is_first_waveform):
+		waveform_1_line2D_1.gradient.set_offset(0, 0.0)
+		waveform_2_line2D_1.gradient.set_offset(0, 0.0)
+		waveform_1_line2D_1.gradient.set_offset(1, 0.0 + (angle / (PI * 2.0)))
+		waveform_2_line2D_1.gradient.set_offset(1, 0.0 + (angle / (PI * 2.0)))
+		
+		waveform_1_line2D_2.gradient.set_offset(0, 0.0 + (angle / (PI * 2.0)))
+		waveform_2_line2D_2.gradient.set_offset(0, 0.0 + (angle / (PI * 2.0)))
+		waveform_1_line2D_2.gradient.set_offset(1, 1.0)
+		waveform_2_line2D_2.gradient.set_offset(1, 1.0)
+	else:
+		waveform_1_line2D_2.gradient.set_offset(0, 0.0)
+		waveform_2_line2D_2.gradient.set_offset(0, 0.0)
+		waveform_1_line2D_2.gradient.set_offset(1, 0.0 + (angle / (PI * 2.0)))
+		waveform_2_line2D_2.gradient.set_offset(1, 0.0 + (angle / (PI * 2.0)))
+		
+		waveform_1_line2D_1.gradient.set_offset(0, 0.0 + (angle / (PI * 2.0)))
+		waveform_2_line2D_1.gradient.set_offset(0, 0.0 + (angle / (PI * 2.0)))
+		waveform_1_line2D_1.gradient.set_offset(1, 1.0)
+		waveform_2_line2D_1.gradient.set_offset(1, 1.0)
+	
 
 
 func find_outside_position(_angle: float, _type: int) -> Vector2:
