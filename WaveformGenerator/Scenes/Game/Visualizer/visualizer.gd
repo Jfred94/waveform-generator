@@ -235,7 +235,7 @@ func find_outside_position(_angle: float, _type: int) -> Vector2:
 	elif (_type == 8):
 		return get_rectangle_op(_angle) * 0.5
 	elif (_type == 9):
-		return get_rectangle_op(_angle) * 0.5
+		return get_rectanglef_op(_angle) * 0.5
 	elif (_type == 10): # circle + rectangle
 		var v1 = get_circle_op(_angle)
 		var v2 = get_rectangle_op(_angle)

@@ -47,7 +47,9 @@ func initialize(_shape_type: Game.Shape, _is_held: bool, _game: Game) -> void:
 
 func hold() -> void:
 	position = get_global_mouse_position()
+	z_index = 15
 	if (Input.is_action_just_released("lmb")):
+		z_index = 10
 		is_held = false
 		var hovered_slot_id: int = -1
 		for i in range(game.slots.size()):
