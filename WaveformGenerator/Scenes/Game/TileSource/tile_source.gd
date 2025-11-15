@@ -30,5 +30,5 @@ func check_hovering() -> void:
 func spawn_tile() -> void:
 	var tile: Tile = tile_scene.instantiate()
 	tiles.add_child(tile)
-	tile.position = get_global_mouse_position()
+	tile.global_position = get_global_mouse_position()
 	tile.initialize(shape_type, true, game)

@@ -25,7 +25,7 @@ func initialize(game: Game) -> void:
 func dock(tile: Tile) -> void:
 	if (is_occupied):
 		docked_tile.queue_free()
-	tile.position = global_position
+	tile.global_position = global_position
 	tile.is_held = false
 	is_occupied = true
 	docked_tile = tile

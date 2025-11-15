@@ -89,12 +89,7 @@ func update_shapes(_tile1: Tile, _tile2: Tile, _tile3: Tile, _tile4: Tile) -> vo
 		shape_line2D.clear_points()
 		is_shape_line_finished = false
 		shape_line2D.closed = false
-		
-		if (tile1 != null && tile2 != null && tile3 != null && tile4 != null):
-			print("tile 1: type: " + str(tile1.shape_type) + " ; rot: " + str(tile1.shape_rotation))
-			print("tile 2: type: " + str(tile2.shape_type) + " ; rot: " + str(tile2.shape_rotation))
-			print("tile 3: type: " + str(tile3.shape_type) + " ; rot: " + str(tile3.shape_rotation))
-			print("tile 4: type: " + str(tile4.shape_type) + " ; rot: " + str(tile4.shape_rotation))
+
 		
 		# change int variables according to tiles types and rotation (set to -1 if unsupported), inv circle and small inv circle at the end
 		

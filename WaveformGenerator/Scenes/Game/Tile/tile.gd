@@ -46,7 +46,7 @@ func initialize(_shape_type: Game.Shape, _is_held: bool, _game: Game) -> void:
 	shape_sprite.texture = game.shape_textures[shape_type]
 
 func hold() -> void:
-	position = get_global_mouse_position()
+	global_position = get_global_mouse_position()
 	z_index = 15
 	if (Input.is_action_just_released("lmb")):
 		z_index = 10
