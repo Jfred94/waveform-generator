@@ -19,9 +19,11 @@ enum ShapeRotation
 
 var shape_rotation: ShapeRotation = ShapeRotation.TOP_LEFT
 
+@export var background: Sprite2D
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	update_background()
 
 
 var is_hovering: bool = false
@@ -44,6 +46,7 @@ func initialize(_shape_type: Game.Shape, _is_held: bool, _game: Game) -> void:
 	is_held = _is_held
 	game = _game
 	shape_sprite.texture = game.shape_textures[shape_type]
+	update_background()
 
 func hold() -> void:
 	global_position = get_global_mouse_position()
@@ -64,7 +67,17 @@ func hold() -> void:
 func update_shape() -> void:
 	shape_sprite.texture = game.shape_textures[shape_type]
 	shape_sprite.rotation_degrees = shape_rotation
-	game.inventory_panel.unlock_tile_source(shape_type)
+	update_background()
+	if (shape_type >= 4):
+		game.inventory_panel.unlock_tile_source(shape_type)
+
+func update_background() -> void:
+	if (shape_type == Game.Shape.SMALL_CIRCLE || shape_type == Game.Shape.SMALL_SQUARE || shape_type == Game.Shape.SMALL_DIAMOND || shape_type == Game.Shape.SMALL_RECTANGLE || shape_type == Game.Shape.SMALL_RECTANGLE_F):
+		background.texture = game.inventory_panel.shrunk_tile_background_texture
+	elif (shape_type == Game.Shape.CIRCLE_PLUS_RECTANGLE || shape_type == Game.Shape.CIRCLE_PLUS_RECTANGLE_F || shape_type == Game.Shape.DIAMOND_PLUS_RECTANGLE || shape_type == Game.Shape.DIAMOND_PLUS_RECTANGLE_F || shape_type == Game.Shape.RECTANGLE_PLUS_RECTANGLE_F || shape_type == Game.Shape.RECTANGLE_PLUS_INV_CIRCLE || shape_type == Game.Shape.RECTANGLE_F_PLUS_INV_CIRCLE || shape_type == Game.Shape.CIRCLE_X_RECTANGLE || shape_type == Game.Shape.CIRCLE_X_RECTANGLE_F || shape_type == Game.Shape.DIAMOND_X_RECTANGLE || shape_type == Game.Shape.DIAMOND_X_RECTANGLE_F || shape_type == Game.Shape.RECTANGLE_X_INV_CIRCLE || shape_type == Game.Shape.RECTANGLE_F_X_INV_CIRCLE):
+		background.texture = game.inventory_panel.combined_tile_background_texture
+	elif (shape_type == Game.Shape.INV_CIRCLE_PLUS_SMALL_CIRCLE || shape_type == Game.Shape.INV_CIRCLE_PLUS_SMALL_SQUARE || shape_type == Game.Shape.INV_CIRCLE_PLUS_SMALL_RECTANGLE || shape_type == Game.Shape.INV_CIRCLE_PLUS_SMALL_RECTANGLE_F || shape_type == Game.Shape.SMALL_CIRCLE_PLUS_SMALL_RECTANGLE || shape_type == Game.Shape.SMALL_CIRCLE_PLUS_SMALL_RECTANGLE_F || shape_type == Game.Shape.SMALL_DIAMOND_PLUS_SMALL_RECTANGLE || shape_type == Game.Shape.SMALL_DIAMOND_PLUS_SMALL_RECTANGLE_F || shape_type == Game.Shape.SMALL_RECTANGLE_PLUS_SMALL_RECTANGLE_F || shape_type == Game.Shape.SMALL_RECTANGLE_PLUS_SMALL_INV_CIRCLE || shape_type == Game.Shape.SMALL_RECTANGLE_F_PLUS_SMALL_INV_CIRCLE || shape_type == Game.Shape.INV_CIRCLE_X_SMALL_CIRCLE || shape_type == Game.Shape.INV_CIRCLE_X_SMALL_SQUARE || shape_type == Game.Shape.INV_CIRCLE_X_SMALL_RECTANGLE || shape_type == Game.Shape.INV_CIRCLE_X_SMALL_RECTANGLE_F || shape_type == Game.Shape.SMALL_CIRCLE_X_SMALL_RECTANGLE || shape_type == Game.Shape.SMALL_CIRCLE_X_SMALL_RECTANGLE_F || shape_type == Game.Shape.SMALL_DIAMOND_X_SMALL_RECTANGLE || shape_type == Game.Shape.SMALL_DIAMOND_X_SMALL_RECTANGLE_F || shape_type == Game.Shape.SMALL_RECTANGLE_X_SMALL_RECTANGLE_F || shape_type == Game.Shape.SMALL_RECTANGLE_X_SMALL_INV_CIRCLE || shape_type == Game.Shape.SMALL_RECTANGLE_F_X_SMALL_INV_CIRCLE):
+		background.texture = game.inventory_panel.both_tile_background_texture
 
 func destroy() -> void:
 	if (docked_slot != null):

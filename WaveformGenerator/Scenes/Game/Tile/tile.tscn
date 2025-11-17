@@ -4,10 +4,11 @@
 [ext_resource type="Texture2D" uid="uid://bdafxd4r51td6" path="res://Sprites/tile background 2.png" id="2_y0vby"]
 [ext_resource type="Texture2D" uid="uid://dy6gawgjmjt1r" path="res://Sprites/shapes/circle.png" id="3_y0vby"]
 
-[node name="Tile" type="Node2D" node_paths=PackedStringArray("shape_sprite")]
+[node name="Tile" type="Node2D" node_paths=PackedStringArray("shape_sprite", "background")]
 z_index = 10
 script = ExtResource("1_4nm8t")
 shape_sprite = NodePath("Shape")
+background = NodePath("Background")
 
 [node name="Background" type="Sprite2D" parent="."]
 texture = ExtResource("2_y0vby")

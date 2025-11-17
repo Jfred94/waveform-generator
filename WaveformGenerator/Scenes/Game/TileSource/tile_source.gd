@@ -19,6 +19,7 @@ func _ready() -> void:
 		game = inventory_panel.game
 		shape_sprite.texture = game.shape_textures[shape_type]
 		tiles = game.tiles
+		update_background()
 
 func initialize(_inventory_panel: InventoryPanel) -> void: # only called if in scrollable inventory, which means locked by default
 	inventory_panel = _inventory_panel
@@ -49,3 +50,12 @@ func unlock() -> void:
 	is_locked = false
 	background.texture = inventory_panel.unlocked_background_texture
 	shape_sprite.texture = game.shape_textures[shape_type]
+	update_background()
+
+func update_background() -> void:
+	if (shape_type == Game.Shape.SMALL_CIRCLE || shape_type == Game.Shape.SMALL_SQUARE || shape_type == Game.Shape.SMALL_DIAMOND || shape_type == Game.Shape.SMALL_RECTANGLE || shape_type == Game.Shape.SMALL_RECTANGLE_F):
+		background.texture = game.inventory_panel.shrunk_tile_background_texture
+	elif (shape_type == Game.Shape.CIRCLE_PLUS_RECTANGLE || shape_type == Game.Shape.CIRCLE_PLUS_RECTANGLE_F || shape_type == Game.Shape.DIAMOND_PLUS_RECTANGLE || shape_type == Game.Shape.DIAMOND_PLUS_RECTANGLE_F || shape_type == Game.Shape.RECTANGLE_PLUS_RECTANGLE_F || shape_type == Game.Shape.RECTANGLE_PLUS_INV_CIRCLE || shape_type == Game.Shape.RECTANGLE_F_PLUS_INV_CIRCLE || shape_type == Game.Shape.CIRCLE_X_RECTANGLE || shape_type == Game.Shape.CIRCLE_X_RECTANGLE_F || shape_type == Game.Shape.DIAMOND_X_RECTANGLE || shape_type == Game.Shape.DIAMOND_X_RECTANGLE_F || shape_type == Game.Shape.RECTANGLE_X_INV_CIRCLE || shape_type == Game.Shape.RECTANGLE_F_X_INV_CIRCLE):
+		background.texture = game.inventory_panel.combined_tile_background_texture
+	elif (shape_type == Game.Shape.INV_CIRCLE_PLUS_SMALL_CIRCLE || shape_type == Game.Shape.INV_CIRCLE_PLUS_SMALL_SQUARE || shape_type == Game.Shape.INV_CIRCLE_PLUS_SMALL_RECTANGLE || shape_type == Game.Shape.INV_CIRCLE_PLUS_SMALL_RECTANGLE_F || shape_type == Game.Shape.SMALL_CIRCLE_PLUS_SMALL_RECTANGLE || shape_type == Game.Shape.SMALL_CIRCLE_PLUS_SMALL_RECTANGLE_F || shape_type == Game.Shape.SMALL_DIAMOND_PLUS_SMALL_RECTANGLE || shape_type == Game.Shape.SMALL_DIAMOND_PLUS_SMALL_RECTANGLE_F || shape_type == Game.Shape.SMALL_RECTANGLE_PLUS_SMALL_RECTANGLE_F || shape_type == Game.Shape.SMALL_RECTANGLE_PLUS_SMALL_INV_CIRCLE || shape_type == Game.Shape.SMALL_RECTANGLE_F_PLUS_SMALL_INV_CIRCLE || shape_type == Game.Shape.INV_CIRCLE_X_SMALL_CIRCLE || shape_type == Game.Shape.INV_CIRCLE_X_SMALL_SQUARE || shape_type == Game.Shape.INV_CIRCLE_X_SMALL_RECTANGLE || shape_type == Game.Shape.INV_CIRCLE_X_SMALL_RECTANGLE_F || shape_type == Game.Shape.SMALL_CIRCLE_X_SMALL_RECTANGLE || shape_type == Game.Shape.SMALL_CIRCLE_X_SMALL_RECTANGLE_F || shape_type == Game.Shape.SMALL_DIAMOND_X_SMALL_RECTANGLE || shape_type == Game.Shape.SMALL_DIAMOND_X_SMALL_RECTANGLE_F || shape_type == Game.Shape.SMALL_RECTANGLE_X_SMALL_RECTANGLE_F || shape_type == Game.Shape.SMALL_RECTANGLE_X_SMALL_INV_CIRCLE || shape_type == Game.Shape.SMALL_RECTANGLE_F_X_SMALL_INV_CIRCLE):
+		background.texture = game.inventory_panel.both_tile_background_texture

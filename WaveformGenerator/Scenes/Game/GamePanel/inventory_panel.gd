@@ -8,6 +8,10 @@ class_name InventoryPanel
 
 @export var inventory: Inventory
 
+@export var shrunk_tile_background_texture: Texture2D
+@export var combined_tile_background_texture: Texture2D
+@export var both_tile_background_texture: Texture2D
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
