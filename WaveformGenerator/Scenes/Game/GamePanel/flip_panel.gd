@@ -92,4 +92,13 @@ func transform_tile(tile: Tile) -> void:
 		slot.docked_tile.shape_type = Game.Shape.SMALL_RECTANGLE_X_SMALL_INV_CIRCLE
 	else:
 		pass
+	
+	if (slot.docked_tile.shape_rotation == Tile.ShapeRotation.TOP_LEFT):
+		slot.docked_tile.shape_rotation = Tile.ShapeRotation.TOP_RIGHT
+	elif (slot.docked_tile.shape_rotation == Tile.ShapeRotation.TOP_RIGHT):
+		slot.docked_tile.shape_rotation = Tile.ShapeRotation.TOP_LEFT
+	elif (slot.docked_tile.shape_rotation == Tile.ShapeRotation.BOTTOM_LEFT):
+		slot.docked_tile.shape_rotation = Tile.ShapeRotation.BOTTOM_RIGHT
+	else:
+		slot.docked_tile.shape_rotation = Tile.ShapeRotation.BOTTOM_LEFT
 	slot.docked_tile.update_shape()

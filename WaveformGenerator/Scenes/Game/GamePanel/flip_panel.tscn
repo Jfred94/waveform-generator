@@ -12,5 +12,4 @@ metadata/_custom_type_script = "uid://vqkbotyl66y0"
 [node name="background" type="Sprite2D" parent="."]
 texture = ExtResource("2_grkiu")
 
-[node name="Slot" parent="." node_paths=PackedStringArray("panel") instance=ExtResource("3_grkiu")]
-panel = NodePath("..")
+[node name="Slot" parent="." instance=ExtResource("3_grkiu")]
