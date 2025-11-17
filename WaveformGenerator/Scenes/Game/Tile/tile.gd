@@ -64,6 +64,7 @@ func hold() -> void:
 func update_shape() -> void:
 	shape_sprite.texture = game.shape_textures[shape_type]
 	shape_sprite.rotation_degrees = shape_rotation
+	game.inventory_panel.unlock_tile_source(shape_type)
 
 func destroy() -> void:
 	if (docked_slot != null):

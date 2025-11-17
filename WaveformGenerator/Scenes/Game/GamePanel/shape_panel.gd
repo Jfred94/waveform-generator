@@ -13,6 +13,8 @@ var tiles: Node2D
 
 @export var visualizer: Visualizer
 
+@export var spinny_spinny: Sprite2D
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	slot1.initialize(game)
@@ -67,6 +69,22 @@ func _process(delta: float) -> void:
 	check_hovering()
 	
 	visualizer.update_shapes(slot1.docked_tile, slot2.docked_tile, slot3.docked_tile, slot4.docked_tile)
+	
+	update_spinny_spinny()
 
 func check_hovering() -> void:
 	is_hovering = get_local_mouse_position().x >= -62 && get_local_mouse_position().x <= 62 && get_local_mouse_position().y >= -62 && get_local_mouse_position().y <= 62
+
+func update_spinny_spinny():
+	if (visualizer.angle >= 0.0 && visualizer.angle < PI * 0.5):
+		spinny_spinny.position = Vector2(-82, -82)
+		spinny_spinny.rotation = 0.0
+	elif (visualizer.angle >= PI * 0.5 && visualizer.angle < PI):
+		spinny_spinny.position = Vector2(82, -82)
+		spinny_spinny.rotation = PI * 0.5
+	elif (visualizer.angle >= PI && visualizer.angle < PI * 1.5):
+		spinny_spinny.position = Vector2(82, 82)
+		spinny_spinny.rotation = PI
+	else:
+		spinny_spinny.position = Vector2(-82, 82)
+		spinny_spinny.rotation = PI * 1.5
