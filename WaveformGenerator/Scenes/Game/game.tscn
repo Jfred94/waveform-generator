@@ -103,6 +103,7 @@ position = Vector2(1092, 782)
 [node name="Panels" type="Node2D" parent="GameCanvasLayer/background"]
 
 [node name="InfoPanel" parent="GameCanvasLayer/background/Panels" node_paths=PackedStringArray("visualizer", "hint_panel", "inventory_panel", "rotate_panel", "shrink_panel", "flip_panel", "combine_panel", "shape_panel") instance=ExtResource("4_i1e5p")]
+z_index = 50
 position = Vector2(1280, 200)
 visualizer = NodePath("../../Visualizer")
 hint_panel = NodePath("../HintPanel")
@@ -114,29 +115,36 @@ combine_panel = NodePath("../CombinePanel")
 shape_panel = NodePath("../ShapePanel")
 
 [node name="InventoryPanel" parent="GameCanvasLayer/background/Panels" node_paths=PackedStringArray("game") instance=ExtResource("5_ciybh")]
+z_index = 50
 position = Vector2(2140, 380)
 game = NodePath("../../../..")
 
 [node name="RotatePanel" parent="GameCanvasLayer/background/Panels" node_paths=PackedStringArray("game") instance=ExtResource("6_flgk0")]
+z_index = 50
 position = Vector2(1700, 900)
 game = NodePath("../../../..")
 
 [node name="ShrinkPanel" parent="GameCanvasLayer/background/Panels" node_paths=PackedStringArray("game") instance=ExtResource("7_vifcx")]
+z_index = 50
 position = Vector2(2020, 900)
 game = NodePath("../../../..")
 
 [node name="FlipPanel" parent="GameCanvasLayer/background/Panels" node_paths=PackedStringArray("game") instance=ExtResource("8_xfil1")]
+z_index = 50
 position = Vector2(2340, 900)
 game = NodePath("../../../..")
 
 [node name="CombinePanel" parent="GameCanvasLayer/background/Panels" node_paths=PackedStringArray("game") instance=ExtResource("9_huoen")]
+z_index = 50
 position = Vector2(2080, 1220)
 game = NodePath("../../../..")
 
 [node name="HintPanel" parent="GameCanvasLayer/background/Panels" instance=ExtResource("10_7jvlm")]
+z_index = 50
 position = Vector2(1460, 1220)
 
 [node name="ShapePanel" parent="GameCanvasLayer/background/Panels" node_paths=PackedStringArray("game", "visualizer") instance=ExtResource("11_qtymf")]
+z_index = 50
 position = Vector2(780, 660)
 game = NodePath("../../../..")
 visualizer = NodePath("../../Visualizer")
@@ -156,3 +164,4 @@ texture_pressed = ExtResource("59_a4qm0")
 texture_hover = ExtResource("60_2gid3")
 
 [node name="Tiles" type="Node2D" parent="GameCanvasLayer/background"]
+z_index = 105

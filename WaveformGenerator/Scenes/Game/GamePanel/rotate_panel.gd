@@ -5,6 +5,8 @@ class_name RotatePanel
 @export var slot: Slot
 @export var game: Game
 
+@export var hover_anim_player: AnimationPlayer
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	slot.initialize(game)
@@ -17,7 +19,12 @@ func _process(delta: float) -> void:
 	check_transformation()
 
 func check_hovering() -> void:
+	var was_hovering: bool = is_hovering
 	is_hovering = get_local_mouse_position().x >= -146 && get_local_mouse_position().x <= 146 && get_local_mouse_position().y >= -146 && get_local_mouse_position().y <= 146
+	if (is_hovering && !was_hovering):
+		hover_anim_player.play("hover in")
+	elif (!is_hovering && was_hovering):
+		hover_anim_player.play("hover out")
 
 func check_transformation() -> void:
 	if (slot.is_occupied && !slot.has_transformed):

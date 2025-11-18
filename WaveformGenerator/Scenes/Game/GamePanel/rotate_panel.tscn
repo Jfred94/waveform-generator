@@ -1,16 +1,125 @@
-[gd_scene load_steps=4 format=3 uid="uid://cnwanl8epiqaa"]
+[gd_scene load_steps=9 format=3 uid="uid://cnwanl8epiqaa"]
 
 [ext_resource type="Script" uid="uid://bungbeolaj0hd" path="res://Scenes/Game/GamePanel/rotate_panel.gd" id="1_5uy0o"]
 [ext_resource type="Texture2D" uid="uid://dbwuydyv2r8m8" path="res://Sprites/rotate panel.png" id="2_1jxo8"]
 [ext_resource type="PackedScene" uid="uid://bv3oflu42ydqa" path="res://Scenes/Game/Slot/slot.tscn" id="3_1jxo8"]
+[ext_resource type="Texture2D" uid="uid://bjrc6poerrhy1" path="res://Sprites/panel hover.png" id="4_dbgf3"]
 
-[node name="RotatePanel" type="Node2D" node_paths=PackedStringArray("slot")]
+[sub_resource type="Animation" id="Animation_hek0f"]
+resource_name = "hover in"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("hover tl:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(-142, 7), Vector2(-154, 19)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("hover br:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(142, -7), Vector2(154, -19)]
+}
+
+[sub_resource type="Animation" id="Animation_q7udg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("hover tl:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-142, 7)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("hover br:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(142, -7)]
+}
+
+[sub_resource type="Animation" id="Animation_gyd6b"]
+resource_name = "hover out"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("hover tl:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(-154, 19), Vector2(-142, 7)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("hover br:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(154, -19), Vector2(142, -7)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hegbt"]
+_data = {
+&"RESET": SubResource("Animation_q7udg"),
+&"hover in": SubResource("Animation_hek0f"),
+&"hover out": SubResource("Animation_gyd6b")
+}
+
+[node name="RotatePanel" type="Node2D" node_paths=PackedStringArray("slot", "hover_anim_player")]
 script = ExtResource("1_5uy0o")
 slot = NodePath("Slot")
+hover_anim_player = NodePath("HoverAnimationPlayer")
 metadata/_custom_type_script = "uid://vqkbotyl66y0"
 
 [node name="background" type="Sprite2D" parent="."]
 texture = ExtResource("2_1jxo8")
 
-[node name="Slot" parent="." node_paths=PackedStringArray("panel") instance=ExtResource("3_1jxo8")]
-panel = NodePath("..")
+[node name="Slot" parent="." instance=ExtResource("3_1jxo8")]
+
+[node name="hover tl" type="Sprite2D" parent="."]
+z_index = -10
+position = Vector2(-142, 7)
+texture = ExtResource("4_dbgf3")
+centered = false
+
+[node name="hover br" type="Sprite2D" parent="."]
+z_index = -10
+position = Vector2(142, -7)
+rotation = 3.1415927
+texture = ExtResource("4_dbgf3")
+centered = false
+
+[node name="HoverAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_hegbt")
+}

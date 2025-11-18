@@ -15,6 +15,8 @@ var tiles: Node2D
 
 @export var spinny_spinny: Sprite2D
 
+@export var hover_anim_player: AnimationPlayer
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	slot1.initialize(game)
@@ -73,7 +75,12 @@ func _process(delta: float) -> void:
 	update_spinny_spinny()
 
 func check_hovering() -> void:
+	var was_hovering: bool = is_hovering
 	is_hovering = get_local_mouse_position().x >= -186 && get_local_mouse_position().x <= 186 && get_local_mouse_position().y >= -186 && get_local_mouse_position().y <= 186
+	if (is_hovering && !was_hovering):
+		hover_anim_player.play("hover in")
+	elif (!is_hovering && was_hovering):
+		hover_anim_player.play("hover out")
 
 func update_spinny_spinny():
 	if (visualizer.angle >= 0.0 && visualizer.angle < PI * 0.5):

@@ -1,13 +1,105 @@
-[gd_scene load_steps=5 format=3 uid="uid://cek3b7a33ygge"]
+[gd_scene load_steps=10 format=3 uid="uid://cek3b7a33ygge"]
 
 [ext_resource type="Script" uid="uid://dy2rhdk4qxj60" path="res://Scenes/Game/GamePanel/info_panel.gd" id="1_j7wq7"]
 [ext_resource type="Texture2D" uid="uid://dhhm73c021ato" path="res://Sprites/info panel.png" id="2_gtqtb"]
 [ext_resource type="FontFile" uid="uid://dqqmv5ve5h81v" path="res://Fonts/AGENCYR.TTF" id="3_56k66"]
 [ext_resource type="FontFile" uid="uid://dqcv61ia3babx" path="res://Fonts/AGENCYB.TTF" id="4_bo4ix"]
+[ext_resource type="Texture2D" uid="uid://bjrc6poerrhy1" path="res://Sprites/panel hover.png" id="5_bo4ix"]
 
-[node name="InfoPanel" type="Node2D" node_paths=PackedStringArray("label")]
+[sub_resource type="Animation" id="Animation_bo4ix"]
+resource_name = "hover in"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("hover bl:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(-442, -13), Vector2(-454, -1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("hover tr:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(442, 13), Vector2(454, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_u0l0f"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("hover bl:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-442, -13)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("hover tr:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(442, 13)]
+}
+
+[sub_resource type="Animation" id="Animation_q3jpx"]
+resource_name = "hover out"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("hover bl:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(-454, -1), Vector2(-442, -13)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("hover tr:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(454, 1), Vector2(442, 13)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uur53"]
+_data = {
+&"RESET": SubResource("Animation_u0l0f"),
+&"hover in": SubResource("Animation_bo4ix"),
+&"hover out": SubResource("Animation_q3jpx")
+}
+
+[node name="InfoPanel" type="Node2D" node_paths=PackedStringArray("label", "hover_anim_player")]
 script = ExtResource("1_j7wq7")
 label = NodePath("RichTextLabel")
+hover_anim_player = NodePath("HoverAnimationPlayer")
 metadata/_custom_type_script = "uid://vqkbotyl66y0"
 
 [node name="background" type="Sprite2D" parent="."]
@@ -23,3 +115,21 @@ theme_override_fonts/bold_font = ExtResource("4_bo4ix")
 theme_override_font_sizes/normal_font_size = 32
 theme_override_font_sizes/bold_font_size = 36
 bbcode_enabled = true
+
+[node name="hover bl" type="Sprite2D" parent="."]
+z_index = -10
+position = Vector2(-442, -13)
+texture = ExtResource("5_bo4ix")
+centered = false
+
+[node name="hover tr" type="Sprite2D" parent="."]
+z_index = -10
+position = Vector2(442, 13)
+rotation = 3.1415927
+texture = ExtResource("5_bo4ix")
+centered = false
+
+[node name="HoverAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_uur53")
+}

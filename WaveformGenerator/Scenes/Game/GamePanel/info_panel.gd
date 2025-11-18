@@ -23,6 +23,8 @@ var shape_string: String = "[wave amp=20 freq=1.0][b]SHAPE PANEL[/b]\nInsert 4 t
 @export var combine_panel: CombinePanel
 @export var shape_panel: ShapePanel
 
+@export var hover_anim_player: AnimationPlayer
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	label.text = ""
@@ -57,4 +59,9 @@ func _process(delta: float) -> void:
 	
 
 func check_hovering() -> void:
+	var was_hovering: bool = is_hovering
 	is_hovering = get_local_mouse_position().x >= -446 && get_local_mouse_position().x <= 446 && get_local_mouse_position().y >= -126 && get_local_mouse_position().y <= 126
+	if (is_hovering && !was_hovering):
+		hover_anim_player.play("hover in")
+	elif (!is_hovering && was_hovering):
+		hover_anim_player.play("hover out")

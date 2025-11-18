@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://iv2mwcn34xpk"]
+[gd_scene load_steps=15 format=3 uid="uid://iv2mwcn34xpk"]
 
 [ext_resource type="Script" uid="uid://bun85ykhhopao" path="res://combine_panel.gd" id="1_t3nj2"]
 [ext_resource type="Texture2D" uid="uid://bj8i6ospeae23" path="res://Sprites/combine panel.png" id="2_fan46"]
@@ -9,12 +9,104 @@
 [ext_resource type="Texture2D" uid="uid://bdkueidlucaf0" path="res://Sprites/buttons/additive H.png" id="6_syrw3"]
 [ext_resource type="Texture2D" uid="uid://cbf30edvexueh" path="res://Sprites/buttons/exclusive P.png" id="8_lkntd"]
 [ext_resource type="Texture2D" uid="uid://crg64jk2ax2v7" path="res://Sprites/buttons/exclusive H.png" id="9_is6cw"]
+[ext_resource type="Texture2D" uid="uid://bjrc6poerrhy1" path="res://Sprites/panel hover.png" id="10_syrw3"]
 
-[node name="CombinePanel" type="Node2D" node_paths=PackedStringArray("slot1", "slot2", "slot3")]
+[sub_resource type="Animation" id="Animation_lkntd"]
+resource_name = "hover in"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("hover bl:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(-402, 7), Vector2(-414, 19)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("hover tr:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(402, -7), Vector2(414, -19)]
+}
+
+[sub_resource type="Animation" id="Animation_is6cw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("hover bl:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-402, 7)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("hover tr:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(402, -7)]
+}
+
+[sub_resource type="Animation" id="Animation_syrw3"]
+resource_name = "hover out"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("hover bl:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(-414, 19), Vector2(-402, 7)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("hover tr:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(414, -19), Vector2(402, -7)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_oi3l8"]
+_data = {
+&"RESET": SubResource("Animation_is6cw"),
+&"hover in": SubResource("Animation_lkntd"),
+&"hover out": SubResource("Animation_syrw3")
+}
+
+[node name="CombinePanel" type="Node2D" node_paths=PackedStringArray("slot1", "slot2", "slot3", "hover_anim_player")]
 script = ExtResource("1_t3nj2")
 slot1 = NodePath("Slot")
 slot2 = NodePath("Slot2")
 slot3 = NodePath("Slot3")
+hover_anim_player = NodePath("HoverAnimationPlayer")
 metadata/_custom_type_script = "uid://vqkbotyl66y0"
 
 [node name="background" type="Sprite2D" parent="."]
@@ -46,6 +138,24 @@ offset_bottom = 100.0
 texture_normal = ExtResource("5_50t5j")
 texture_pressed = ExtResource("8_lkntd")
 texture_hover = ExtResource("9_is6cw")
+
+[node name="hover bl" type="Sprite2D" parent="."]
+z_index = -10
+position = Vector2(-402, 7)
+texture = ExtResource("10_syrw3")
+centered = false
+
+[node name="hover tr" type="Sprite2D" parent="."]
+z_index = -10
+position = Vector2(402, -7)
+rotation = 3.1415927
+texture = ExtResource("10_syrw3")
+centered = false
+
+[node name="HoverAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_oi3l8")
+}
 
 [connection signal="button_up" from="Additive Button" to="." method="_on_additive_button_button_up"]
 [connection signal="button_up" from="Exclusive Button" to="." method="_on_exclusive_button_button_up"]
