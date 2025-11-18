@@ -10,6 +10,7 @@ class_name CombinePanel
 var tile_scene = preload("res://Scenes/Game/Tile/tile.tscn")
 var tiles: Node2D
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	slot1.initialize(game)
@@ -23,7 +24,7 @@ func _process(delta: float) -> void:
 	check_hovering()
 
 func check_hovering() -> void:
-	is_hovering = get_local_mouse_position().x >= -62 && get_local_mouse_position().x <= 62 && get_local_mouse_position().y >= -62 && get_local_mouse_position().y <= 62
+	is_hovering = get_local_mouse_position().x >= -406 && get_local_mouse_position().x <= 406 && get_local_mouse_position().y >= -146 && get_local_mouse_position().y <= 146
 
 
 

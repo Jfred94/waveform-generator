@@ -13,4 +13,4 @@ func _process(delta: float) -> void:
 	check_hovering()
 
 func check_hovering() -> void:
-	is_hovering = get_local_mouse_position().x >= -62 && get_local_mouse_position().x <= 62 && get_local_mouse_position().y >= -62 && get_local_mouse_position().y <= 62
+	is_hovering = get_local_mouse_position().x >= -186 && get_local_mouse_position().x <= 186 && get_local_mouse_position().y >= -146 && get_local_mouse_position().y <= 146

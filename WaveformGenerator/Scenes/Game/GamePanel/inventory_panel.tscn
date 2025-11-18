@@ -28,21 +28,25 @@ texture = ExtResource("2_clja0")
 [node name="TileSource" parent="Tile Sources" node_paths=PackedStringArray("inventory_panel") instance=ExtResource("3_clja0")]
 position = Vector2(-240, -200)
 inventory_panel = NodePath("../..")
+is_base_tile = true
 
 [node name="TileSource2" parent="Tile Sources" node_paths=PackedStringArray("inventory_panel") instance=ExtResource("3_clja0")]
 position = Vector2(-80, -200)
 shape_type = 1
 inventory_panel = NodePath("../..")
+is_base_tile = true
 
 [node name="TileSource3" parent="Tile Sources" node_paths=PackedStringArray("inventory_panel") instance=ExtResource("3_clja0")]
 position = Vector2(80, -200)
 shape_type = 2
 inventory_panel = NodePath("../..")
+is_base_tile = true
 
 [node name="TileSource4" parent="Tile Sources" node_paths=PackedStringArray("inventory_panel") instance=ExtResource("3_clja0")]
 position = Vector2(240, -200)
 shape_type = 3
 inventory_panel = NodePath("../..")
+is_base_tile = true
 
 [node name="Inventory" parent="." node_paths=PackedStringArray("inventory_panel") instance=ExtResource("4_ji5rt")]
 position = Vector2(0, 100)

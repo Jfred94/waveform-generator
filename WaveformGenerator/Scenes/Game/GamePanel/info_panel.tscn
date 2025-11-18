@@ -1,11 +1,25 @@
-[gd_scene load_steps=3 format=3 uid="uid://cek3b7a33ygge"]
+[gd_scene load_steps=5 format=3 uid="uid://cek3b7a33ygge"]
 
 [ext_resource type="Script" uid="uid://dy2rhdk4qxj60" path="res://Scenes/Game/GamePanel/info_panel.gd" id="1_j7wq7"]
 [ext_resource type="Texture2D" uid="uid://dhhm73c021ato" path="res://Sprites/info panel.png" id="2_gtqtb"]
+[ext_resource type="FontFile" uid="uid://dqqmv5ve5h81v" path="res://Fonts/AGENCYR.TTF" id="3_56k66"]
+[ext_resource type="FontFile" uid="uid://dqcv61ia3babx" path="res://Fonts/AGENCYB.TTF" id="4_bo4ix"]
 
-[node name="InfoPanel" type="Node2D"]
+[node name="InfoPanel" type="Node2D" node_paths=PackedStringArray("label")]
 script = ExtResource("1_j7wq7")
+label = NodePath("RichTextLabel")
 metadata/_custom_type_script = "uid://vqkbotyl66y0"
 
 [node name="background" type="Sprite2D" parent="."]
 texture = ExtResource("2_gtqtb")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = -420.0
+offset_top = -100.0
+offset_right = 420.0
+offset_bottom = 100.0
+theme_override_fonts/normal_font = ExtResource("3_56k66")
+theme_override_fonts/bold_font = ExtResource("4_bo4ix")
+theme_override_font_sizes/normal_font_size = 32
+theme_override_font_sizes/bold_font_size = 36
+bbcode_enabled = true

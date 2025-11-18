@@ -23,7 +23,7 @@ func _process(delta: float) -> void:
 	check_hovering()
 
 func check_hovering() -> void:
-	is_hovering = get_local_mouse_position().x >= -62 && get_local_mouse_position().x <= 62 && get_local_mouse_position().y >= -62 && get_local_mouse_position().y <= 62
+	is_hovering = get_local_mouse_position().x >= -346 && get_local_mouse_position().x <= 346 && get_local_mouse_position().y >= -306 && get_local_mouse_position().y <= 306
 
 func unlock_tile_source(shape_type: Game.Shape) -> void:
 	if (inventory.tile_source_array[shape_type - 4].is_locked):

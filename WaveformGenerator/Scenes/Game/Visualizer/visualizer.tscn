@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bp12trwllcpo7"]
+[gd_scene load_steps=9 format=3 uid="uid://bp12trwllcpo7"]
 
 [ext_resource type="Script" uid="uid://br160jgaorrb3" path="res://Scenes/Game/Visualizer/visualizer.gd" id="1_addbr"]
 [ext_resource type="Texture2D" uid="uid://dm2g724s5j4g8" path="res://Sprites/tv_circle.png" id="2_ub7tk"]
+[ext_resource type="Texture2D" uid="uid://dkdi8jylhbq50" path="res://Sprites/purple gradient thingy.png" id="3_7scpc"]
+[ext_resource type="Texture2D" uid="uid://booaqpqobvab4" path="res://Sprites/spinny spinny.png" id="4_4ef88"]
 
 [sub_resource type="Gradient" id="Gradient_ub7tk"]
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
@@ -15,7 +17,7 @@ colors = PackedColorArray(0.43137255, 0.46666667, 1, 0, 0.43137255, 0.46666667, 
 [sub_resource type="Gradient" id="Gradient_xln8d"]
 colors = PackedColorArray(0.43137255, 0.46666667, 1, 0, 0.43137255, 0.46666667, 1, 1)
 
-[node name="Visualizer" type="Node2D" node_paths=PackedStringArray("static_circle", "shape_circle", "waveform_1_circle", "waveform_2_circle", "shape_line2D", "cord_line2D", "waveform_1_line2D_1", "waveform_1_line2D_2", "waveform_2_line2D_1", "waveform_2_line2D_2", "link_line2D_1", "link_line2D_2")]
+[node name="Visualizer" type="Node2D" node_paths=PackedStringArray("static_circle", "shape_circle", "waveform_1_circle", "waveform_2_circle", "shape_line2D", "cord_line2D", "waveform_1_line2D_1", "waveform_1_line2D_2", "waveform_2_line2D_1", "waveform_2_line2D_2", "link_line2D_1", "link_line2D_2", "purple_gradient_thingy_h", "purple_gradient_thingy_v", "spinny_spinny")]
 script = ExtResource("1_addbr")
 static_circle = NodePath("Static Circle")
 shape_circle = NodePath("Shape Circle")
@@ -29,6 +31,9 @@ waveform_2_line2D_1 = NodePath("Waveform 2 Line2D 1")
 waveform_2_line2D_2 = NodePath("Waveform 2 Line2D 2")
 link_line2D_1 = NodePath("Link Line2D 1")
 link_line2D_2 = NodePath("Link Line2D 2")
+purple_gradient_thingy_h = NodePath("Purple gradient thingy H")
+purple_gradient_thingy_v = NodePath("Purple gradient thingy V")
+spinny_spinny = NodePath("Spinny Spinny")
 
 [node name="Static Circle" type="Sprite2D" parent="."]
 texture = ExtResource("2_ub7tk")
@@ -86,3 +91,17 @@ default_color = Color(1, 1, 1, 0.39215687)
 points = PackedVector2Array(-160, 0, -160, -240)
 width = 4.0
 default_color = Color(1, 1, 1, 0.39215687)
+
+[node name="Purple gradient thingy H" type="Sprite2D" parent="."]
+position = Vector2(0, -320)
+rotation = 1.5707964
+texture = ExtResource("3_7scpc")
+
+[node name="Purple gradient thingy V" type="Sprite2D" parent="."]
+position = Vector2(320, 0)
+texture = ExtResource("3_7scpc")
+
+[node name="Spinny Spinny" type="Sprite2D" parent="."]
+z_index = -10
+position = Vector2(-82, -82)
+texture = ExtResource("4_4ef88")

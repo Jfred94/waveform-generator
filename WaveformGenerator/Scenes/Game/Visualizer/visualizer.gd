@@ -35,13 +35,19 @@ var is_first_waveform: bool = true # bool that dictates which waveform is curren
 @export var link_line2D_1: Line2D
 @export var link_line2D_2: Line2D
 
+@export var purple_gradient_thingy_h: Sprite2D
+@export var purple_gradient_thingy_v: Sprite2D
+@export var spinny_spinny: Sprite2D
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
 
+var is_hovering: bool = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	check_hovering()
 	angle += delta * PI * 0.5
 	if (angle >= 2.0 * PI):
 		angle -= 2.0 * PI
@@ -63,18 +69,38 @@ func _process(delta: float) -> void:
 	var shape_index: int
 	if (angle >= 0.0 && angle < PI * 0.5):
 		shape_index = top_left_shape
+		purple_gradient_thingy_v.position = Vector2(320, 0)
+		purple_gradient_thingy_h.position = Vector2(0, -320)
+		spinny_spinny.position = Vector2(-82, -82)
+		spinny_spinny.rotation = 0.0
 	elif (angle >= PI * 0.5 && angle < PI):
 		shape_index = top_right_shape
+		purple_gradient_thingy_v.position = Vector2(480, 0)
+		purple_gradient_thingy_h.position = Vector2(0, -480)
+		spinny_spinny.position = Vector2(82, -82)
+		spinny_spinny.rotation = PI * 0.5
 	elif (angle >= PI && angle < PI * 1.5):
 		shape_index = bottom_right_shape
+		purple_gradient_thingy_v.position = Vector2(640, 0)
+		purple_gradient_thingy_h.position = Vector2(0, -640)
+		spinny_spinny.position = Vector2(82, 82)
+		spinny_spinny.rotation = PI
 	else:
 		shape_index = bottom_left_shape
+		purple_gradient_thingy_v.position = Vector2(800, 0)
+		purple_gradient_thingy_h.position = Vector2(0, -800)
+		spinny_spinny.position = Vector2(-82, 82)
+		spinny_spinny.rotation = PI * 1.5
 	shape_circle.position = find_outside_position(angle, shape_index)
 	
 	waveform_1_circle.position = Vector2(240 + angle * (320 / PI), shape_circle.position.y)
 	waveform_2_circle.position = Vector2(shape_circle.position.x, -240 - angle * (320 / PI))
 	
 	update_lines()
+
+
+func check_hovering() -> void:
+	is_hovering = (get_local_mouse_position().x >= -200 && get_local_mouse_position().x <= 200 && get_local_mouse_position().y >= -880 && get_local_mouse_position().y <= 200) || (get_local_mouse_position().x >= -200 && get_local_mouse_position().x <= 880 && get_local_mouse_position().y >= -200 && get_local_mouse_position().y <= 200)
 
 func update_shapes(_tile1: Tile, _tile2: Tile, _tile3: Tile, _tile4: Tile) -> void:
 	
@@ -195,8 +221,8 @@ func update_lines() -> void:
 		
 		waveform_1_line2D_2.gradient.set_offset(0, 0.0 + (angle / (PI * 2.0)))
 		waveform_2_line2D_2.gradient.set_offset(0, 0.0 + (angle / (PI * 2.0)))
-		waveform_1_line2D_2.gradient.set_offset(1, 1.0)
-		waveform_2_line2D_2.gradient.set_offset(1, 1.0)
+		waveform_1_line2D_2.gradient.set_offset(1, 1.0 + (angle / (PI * 2.0)))
+		waveform_2_line2D_2.gradient.set_offset(1, 1.0 + (angle / (PI * 2.0)))
 	else:
 		waveform_1_line2D_2.gradient.set_offset(0, 0.0)
 		waveform_2_line2D_2.gradient.set_offset(0, 0.0)
@@ -205,8 +231,8 @@ func update_lines() -> void:
 		
 		waveform_1_line2D_1.gradient.set_offset(0, 0.0 + (angle / (PI * 2.0)))
 		waveform_2_line2D_1.gradient.set_offset(0, 0.0 + (angle / (PI * 2.0)))
-		waveform_1_line2D_1.gradient.set_offset(1, 1.0)
-		waveform_2_line2D_1.gradient.set_offset(1, 1.0)
+		waveform_1_line2D_1.gradient.set_offset(1, 1.0 + (angle / (PI * 2.0)))
+		waveform_2_line2D_1.gradient.set_offset(1, 1.0 + (angle / (PI * 2.0)))
 	
 
 

@@ -65,7 +65,7 @@
 background_mode = 3
 background_canvas_max_layer = 1
 glow_enabled = true
-glow_intensity = 1.35
+glow_intensity = 2.0
 glow_bloom = 0.3
 glow_hdr_threshold = 0.73
 glow_hdr_scale = 1.6
@@ -102,8 +102,16 @@ position = Vector2(1092, 782)
 
 [node name="Panels" type="Node2D" parent="GameCanvasLayer/background"]
 
-[node name="InfoPanel" parent="GameCanvasLayer/background/Panels" instance=ExtResource("4_i1e5p")]
+[node name="InfoPanel" parent="GameCanvasLayer/background/Panels" node_paths=PackedStringArray("visualizer", "hint_panel", "inventory_panel", "rotate_panel", "shrink_panel", "flip_panel", "combine_panel", "shape_panel") instance=ExtResource("4_i1e5p")]
 position = Vector2(1280, 200)
+visualizer = NodePath("../../Visualizer")
+hint_panel = NodePath("../HintPanel")
+inventory_panel = NodePath("../InventoryPanel")
+rotate_panel = NodePath("../RotatePanel")
+shrink_panel = NodePath("../ShrinkPanel")
+flip_panel = NodePath("../FlipPanel")
+combine_panel = NodePath("../CombinePanel")
+shape_panel = NodePath("../ShapePanel")
 
 [node name="InventoryPanel" parent="GameCanvasLayer/background/Panels" node_paths=PackedStringArray("game") instance=ExtResource("5_ciybh")]
 position = Vector2(2140, 380)
@@ -134,6 +142,7 @@ game = NodePath("../../../..")
 visualizer = NodePath("../../Visualizer")
 
 [node name="Visualizer" parent="GameCanvasLayer/background" instance=ExtResource("12_ypmwd")]
+z_index = 20
 position = Vector2(280, 1160)
 
 [node name="Menu Button" type="TextureButton" parent="GameCanvasLayer/background"]
