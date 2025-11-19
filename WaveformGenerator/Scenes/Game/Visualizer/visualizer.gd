@@ -39,9 +39,20 @@ var is_first_waveform: bool = true # bool that dictates which waveform is curren
 @export var purple_gradient_thingy_v: Sprite2D
 @export var spinny_spinny: Sprite2D
 
+var debug_mode: bool = false
+
+var shape_line_ghost_scene = preload("res://Scenes/Game/ShapeLineGhost/shape_line_ghost.tscn")
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	if (debug_mode):
+		waveform_1_circle.visible = false
+		waveform_2_circle.visible = false
+		link_line2D_1.visible = false
+		link_line2D_2.visible = false
+		purple_gradient_thingy_h.visible = false
+		purple_gradient_thingy_v.visible = false
+		
 
 var is_hovering: bool = false
 
@@ -112,6 +123,12 @@ func update_shapes(_tile1: Tile, _tile2: Tile, _tile3: Tile, _tile4: Tile) -> vo
 		tile3 = _tile3
 		tile4 = _tile4
 		visualizer_angle = 0.0
+		
+		var shape_line_ghost: ShapeLineGhost = shape_line_ghost_scene.instantiate()
+		add_child(shape_line_ghost)
+		shape_line_ghost.z_index = -1
+		shape_line_ghost.add_child(shape_line2D.duplicate())
+		
 		shape_line2D.clear_points()
 		is_shape_line_finished = false
 		shape_line2D.closed = false
@@ -213,26 +230,37 @@ func update_lines() -> void:
 	
 	#waveform_1_line2D_1.gradient.set_offset(0, 0.5)
 	
-	if (is_first_waveform):
+	if (debug_mode):
 		waveform_1_line2D_1.gradient.set_offset(0, 0.0)
 		waveform_2_line2D_1.gradient.set_offset(0, 0.0)
-		waveform_1_line2D_1.gradient.set_offset(1, 0.0 + (angle / (PI * 2.0)))
-		waveform_2_line2D_1.gradient.set_offset(1, 0.0 + (angle / (PI * 2.0)))
+		waveform_1_line2D_1.gradient.set_offset(1, 0.0)
+		waveform_2_line2D_1.gradient.set_offset(1, 0.0)
 		
-		waveform_1_line2D_2.gradient.set_offset(0, 0.0 + (angle / (PI * 2.0)))
-		waveform_2_line2D_2.gradient.set_offset(0, 0.0 + (angle / (PI * 2.0)))
-		waveform_1_line2D_2.gradient.set_offset(1, 1.0 + (angle / (PI * 2.0)))
-		waveform_2_line2D_2.gradient.set_offset(1, 1.0 + (angle / (PI * 2.0)))
-	else:
 		waveform_1_line2D_2.gradient.set_offset(0, 0.0)
 		waveform_2_line2D_2.gradient.set_offset(0, 0.0)
-		waveform_1_line2D_2.gradient.set_offset(1, 0.0 + (angle / (PI * 2.0)))
-		waveform_2_line2D_2.gradient.set_offset(1, 0.0 + (angle / (PI * 2.0)))
-		
-		waveform_1_line2D_1.gradient.set_offset(0, 0.0 + (angle / (PI * 2.0)))
-		waveform_2_line2D_1.gradient.set_offset(0, 0.0 + (angle / (PI * 2.0)))
-		waveform_1_line2D_1.gradient.set_offset(1, 1.0 + (angle / (PI * 2.0)))
-		waveform_2_line2D_1.gradient.set_offset(1, 1.0 + (angle / (PI * 2.0)))
+		waveform_1_line2D_2.gradient.set_offset(1, 0.0)
+		waveform_2_line2D_2.gradient.set_offset(1, 0.0)
+	else:
+		if (is_first_waveform):
+			waveform_1_line2D_1.gradient.set_offset(0, 0.0)
+			waveform_2_line2D_1.gradient.set_offset(0, 0.0)
+			waveform_1_line2D_1.gradient.set_offset(1, 0.0 + (angle / (PI * 2.0)))
+			waveform_2_line2D_1.gradient.set_offset(1, 0.0 + (angle / (PI * 2.0)))
+			
+			waveform_1_line2D_2.gradient.set_offset(0, 0.0 + (angle / (PI * 2.0)))
+			waveform_2_line2D_2.gradient.set_offset(0, 0.0 + (angle / (PI * 2.0)))
+			waveform_1_line2D_2.gradient.set_offset(1, 1.0 + (angle / (PI * 2.0)))
+			waveform_2_line2D_2.gradient.set_offset(1, 1.0 + (angle / (PI * 2.0)))
+		else:
+			waveform_1_line2D_2.gradient.set_offset(0, 0.0)
+			waveform_2_line2D_2.gradient.set_offset(0, 0.0)
+			waveform_1_line2D_2.gradient.set_offset(1, 0.0 + (angle / (PI * 2.0)))
+			waveform_2_line2D_2.gradient.set_offset(1, 0.0 + (angle / (PI * 2.0)))
+			
+			waveform_1_line2D_1.gradient.set_offset(0, 0.0 + (angle / (PI * 2.0)))
+			waveform_2_line2D_1.gradient.set_offset(0, 0.0 + (angle / (PI * 2.0)))
+			waveform_1_line2D_1.gradient.set_offset(1, 1.0 + (angle / (PI * 2.0)))
+			waveform_2_line2D_1.gradient.set_offset(1, 1.0 + (angle / (PI * 2.0)))
 	
 
 

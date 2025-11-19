@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://wrvsk3k2mqy8"]
+
+[ext_resource type="Script" uid="uid://dsek42ux1a46w" path="res://Scenes/Game/ShapeLineGhost/shape_line_ghost.gd" id="1_fqoc7"]
+
+[node name="Shape Line Ghost" type="Node2D"]
+script = ExtResource("1_fqoc7")

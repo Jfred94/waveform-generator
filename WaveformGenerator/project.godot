@@ -24,6 +24,7 @@ window/size/window_height_override=720
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 window/vsync/vsync_mode=2
+mouse_cursor/custom_image="uid://cr2trknmhhimn"
 
 [input]
 
