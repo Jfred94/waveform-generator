@@ -43,6 +43,8 @@ var debug_mode: bool = false
 
 var shape_line_ghost_scene = preload("res://Scenes/Game/ShapeLineGhost/shape_line_ghost.tscn")
 
+@export var level_manager: LevelManager
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if (debug_mode):
@@ -69,13 +71,15 @@ func _process(delta: float) -> void:
 		else:
 			waveform_1_line2D_2.clear_points()
 			waveform_2_line2D_2.clear_points()
+		level_manager.end_of_cycle()
 	
 	visualizer_angle += delta * PI * 0.5
 	if (visualizer_angle >= 2.0 * PI):
 		visualizer_angle -= 2.0 * PI
 		is_shape_line_finished = true
 		shape_line2D.closed = true
-		
+	
+	
 	
 	var shape_index: int
 	if (angle >= 0.0 && angle < PI * 0.5):
@@ -240,6 +244,9 @@ func update_lines() -> void:
 		waveform_2_line2D_2.gradient.set_offset(0, 0.0)
 		waveform_1_line2D_2.gradient.set_offset(1, 0.0)
 		waveform_2_line2D_2.gradient.set_offset(1, 0.0)
+		
+		waveform_2_line2D_1.gradient.set_color(1, Color.WHITE)
+		waveform_2_line2D_2.gradient.set_color(1, Color.WHITE)
 	else:
 		if (is_first_waveform):
 			waveform_1_line2D_1.gradient.set_offset(0, 0.0)

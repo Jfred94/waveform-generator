@@ -37,7 +37,7 @@ func _process(delta: float) -> void:
 	check_hovering()
 	
 	if (is_hovering && Input.is_action_just_pressed("lmb") && !is_locked):
-		if ((is_base_tile && get_global_mouse_position().y < inventory_panel.position.y-100) || (!is_base_tile && get_global_mouse_position().y > inventory_panel.position.y-100)):
+		if ((is_base_tile && get_global_mouse_position().y < inventory_panel.position.y-100) || (!is_base_tile && get_global_mouse_position().y > inventory_panel.position.y-100 && get_global_mouse_position().y < inventory_panel.position.y+300)):
 			spawn_tile()
 
 func check_hovering() -> void:

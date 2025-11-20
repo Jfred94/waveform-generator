@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://e0j4pqwpg7y8"]
+[gd_scene load_steps=89 format=3 uid="uid://e0j4pqwpg7y8"]
 
 [ext_resource type="Script" uid="uid://bokmmg3v1fgoy" path="res://Scenes/Game/game.gd" id="1_mv0hc"]
 [ext_resource type="Texture2D" uid="uid://dy6gawgjmjt1r" path="res://Sprites/shapes/circle.png" id="2_8trit"]
@@ -57,10 +57,36 @@
 [ext_resource type="Texture2D" uid="uid://dpqxrpnc8qmsr" path="res://Sprites/shapes/small rectangle x small inv circle.png" id="45_5s13o"]
 [ext_resource type="Texture2D" uid="uid://b2uov2hdrlyg6" path="res://Sprites/shapes/small rectangle f x small inv circle.png" id="46_bcbly"]
 [ext_resource type="Texture2D" uid="uid://y7jtu5yp1v0m" path="res://Sprites/pure background w grid.png" id="47_a4qm0"]
+[ext_resource type="Texture2D" uid="uid://jkvcp3mw7hvg" path="res://Sprites/purple background.png" id="48_lis5c"]
 [ext_resource type="Texture2D" uid="uid://ddwrmdspwf4x" path="res://Sprites/buttons/menu N.png" id="58_71giq"]
 [ext_resource type="Texture2D" uid="uid://bec13fwpu4uur" path="res://Sprites/buttons/menu P.png" id="59_a4qm0"]
 [ext_resource type="Texture2D" uid="uid://1uy7yv6aq3y" path="res://Sprites/buttons/menu H.png" id="60_2gid3"]
 [ext_resource type="PackedScene" uid="uid://dc0bto7y6fv2u" path="res://Scenes/Game/LevelManager/level_manager.tscn" id="61_2gid3"]
+[ext_resource type="Texture2D" uid="uid://b3ec3ewgpa626" path="res://Sprites/level backgrounds/1.png" id="63_858on"]
+[ext_resource type="Texture2D" uid="uid://dksvvb1dbvwlm" path="res://Sprites/level backgrounds/2.png" id="64_jcrx1"]
+[ext_resource type="Texture2D" uid="uid://lrgmmgwawade" path="res://Sprites/level backgrounds/3.png" id="65_u2cvy"]
+[ext_resource type="Texture2D" uid="uid://cyfq4hpmiov2h" path="res://Sprites/level backgrounds/4.png" id="66_pxakk"]
+[ext_resource type="Texture2D" uid="uid://c1ok1t1g60nxr" path="res://Sprites/level backgrounds/5.png" id="67_4lqcr"]
+[ext_resource type="Texture2D" uid="uid://dvagu66mkd5dy" path="res://Sprites/level backgrounds/6.png" id="68_5stw6"]
+[ext_resource type="Texture2D" uid="uid://85ayfur7o3u" path="res://Sprites/level backgrounds/7.png" id="69_r1pxr"]
+[ext_resource type="Texture2D" uid="uid://8gcxegbac7mb" path="res://Sprites/level backgrounds/8.png" id="70_8s3bd"]
+[ext_resource type="Texture2D" uid="uid://biwbvfu6em2jb" path="res://Sprites/level backgrounds/9.png" id="71_4ughv"]
+[ext_resource type="Texture2D" uid="uid://c55rkw6x6u7rf" path="res://Sprites/level backgrounds/10.png" id="72_n6kei"]
+[ext_resource type="Texture2D" uid="uid://cpbj8fctsdak7" path="res://Sprites/level backgrounds/11.png" id="73_wqd0x"]
+[ext_resource type="Texture2D" uid="uid://cew017axxf6qt" path="res://Sprites/level backgrounds/12.png" id="74_c2yya"]
+[ext_resource type="Texture2D" uid="uid://cyubxrn8wbcs8" path="res://Sprites/level backgrounds/13.png" id="75_yuuq1"]
+[ext_resource type="Texture2D" uid="uid://b7gt27vohq5k" path="res://Sprites/level backgrounds/14.png" id="76_uur6h"]
+[ext_resource type="Texture2D" uid="uid://d27setlal3t35" path="res://Sprites/level backgrounds/15.png" id="77_osbsx"]
+[ext_resource type="Texture2D" uid="uid://dwv67drop65ho" path="res://Sprites/level backgrounds/16.png" id="78_l47d4"]
+[ext_resource type="Texture2D" uid="uid://dcmltjulsvl68" path="res://Sprites/level backgrounds/17.png" id="79_5s13o"]
+[ext_resource type="Texture2D" uid="uid://fijrx3nk6r8e" path="res://Sprites/level backgrounds/18.png" id="80_bcbly"]
+[ext_resource type="Texture2D" uid="uid://cxt6dkktd4lof" path="res://Sprites/level backgrounds/19.png" id="81_mblbl"]
+[ext_resource type="Texture2D" uid="uid://bchxdswpxm4gd" path="res://Sprites/level backgrounds/20.png" id="82_26oar"]
+[ext_resource type="Texture2D" uid="uid://cbkkrkgt480cv" path="res://Sprites/level backgrounds/21.png" id="83_53l7k"]
+[ext_resource type="Texture2D" uid="uid://bao5w7avj1u3k" path="res://Sprites/level backgrounds/22.png" id="84_jxu7g"]
+[ext_resource type="Texture2D" uid="uid://b7qxbmeli028x" path="res://Sprites/level backgrounds/23.png" id="85_1ai8e"]
+[ext_resource type="Texture2D" uid="uid://m1wjwdcm6owm" path="res://Sprites/level backgrounds/24.png" id="86_lwid8"]
+[ext_resource type="Texture2D" uid="uid://dmexmdss74ier" path="res://Sprites/level backgrounds/25.png" id="87_8m3b2"]
 
 [sub_resource type="Environment" id="Environment_qikps"]
 background_mode = 3
@@ -96,6 +122,11 @@ offset_bottom = 720.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("47_a4qm0")
+
+[node name="backgroundest" type="Sprite2D" parent="GameCanvasLayer/background"]
+z_index = -1000
+texture = ExtResource("48_lis5c")
+centered = false
 
 [node name="Test Visualizer" parent="GameCanvasLayer/background" instance=ExtResource("3_qikps")]
 visible = false
@@ -150,9 +181,10 @@ position = Vector2(780, 660)
 game = NodePath("../../../..")
 visualizer = NodePath("../../Visualizer")
 
-[node name="Visualizer" parent="GameCanvasLayer/background" instance=ExtResource("12_ypmwd")]
+[node name="Visualizer" parent="GameCanvasLayer/background" node_paths=PackedStringArray("level_manager") instance=ExtResource("12_ypmwd")]
 z_index = 20
 position = Vector2(280, 1160)
+level_manager = NodePath("../Level Manager")
 
 [node name="Menu Button" type="TextureButton" parent="GameCanvasLayer/background"]
 layout_mode = 0
@@ -167,5 +199,8 @@ texture_hover = ExtResource("60_2gid3")
 [node name="Tiles" type="Node2D" parent="GameCanvasLayer/background"]
 z_index = 105
 
-[node name="Level Manager" parent="GameCanvasLayer/background" instance=ExtResource("61_2gid3")]
+[node name="Level Manager" parent="GameCanvasLayer/background" node_paths=PackedStringArray("background", "visualizer") instance=ExtResource("61_2gid3")]
 position = Vector2(280, 1160)
+background = NodePath("..")
+visualizer = NodePath("../Visualizer")
+backgrounds = Array[Texture2D]([ExtResource("47_a4qm0"), ExtResource("63_858on"), ExtResource("64_jcrx1"), ExtResource("65_u2cvy"), ExtResource("66_pxakk"), ExtResource("67_4lqcr"), ExtResource("68_5stw6"), ExtResource("69_r1pxr"), ExtResource("70_8s3bd"), ExtResource("71_4ughv"), ExtResource("72_n6kei"), ExtResource("73_wqd0x"), ExtResource("74_c2yya"), ExtResource("75_yuuq1"), ExtResource("76_uur6h"), ExtResource("77_osbsx"), ExtResource("78_l47d4"), ExtResource("79_5s13o"), ExtResource("80_bcbly"), ExtResource("81_mblbl"), ExtResource("82_26oar"), ExtResource("83_53l7k"), ExtResource("84_jxu7g"), ExtResource("85_1ai8e"), ExtResource("86_lwid8"), ExtResource("87_8m3b2")])

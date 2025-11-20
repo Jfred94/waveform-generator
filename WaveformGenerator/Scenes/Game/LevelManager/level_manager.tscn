@@ -1,6 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://dc0bto7y6fv2u"]
+[gd_scene load_steps=4 format=3 uid="uid://dc0bto7y6fv2u"]
 
 [ext_resource type="Script" uid="uid://cieikykxwji00" path="res://Scenes/Game/LevelManager/level_manager.gd" id="1_niy87"]
+[ext_resource type="Texture2D" uid="uid://dteuy606nq4l3" path="res://Sprites/pure background.png" id="2_rq5xt"]
+[ext_resource type="Texture2D" uid="uid://y7jtu5yp1v0m" path="res://Sprites/pure background w grid.png" id="2_ts4op"]
 
-[node name="Level Manager" type="Node2D"]
+[node name="Level Manager" type="Node2D" node_paths=PackedStringArray("bars", "bars2")]
 script = ExtResource("1_niy87")
+pure_background = ExtResource("2_rq5xt")
+true_background = ExtResource("2_ts4op")
+bars = NodePath("bars")
+bars2 = NodePath("bars 2")
+
+[node name="bars" type="Node2D" parent="."]
+z_index = -995
+
+[node name="bars 2" type="Node2D" parent="."]
+z_index = -995
