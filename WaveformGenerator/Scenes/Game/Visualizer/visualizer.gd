@@ -136,7 +136,15 @@ func update_shapes(_tile1: Tile, _tile2: Tile, _tile3: Tile, _tile4: Tile) -> vo
 		shape_line2D.clear_points()
 		is_shape_line_finished = false
 		shape_line2D.closed = false
-
+		
+		if (tile1 != null):
+			tile1.modulate = Color.WHITE
+		if (tile2 != null):
+			tile2.modulate = Color.WHITE
+		if (tile3 != null):
+			tile3.modulate = Color.WHITE
+		if (tile4 != null):
+			tile4.modulate = Color.WHITE
 		
 		# change int variables according to tiles types and rotation (set to -1 if unsupported), inv circle and small inv circle at the end
 		
@@ -155,8 +163,10 @@ func update_shapes(_tile1: Tile, _tile2: Tile, _tile3: Tile, _tile4: Tile) -> vo
 						top_left_shape = tile1.shape_type
 					else:
 						top_left_shape = -1
+						tile1.modulate = Color(1.0, 0.5, 0.5, 1.0)
 				else:
 					top_left_shape = -1
+					tile1.modulate = Color(1.0, 0.5, 0.5, 1.0)
 		
 		if (tile2 == null):
 			top_right_shape = -1
@@ -173,8 +183,10 @@ func update_shapes(_tile1: Tile, _tile2: Tile, _tile3: Tile, _tile4: Tile) -> vo
 						top_right_shape = tile2.shape_type
 					else:
 						top_right_shape = -1
+						tile2.modulate = Color(1.0, 0.5, 0.5, 1.0)
 				else:
 					top_right_shape = -1
+					tile2.modulate = Color(1.0, 0.5, 0.5, 1.0)
 		
 		if (tile3 == null):
 			bottom_right_shape = -1
@@ -191,8 +203,10 @@ func update_shapes(_tile1: Tile, _tile2: Tile, _tile3: Tile, _tile4: Tile) -> vo
 						bottom_right_shape = tile3.shape_type
 					else:
 						bottom_right_shape = -1
+						tile3.modulate = Color(1.0, 0.5, 0.5, 1.0)
 				else:
 					bottom_right_shape = -1
+					tile3.modulate = Color(1.0, 0.5, 0.5, 1.0)
 		
 		if (tile4 == null):
 			bottom_left_shape = -1
@@ -209,8 +223,10 @@ func update_shapes(_tile1: Tile, _tile2: Tile, _tile3: Tile, _tile4: Tile) -> vo
 						bottom_left_shape = tile4.shape_type
 					else:
 						bottom_left_shape = -1
+						tile4.modulate = Color(1.0, 0.5, 0.5, 1.0)
 				else:
 					bottom_left_shape = -1
+					tile4.modulate = Color(1.0, 0.5, 0.5, 1.0)
 		
 
 
