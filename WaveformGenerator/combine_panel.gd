@@ -12,6 +12,9 @@ var tiles: Node2D
 
 @export var hover_anim_player: AnimationPlayer
 
+@export var additive_button: TextureButton
+@export var exclusive_button: TextureButton
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

@@ -10,7 +10,7 @@ class_name LevelManager
 
 @export var backgrounds: Array[Texture2D]
 
-var level: int = 1
+var level: int = 18
 var radius: float
 var angle: float
 
@@ -20,10 +20,22 @@ var is_incorrect: bool = false
 @export var bars2: Node2D
 var was_correct: bool = false
 
+@export var shrink_panel: ShrinkPanel
+@export var flip_panel: FlipPanel
+@export var combine_panel: CombinePanel
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	background.texture = backgrounds[1]
+	background.texture = backgrounds[level]
 	radius = visualizer.radius
+	if (level == 1):
+		shrink_panel.position = Vector2(3020, 900)
+		flip_panel.position = Vector2(3340, 900)
+		combine_panel.position = Vector2(3080, 1220)
+		combine_panel.exclusive_button.visible = false
+	
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -74,7 +86,14 @@ func next_level() -> void:
 	level += 1
 	if (backgrounds.size() > level):
 		background.texture = backgrounds[level]
-	print("next level: " + str(level))
+	if (level == 8):
+		shrink_panel.position = Vector2(2020, 900)
+	elif (level == 13):
+		flip_panel.position = Vector2(2340, 900)
+	elif (level == 18):
+		combine_panel.position = Vector2(2080, 1220)
+	elif (level == 22):
+		combine_panel.exclusive_button.visible = true
 
 func check_if_correct() -> bool:
 	

@@ -199,8 +199,11 @@ texture_hover = ExtResource("60_2gid3")
 [node name="Tiles" type="Node2D" parent="GameCanvasLayer/background"]
 z_index = 105
 
-[node name="Level Manager" parent="GameCanvasLayer/background" node_paths=PackedStringArray("background", "visualizer") instance=ExtResource("61_2gid3")]
+[node name="Level Manager" parent="GameCanvasLayer/background" node_paths=PackedStringArray("background", "visualizer", "shrink_panel", "flip_panel", "combine_panel") instance=ExtResource("61_2gid3")]
 position = Vector2(280, 1160)
 background = NodePath("..")
 visualizer = NodePath("../Visualizer")
 backgrounds = Array[Texture2D]([ExtResource("47_a4qm0"), ExtResource("63_858on"), ExtResource("64_jcrx1"), ExtResource("65_u2cvy"), ExtResource("66_pxakk"), ExtResource("67_4lqcr"), ExtResource("68_5stw6"), ExtResource("69_r1pxr"), ExtResource("70_8s3bd"), ExtResource("71_4ughv"), ExtResource("72_n6kei"), ExtResource("73_wqd0x"), ExtResource("74_c2yya"), ExtResource("75_yuuq1"), ExtResource("76_uur6h"), ExtResource("77_osbsx"), ExtResource("78_l47d4"), ExtResource("79_5s13o"), ExtResource("80_bcbly"), ExtResource("81_mblbl"), ExtResource("82_26oar"), ExtResource("83_53l7k"), ExtResource("84_jxu7g"), ExtResource("85_1ai8e"), ExtResource("86_lwid8"), ExtResource("87_8m3b2")])
+shrink_panel = NodePath("../Panels/ShrinkPanel")
+flip_panel = NodePath("../Panels/FlipPanel")
+combine_panel = NodePath("../Panels/CombinePanel")
