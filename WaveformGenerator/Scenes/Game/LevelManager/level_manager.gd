@@ -10,7 +10,7 @@ class_name LevelManager
 
 @export var backgrounds: Array[Texture2D]
 
-var level: int = 18
+var level: int = 1
 var radius: float
 var angle: float
 
@@ -23,7 +23,9 @@ var was_correct: bool = false
 @export var shrink_panel: ShrinkPanel
 @export var flip_panel: FlipPanel
 @export var combine_panel: CombinePanel
+@export var inventory_panel: InventoryPanel
 
+@export var level_selector: LevelSelector
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -34,7 +36,8 @@ func _ready() -> void:
 		flip_panel.position = Vector2(3340, 900)
 		combine_panel.position = Vector2(3080, 1220)
 		combine_panel.exclusive_button.visible = false
-	
+		inventory_panel.diamond_source.position = Vector2(1080, -200)
+		inventory_panel.rectangle_source.position = Vector2(1240, -200)
 	
 
 
@@ -83,17 +86,50 @@ func end_of_cycle() -> void:
 	
 
 func next_level() -> void:
+	level_selector.on_finish(level)
 	level += 1
 	if (backgrounds.size() > level):
 		background.texture = backgrounds[level]
-	if (level == 8):
+	if (level == 5):
+		inventory_panel.diamond_source.position = Vector2(80, -200)
+	elif (level == 8):
 		shrink_panel.position = Vector2(2020, 900)
 	elif (level == 13):
+		inventory_panel.rectangle_source.position = Vector2(240, -200)
 		flip_panel.position = Vector2(2340, 900)
 	elif (level == 18):
 		combine_panel.position = Vector2(2080, 1220)
 	elif (level == 22):
 		combine_panel.exclusive_button.visible = true
+
+func load_level(_level: int) -> void:
+	if (level != _level):
+		level = _level
+		background.texture = backgrounds[level]
+		shrink_panel.position = Vector2(3020, 900)
+		flip_panel.position = Vector2(3340, 900)
+		combine_panel.position = Vector2(3080, 1220)
+		combine_panel.exclusive_button.visible = false
+		inventory_panel.diamond_source.position = Vector2(1080, -200)
+		inventory_panel.rectangle_source.position = Vector2(1240, -200)
+		if (level >= 5):
+			inventory_panel.diamond_source.position = Vector2(80, -200)
+		if (level >= 8):
+			shrink_panel.position = Vector2(2020, 900)
+		if (level >= 13):
+			inventory_panel.rectangle_source.position = Vector2(240, -200)
+			flip_panel.position = Vector2(2340, 900)
+		if (level >= 18):
+			combine_panel.position = Vector2(2080, 1220)
+		if (level >= 22):
+			combine_panel.exclusive_button.visible = true
+		is_incorrect = true
+		for bar in bars.get_children():
+			bar.queue_free()
+		for bar in bars2.get_children():
+			bar.queue_free()
+			
+
 
 func check_if_correct() -> bool:
 	

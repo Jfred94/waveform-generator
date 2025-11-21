@@ -12,7 +12,7 @@ var shrink_string: String = "[wave amp=20 freq=1.0][b]SHRINK PANEL[/b]\nInsert a
 var flip_string: String = "[wave amp=20 freq=1.0][b]FLIP PANEL[/b]\nInsert a tile here to flip it horizontally[/wave]"
 var combine_string: String = "[wave amp=20 freq=1.0][b]COMBINE PANEL[/b]\nInsert 2 tiles here to combine them\nAdditive combine takes the longest point from the center\nExclusive combine takes the shortest point from the center\nA tile that has already been combined cannot be combined again[/wave]"
 var shape_string: String = "[wave amp=20 freq=1.0][b]SHAPE PANEL[/b]\nInsert 4 tiles here to construct the visualizer shape\nIf a tile cannot be placed in this rotation, it will be highlighted in red[/wave]"
-
+var selector_string: String = "[wave amp=20 freq=1.0][b]LEVEL SELECT[/b]\nAll 25 levels are available here[/wave]"
 
 @export var visualizer: Visualizer
 @export var hint_panel: HintPanel
@@ -22,6 +22,7 @@ var shape_string: String = "[wave amp=20 freq=1.0][b]SHAPE PANEL[/b]\nInsert 4 t
 @export var flip_panel: FlipPanel
 @export var combine_panel: CombinePanel
 @export var shape_panel: ShapePanel
+@export var level_selector: LevelSelector
 
 @export var hover_anim_player: AnimationPlayer
 
@@ -53,6 +54,8 @@ func _process(delta: float) -> void:
 		label.text = combine_string
 	elif (shape_panel.is_hovering):
 		label.text = shape_string
+	elif (level_selector.is_hovering):
+		label.text = selector_string
 	else:
 		label.text = ""
 	

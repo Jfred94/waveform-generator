@@ -101,7 +101,7 @@ _data = {
 &"hover out": SubResource("Animation_hjxo7")
 }
 
-[node name="InventoryPanel" type="Node2D" node_paths=PackedStringArray("inventory", "hover_anim_player")]
+[node name="InventoryPanel" type="Node2D" node_paths=PackedStringArray("inventory", "hover_anim_player", "diamond_source", "rectangle_source")]
 script = ExtResource("1_vkvl0")
 locked_slot_texture = ExtResource("2_xff7h")
 unlocked_background_texture = ExtResource("3_88h5v")
@@ -110,6 +110,8 @@ shrunk_tile_background_texture = ExtResource("4_2is8k")
 combined_tile_background_texture = ExtResource("5_hjxo7")
 both_tile_background_texture = ExtResource("6_xd1ap")
 hover_anim_player = NodePath("HoverAnimationPlayer")
+diamond_source = NodePath("Tile Sources/TileSource3")
+rectangle_source = NodePath("Tile Sources/TileSource4")
 metadata/_custom_type_script = "uid://vqkbotyl66y0"
 
 [node name="background" type="Sprite2D" parent="."]

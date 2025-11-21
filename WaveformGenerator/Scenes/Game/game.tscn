@@ -1,4 +1,4 @@
-[gd_scene load_steps=89 format=3 uid="uid://e0j4pqwpg7y8"]
+[gd_scene load_steps=90 format=3 uid="uid://e0j4pqwpg7y8"]
 
 [ext_resource type="Script" uid="uid://bokmmg3v1fgoy" path="res://Scenes/Game/game.gd" id="1_mv0hc"]
 [ext_resource type="Texture2D" uid="uid://dy6gawgjmjt1r" path="res://Sprites/shapes/circle.png" id="2_8trit"]
@@ -59,6 +59,7 @@
 [ext_resource type="Texture2D" uid="uid://y7jtu5yp1v0m" path="res://Sprites/pure background w grid.png" id="47_a4qm0"]
 [ext_resource type="Texture2D" uid="uid://jkvcp3mw7hvg" path="res://Sprites/purple background.png" id="48_lis5c"]
 [ext_resource type="Texture2D" uid="uid://ddwrmdspwf4x" path="res://Sprites/buttons/menu N.png" id="58_71giq"]
+[ext_resource type="PackedScene" uid="uid://bhgy1gthk4cn6" path="res://Scenes/Game/LevelSelector/level_selector.tscn" id="59_4lqcr"]
 [ext_resource type="Texture2D" uid="uid://bec13fwpu4uur" path="res://Sprites/buttons/menu P.png" id="59_a4qm0"]
 [ext_resource type="Texture2D" uid="uid://1uy7yv6aq3y" path="res://Sprites/buttons/menu H.png" id="60_2gid3"]
 [ext_resource type="PackedScene" uid="uid://dc0bto7y6fv2u" path="res://Scenes/Game/LevelManager/level_manager.tscn" id="61_2gid3"]
@@ -134,7 +135,7 @@ position = Vector2(1092, 782)
 
 [node name="Panels" type="Node2D" parent="GameCanvasLayer/background"]
 
-[node name="InfoPanel" parent="GameCanvasLayer/background/Panels" node_paths=PackedStringArray("visualizer", "hint_panel", "inventory_panel", "rotate_panel", "shrink_panel", "flip_panel", "combine_panel", "shape_panel") instance=ExtResource("4_i1e5p")]
+[node name="InfoPanel" parent="GameCanvasLayer/background/Panels" node_paths=PackedStringArray("visualizer", "hint_panel", "inventory_panel", "rotate_panel", "shrink_panel", "flip_panel", "combine_panel", "shape_panel", "level_selector") instance=ExtResource("4_i1e5p")]
 z_index = 50
 position = Vector2(1280, 200)
 visualizer = NodePath("../../Visualizer")
@@ -145,6 +146,7 @@ shrink_panel = NodePath("../ShrinkPanel")
 flip_panel = NodePath("../FlipPanel")
 combine_panel = NodePath("../CombinePanel")
 shape_panel = NodePath("../ShapePanel")
+level_selector = NodePath("../../LevelSelector")
 
 [node name="InventoryPanel" parent="GameCanvasLayer/background/Panels" node_paths=PackedStringArray("game") instance=ExtResource("5_ciybh")]
 z_index = 50
@@ -186,6 +188,10 @@ z_index = 20
 position = Vector2(280, 1160)
 level_manager = NodePath("../Level Manager")
 
+[node name="LevelSelector" parent="GameCanvasLayer/background" node_paths=PackedStringArray("level_manager") instance=ExtResource("59_4lqcr")]
+position = Vector2(1260, 660)
+level_manager = NodePath("../Level Manager")
+
 [node name="Menu Button" type="TextureButton" parent="GameCanvasLayer/background"]
 layout_mode = 0
 offset_left = 80.0
@@ -199,7 +205,7 @@ texture_hover = ExtResource("60_2gid3")
 [node name="Tiles" type="Node2D" parent="GameCanvasLayer/background"]
 z_index = 105
 
-[node name="Level Manager" parent="GameCanvasLayer/background" node_paths=PackedStringArray("background", "visualizer", "shrink_panel", "flip_panel", "combine_panel") instance=ExtResource("61_2gid3")]
+[node name="Level Manager" parent="GameCanvasLayer/background" node_paths=PackedStringArray("background", "visualizer", "shrink_panel", "flip_panel", "combine_panel", "inventory_panel", "level_selector") instance=ExtResource("61_2gid3")]
 position = Vector2(280, 1160)
 background = NodePath("..")
 visualizer = NodePath("../Visualizer")
@@ -207,3 +213,5 @@ backgrounds = Array[Texture2D]([ExtResource("47_a4qm0"), ExtResource("63_858on")
 shrink_panel = NodePath("../Panels/ShrinkPanel")
 flip_panel = NodePath("../Panels/FlipPanel")
 combine_panel = NodePath("../Panels/CombinePanel")
+inventory_panel = NodePath("../Panels/InventoryPanel")
+level_selector = NodePath("../LevelSelector")
