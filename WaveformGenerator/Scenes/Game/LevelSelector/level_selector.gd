@@ -28,7 +28,7 @@ func _ready() -> void:
 		var rtl: RichTextLabel = RichTextLabel.new()
 		button.add_child(rtl)
 		rtl.bbcode_enabled = true
-		rtl.text = "[wave amp=10 freq=1.0]" + str(i + 1) + "[/wave]"
+		rtl.text = "[wave amp=20 freq=1.0]" + str(i + 1) + "[/wave]"
 		rtl.fit_content = true
 		rtl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		rtl.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
@@ -48,6 +48,9 @@ func _process(delta: float) -> void:
 	is_hovering = get_local_mouse_position().x >= -220 && get_local_mouse_position().x <= 220 && get_local_mouse_position().y >= -220 && get_local_mouse_position().y <= 220
 	if (level_manager.level < 26):
 		selector.position = Vector2(-190 + ((level_manager.level - 1) % 5) * 80, -190 + int((level_manager.level - 1) / 5) * 80)
+		selector.visible = true
+	else:
+		selector.visible = false
 
 func _on_button_up(button: TextureButton) -> void:
 	level_manager.load_level(int(button.name))

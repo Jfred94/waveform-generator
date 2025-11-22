@@ -1,4 +1,4 @@
-[gd_scene load_steps=90 format=3 uid="uid://e0j4pqwpg7y8"]
+[gd_scene load_steps=91 format=3 uid="uid://e0j4pqwpg7y8"]
 
 [ext_resource type="Script" uid="uid://bokmmg3v1fgoy" path="res://Scenes/Game/game.gd" id="1_mv0hc"]
 [ext_resource type="Texture2D" uid="uid://dy6gawgjmjt1r" path="res://Sprites/shapes/circle.png" id="2_8trit"]
@@ -58,11 +58,11 @@
 [ext_resource type="Texture2D" uid="uid://b2uov2hdrlyg6" path="res://Sprites/shapes/small rectangle f x small inv circle.png" id="46_bcbly"]
 [ext_resource type="Texture2D" uid="uid://y7jtu5yp1v0m" path="res://Sprites/pure background w grid.png" id="47_a4qm0"]
 [ext_resource type="Texture2D" uid="uid://jkvcp3mw7hvg" path="res://Sprites/purple background.png" id="48_lis5c"]
-[ext_resource type="Texture2D" uid="uid://ddwrmdspwf4x" path="res://Sprites/buttons/menu N.png" id="58_71giq"]
 [ext_resource type="PackedScene" uid="uid://bhgy1gthk4cn6" path="res://Scenes/Game/LevelSelector/level_selector.tscn" id="59_4lqcr"]
-[ext_resource type="Texture2D" uid="uid://bec13fwpu4uur" path="res://Sprites/buttons/menu P.png" id="59_a4qm0"]
-[ext_resource type="Texture2D" uid="uid://1uy7yv6aq3y" path="res://Sprites/buttons/menu H.png" id="60_2gid3"]
+[ext_resource type="FontFile" uid="uid://dqqmv5ve5h81v" path="res://Fonts/AGENCYR.TTF" id="60_4lqcr"]
+[ext_resource type="Texture2D" uid="uid://cgifr78oodpj6" path="res://Sprites/buttons/handle N.png" id="60_pxakk"]
 [ext_resource type="PackedScene" uid="uid://dc0bto7y6fv2u" path="res://Scenes/Game/LevelManager/level_manager.tscn" id="61_2gid3"]
+[ext_resource type="Texture2D" uid="uid://cskcyghl66gil" path="res://Sprites/buttons/handle P.png" id="61_4lqcr"]
 [ext_resource type="Texture2D" uid="uid://b3ec3ewgpa626" path="res://Sprites/level backgrounds/1.png" id="63_858on"]
 [ext_resource type="Texture2D" uid="uid://dksvvb1dbvwlm" path="res://Sprites/level backgrounds/2.png" id="64_jcrx1"]
 [ext_resource type="Texture2D" uid="uid://lrgmmgwawade" path="res://Sprites/level backgrounds/3.png" id="65_u2cvy"]
@@ -99,11 +99,17 @@ glow_hdr_threshold = 0.73
 glow_hdr_scale = 1.6
 adjustment_contrast = 1.33
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("tiles", "inventory_panel")]
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_5stw6"]
+color = Color(1, 1, 1, 1)
+thickness = 6
+
+[node name="Game" type="Node2D" node_paths=PackedStringArray("tiles", "inventory_panel", "music_slider", "sfx_slider")]
 script = ExtResource("1_mv0hc")
 shape_textures = Array[Texture2D]([ExtResource("2_8trit"), ExtResource("3_71giq"), ExtResource("4_3mdsk"), ExtResource("5_a4qm0"), ExtResource("6_2gid3"), ExtResource("7_lis5c"), ExtResource("8_858on"), ExtResource("9_l5fxq"), ExtResource("10_jcrx1"), ExtResource("11_u2cvy"), ExtResource("12_wwos8"), ExtResource("13_d85t2"), ExtResource("14_53spd"), ExtResource("15_4qu01"), ExtResource("16_qqdjj"), ExtResource("17_x8opw"), ExtResource("18_ntkbw"), ExtResource("19_d4puy"), ExtResource("20_xft3b"), ExtResource("21_yuvyg"), ExtResource("22_hb4p8"), ExtResource("23_h1l72"), ExtResource("24_scdd5"), ExtResource("25_cjj5m"), ExtResource("26_fhxkh"), ExtResource("27_qspya"), ExtResource("28_tgfhl"), ExtResource("29_254l5"), ExtResource("30_5waul"), ExtResource("31_ytvwr"), ExtResource("32_pxakk"), ExtResource("33_4lqcr"), ExtResource("34_5stw6"), ExtResource("35_r1pxr"), ExtResource("36_8s3bd"), ExtResource("37_4ughv"), ExtResource("38_n6kei"), ExtResource("39_wqd0x"), ExtResource("40_c2yya"), ExtResource("41_yuuq1"), ExtResource("42_uur6h"), ExtResource("43_osbsx"), ExtResource("44_l47d4"), ExtResource("45_5s13o"), ExtResource("46_bcbly")])
 tiles = NodePath("GameCanvasLayer/background/Tiles")
 inventory_panel = NodePath("GameCanvasLayer/background/Panels/InventoryPanel")
+music_slider = NodePath("GameCanvasLayer/background/Music Slider")
+sfx_slider = NodePath("GameCanvasLayer/background/SFX Slider")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_qikps")
@@ -192,15 +198,57 @@ level_manager = NodePath("../Level Manager")
 position = Vector2(1260, 660)
 level_manager = NodePath("../Level Manager")
 
-[node name="Menu Button" type="TextureButton" parent="GameCanvasLayer/background"]
+[node name="RichTextLabel" type="RichTextLabel" parent="GameCanvasLayer/background"]
 layout_mode = 0
-offset_left = 80.0
-offset_top = 80.0
-offset_right = 160.0
-offset_bottom = 160.0
-texture_normal = ExtResource("58_71giq")
-texture_pressed = ExtResource("59_a4qm0")
-texture_hover = ExtResource("60_2gid3")
+offset_top = 51.0
+offset_right = 240.0
+offset_bottom = 109.0
+theme_override_fonts/normal_font = ExtResource("60_4lqcr")
+theme_override_font_sizes/normal_font_size = 48
+bbcode_enabled = true
+text = "[wave amp=20 freq=1.0]MUSIC[/wave]"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="GameCanvasLayer/background"]
+layout_mode = 0
+offset_top = 131.0
+offset_right = 240.0
+offset_bottom = 189.0
+theme_override_fonts/normal_font = ExtResource("60_4lqcr")
+theme_override_font_sizes/normal_font_size = 48
+bbcode_enabled = true
+text = "[wave amp=20 freq=1.0]SFX[/wave]"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Music Slider" type="HSlider" parent="GameCanvasLayer/background"]
+layout_mode = 0
+offset_left = 241.0
+offset_top = 65.0
+offset_right = 658.0
+offset_bottom = 95.0
+theme_override_icons/grabber = ExtResource("60_pxakk")
+theme_override_icons/grabber_highlight = ExtResource("61_4lqcr")
+theme_override_styles/slider = SubResource("StyleBoxLine_5stw6")
+max_value = 1.0
+step = 0.001
+value = 0.25
+
+[node name="SFX Slider" type="HSlider" parent="GameCanvasLayer/background"]
+layout_mode = 0
+offset_left = 241.0
+offset_top = 145.0
+offset_right = 658.0
+offset_bottom = 175.0
+theme_override_icons/grabber = ExtResource("60_pxakk")
+theme_override_icons/grabber_highlight = ExtResource("61_4lqcr")
+theme_override_styles/slider = SubResource("StyleBoxLine_5stw6")
+max_value = 1.0
+step = 0.001
+value = 0.25
 
 [node name="Tiles" type="Node2D" parent="GameCanvasLayer/background"]
 z_index = 105
@@ -215,3 +263,8 @@ flip_panel = NodePath("../Panels/FlipPanel")
 combine_panel = NodePath("../Panels/CombinePanel")
 inventory_panel = NodePath("../Panels/InventoryPanel")
 level_selector = NodePath("../LevelSelector")
+
+[connection signal="mouse_exited" from="GameCanvasLayer/background/Music Slider" to="." method="_on_music_slider_mouse_exited"]
+[connection signal="value_changed" from="GameCanvasLayer/background/Music Slider" to="." method="_on_music_slider_value_changed"]
+[connection signal="mouse_exited" from="GameCanvasLayer/background/SFX Slider" to="." method="_on_sfx_slider_mouse_exited"]
+[connection signal="value_changed" from="GameCanvasLayer/background/SFX Slider" to="." method="_on_sfx_slider_value_changed"]

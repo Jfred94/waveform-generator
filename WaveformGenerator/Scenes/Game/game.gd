@@ -58,12 +58,36 @@ var slots: Array[Slot]
 
 @export var inventory_panel: InventoryPanel
 
+@export var music_slider: HSlider
+@export var sfx_slider: HSlider
+
+var music_bus_index = AudioServer.get_bus_index("Music")
+var sfx_bus_index = AudioServer.get_bus_index("SFX")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	AudioServer.set_bus_volume_linear(music_bus_index, music_slider.value)
+	AudioServer.set_bus_volume_linear(sfx_bus_index, sfx_slider.value)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+
+func _on_music_slider_mouse_exited() -> void:
+	music_slider.release_focus()
+
+
+
+
+func _on_sfx_slider_mouse_exited() -> void:
+	sfx_slider.release_focus()
+
+
+func _on_music_slider_value_changed(value: float) -> void:
+	AudioServer.set_bus_volume_linear(music_bus_index, value)
+
+
+func _on_sfx_slider_value_changed(value: float) -> void:
+	AudioServer.set_bus_volume_linear(sfx_bus_index, value)

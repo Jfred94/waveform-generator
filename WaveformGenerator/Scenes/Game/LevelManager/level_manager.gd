@@ -90,6 +90,8 @@ func next_level() -> void:
 	level += 1
 	if (backgrounds.size() > level):
 		background.texture = backgrounds[level]
+	else:
+		background.texture = true_background
 	if (level == 5):
 		inventory_panel.diamond_source.position = Vector2(80, -200)
 	elif (level == 8):
