@@ -502,6 +502,7 @@ func _on_additive_button_button_up() -> void:
 			tile.update_shape()
 			tile.docked_slot = slot3
 			slot3.dock(tile)
+			tile.initialize_as_combined()
 		
 
 
@@ -992,3 +993,4 @@ func _on_exclusive_button_button_up() -> void:
 			tile.update_shape()
 			tile.docked_slot = slot3
 			slot3.dock(tile)
+			tile.initialize_as_combined()

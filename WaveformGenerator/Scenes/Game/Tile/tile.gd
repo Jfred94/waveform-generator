@@ -21,6 +21,10 @@ var shape_rotation: ShapeRotation = ShapeRotation.TOP_LEFT
 
 @export var background: Sprite2D
 
+@export var destroy_anim_player: AnimationPlayer
+
+var is_destroying: bool = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	update_background()
@@ -29,13 +33,14 @@ func _ready() -> void:
 var is_hovering: bool = false
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if (!is_held):
-		check_hovering()
-		if (is_hovering && Input.is_action_just_pressed("lmb")):
-			is_held = true
-			docked_slot.undock()
-	else:
-		hold()
+	if (!is_destroying):
+		if (!is_held):
+			check_hovering()
+			if (is_hovering && Input.is_action_just_pressed("lmb")):
+				is_held = true
+				docked_slot.undock()
+		else:
+			hold(delta)
 			
 
 func check_hovering() -> void:
@@ -48,12 +53,12 @@ func initialize(_shape_type: Game.Shape, _is_held: bool, _game: Game) -> void:
 	shape_sprite.texture = game.shape_textures[shape_type]
 	update_background()
 
-func hold() -> void:
-	global_position = get_global_mouse_position()
-	z_index = 75
+func hold(delta: float) -> void:
+	global_position = Vector2(lerpf(global_position.x, get_global_mouse_position().x, delta * 30), lerpf(global_position.y, get_global_mouse_position().y, delta * 30))
+	z_index = 1175
 	modulate = Color.WHITE
 	if (Input.is_action_just_released("lmb")):
-		z_index = 70
+		z_index = 1170
 		is_held = false
 		var hovered_slot_id: int = -1
 		for i in range(game.slots.size()):
@@ -83,4 +88,11 @@ func update_background() -> void:
 func destroy() -> void:
 	if (docked_slot != null):
 		docked_slot.undock()
+	destroy_anim_player.play("destroy")
+	is_destroying = true
+
+func on_destroy_anim_end() -> void:
 	queue_free()
+
+func initialize_as_combined() -> void:
+	destroy_anim_player.play("create")
