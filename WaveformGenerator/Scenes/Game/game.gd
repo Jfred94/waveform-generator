@@ -64,6 +64,13 @@ var slots: Array[Slot]
 var music_bus_index = AudioServer.get_bus_index("Music")
 var sfx_bus_index = AudioServer.get_bus_index("SFX")
 
+var is_in_menu: bool = true
+@export var new_button: TextureButton
+@export var panels: Node2D
+@export var level_manager: LevelManager
+@export var shape_panel: ShapePanel
+@export var anim_player: AnimationPlayer
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	AudioServer.set_bus_volume_linear(music_bus_index, music_slider.value)
@@ -91,3 +98,20 @@ func _on_music_slider_value_changed(value: float) -> void:
 
 func _on_sfx_slider_value_changed(value: float) -> void:
 	AudioServer.set_bus_volume_linear(sfx_bus_index, value)
+
+
+func _on_new_button_button_up() -> void:
+	
+	new_button.visible = false
+	panels.position = Vector2.ZERO
+	anim_player.play("new")
+
+func on_shape_panel_appear() -> void:
+	shape_panel.slot1.update_docked_tile_position()
+	shape_panel.slot2.update_docked_tile_position()
+	shape_panel.slot3.update_docked_tile_position()
+	shape_panel.slot4.update_docked_tile_position()
+
+func on_flash() -> void:
+	level_manager.background.texture = level_manager.backgrounds[1]
+	is_in_menu = false

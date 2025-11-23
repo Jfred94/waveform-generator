@@ -34,3 +34,7 @@ func dock(tile: Tile) -> void:
 func undock() -> void:
 	docked_tile = null
 	is_occupied = false
+
+func update_docked_tile_position() -> void:
+	if (is_occupied):
+		docked_tile.global_position = global_position

@@ -1,4 +1,4 @@
-[gd_scene load_steps=91 format=3 uid="uid://e0j4pqwpg7y8"]
+[gd_scene load_steps=104 format=3 uid="uid://e0j4pqwpg7y8"]
 
 [ext_resource type="Script" uid="uid://bokmmg3v1fgoy" path="res://Scenes/Game/game.gd" id="1_mv0hc"]
 [ext_resource type="Texture2D" uid="uid://dy6gawgjmjt1r" path="res://Sprites/shapes/circle.png" id="2_8trit"]
@@ -88,6 +88,12 @@
 [ext_resource type="Texture2D" uid="uid://b7qxbmeli028x" path="res://Sprites/level backgrounds/23.png" id="85_1ai8e"]
 [ext_resource type="Texture2D" uid="uid://m1wjwdcm6owm" path="res://Sprites/level backgrounds/24.png" id="86_lwid8"]
 [ext_resource type="Texture2D" uid="uid://dmexmdss74ier" path="res://Sprites/level backgrounds/25.png" id="87_8m3b2"]
+[ext_resource type="Texture2D" uid="uid://c5q2uxxbpssp3" path="res://Sprites/buttons/new N.png" id="89_r1pxr"]
+[ext_resource type="Texture2D" uid="uid://b7tuc25ae6ix6" path="res://Sprites/buttons/new P.png" id="90_8s3bd"]
+[ext_resource type="Texture2D" uid="uid://c2v85ww8glupn" path="res://Sprites/buttons/new H.png" id="91_8s3bd"]
+[ext_resource type="Texture2D" uid="uid://cwtqh0bp7ums3" path="res://Sprites/title waveform.png" id="92_n6kei"]
+[ext_resource type="Texture2D" uid="uid://c0owr5txsx2w4" path="res://Sprites/title generator.png" id="93_wqd0x"]
+[ext_resource type="Texture2D" uid="uid://eo7ulfr4mg1s" path="res://Sprites/gradients.png" id="94_wqd0x"]
 
 [sub_resource type="Environment" id="Environment_qikps"]
 background_mode = 3
@@ -103,13 +109,303 @@ adjustment_contrast = 1.33
 color = Color(1, 1, 1, 1)
 thickness = 6
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("tiles", "inventory_panel", "music_slider", "sfx_slider")]
+[sub_resource type="Animation" id="Animation_n6kei"]
+resource_name = "startup"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Title/Waveform:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.2, 1),
+"update": 0,
+"values": [Vector2(1280, -130), Vector2(1280, 400)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Title/Generator:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.2, 1),
+"update": 0,
+"values": [Vector2(1280, -130), Vector2(1280, 640)]
+}
+
+[sub_resource type="Animation" id="Animation_wqd0x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Title/Waveform:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1280, -130)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Title/Generator:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1280, -130)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Panels/RotatePanel:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Panels/ShapePanel:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Panels/LevelSelector:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Panels/InventoryPanel:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Panels/InfoPanel:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("gradients:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_c2yya"]
+resource_name = "new"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Title/Waveform:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [Vector2(1280, 400), Vector2(1280, -130)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Title/Generator:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [Vector2(1280, 640), Vector2(1280, -130)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Panels/RotatePanel:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.33333334, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Panels/ShapePanel:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.34820002, 0.442, 0.5456),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Panels/LevelSelector:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.36666667, 0.43333334, 0.563),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Panels/InventoryPanel:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.4877, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Panels/InfoPanel:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.43333334, 0.5, 0.6666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true]
+}
+tracks/7/type = "method"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../..")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.3, 0.4445),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"on_flash"
+}, {
+"args": [],
+"method": &"on_shape_panel_appear"
+}]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("gradients:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0.26666668, 0.3, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.5058824), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c2yya"]
+_data = {
+&"RESET": SubResource("Animation_wqd0x"),
+&"new": SubResource("Animation_c2yya"),
+&"startup": SubResource("Animation_n6kei")
+}
+
+[sub_resource type="Animation" id="Animation_yuuq1"]
+resource_name = "finish"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("gradients:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.49803922), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_uur6h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("gradients:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_osbsx"]
+_data = {
+&"RESET": SubResource("Animation_uur6h"),
+&"finish": SubResource("Animation_yuuq1")
+}
+
+[node name="Game" type="Node2D" node_paths=PackedStringArray("tiles", "inventory_panel", "music_slider", "sfx_slider", "new_button", "panels", "level_manager", "shape_panel", "anim_player")]
 script = ExtResource("1_mv0hc")
 shape_textures = Array[Texture2D]([ExtResource("2_8trit"), ExtResource("3_71giq"), ExtResource("4_3mdsk"), ExtResource("5_a4qm0"), ExtResource("6_2gid3"), ExtResource("7_lis5c"), ExtResource("8_858on"), ExtResource("9_l5fxq"), ExtResource("10_jcrx1"), ExtResource("11_u2cvy"), ExtResource("12_wwos8"), ExtResource("13_d85t2"), ExtResource("14_53spd"), ExtResource("15_4qu01"), ExtResource("16_qqdjj"), ExtResource("17_x8opw"), ExtResource("18_ntkbw"), ExtResource("19_d4puy"), ExtResource("20_xft3b"), ExtResource("21_yuvyg"), ExtResource("22_hb4p8"), ExtResource("23_h1l72"), ExtResource("24_scdd5"), ExtResource("25_cjj5m"), ExtResource("26_fhxkh"), ExtResource("27_qspya"), ExtResource("28_tgfhl"), ExtResource("29_254l5"), ExtResource("30_5waul"), ExtResource("31_ytvwr"), ExtResource("32_pxakk"), ExtResource("33_4lqcr"), ExtResource("34_5stw6"), ExtResource("35_r1pxr"), ExtResource("36_8s3bd"), ExtResource("37_4ughv"), ExtResource("38_n6kei"), ExtResource("39_wqd0x"), ExtResource("40_c2yya"), ExtResource("41_yuuq1"), ExtResource("42_uur6h"), ExtResource("43_osbsx"), ExtResource("44_l47d4"), ExtResource("45_5s13o"), ExtResource("46_bcbly")])
 tiles = NodePath("GameCanvasLayer/background/Tiles")
 inventory_panel = NodePath("GameCanvasLayer/background/Panels/InventoryPanel")
 music_slider = NodePath("GameCanvasLayer/background/Music Slider")
 sfx_slider = NodePath("GameCanvasLayer/background/SFX Slider")
+new_button = NodePath("GameCanvasLayer/background/NewButton")
+panels = NodePath("GameCanvasLayer/background/Panels")
+level_manager = NodePath("GameCanvasLayer/background/Level Manager")
+shape_panel = NodePath("GameCanvasLayer/background/Panels/ShapePanel")
+anim_player = NodePath("GameCanvasLayer/background/AnimationPlayer")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_qikps")
@@ -140,8 +436,10 @@ visible = false
 position = Vector2(1092, 782)
 
 [node name="Panels" type="Node2D" parent="GameCanvasLayer/background"]
+position = Vector2(2560, 0)
 
 [node name="InfoPanel" parent="GameCanvasLayer/background/Panels" node_paths=PackedStringArray("visualizer", "hint_panel", "inventory_panel", "rotate_panel", "shrink_panel", "flip_panel", "combine_panel", "shape_panel", "level_selector") instance=ExtResource("4_i1e5p")]
+visible = false
 z_index = 50
 position = Vector2(1280, 200)
 visualizer = NodePath("../../Visualizer")
@@ -152,14 +450,16 @@ shrink_panel = NodePath("../ShrinkPanel")
 flip_panel = NodePath("../FlipPanel")
 combine_panel = NodePath("../CombinePanel")
 shape_panel = NodePath("../ShapePanel")
-level_selector = NodePath("../../LevelSelector")
+level_selector = NodePath("../LevelSelector")
 
 [node name="InventoryPanel" parent="GameCanvasLayer/background/Panels" node_paths=PackedStringArray("game") instance=ExtResource("5_ciybh")]
+visible = false
 z_index = 50
 position = Vector2(2140, 380)
 game = NodePath("../../../..")
 
 [node name="RotatePanel" parent="GameCanvasLayer/background/Panels" node_paths=PackedStringArray("game") instance=ExtResource("6_flgk0")]
+visible = false
 z_index = 50
 position = Vector2(1700, 900)
 game = NodePath("../../../..")
@@ -180,22 +480,26 @@ position = Vector2(2080, 1220)
 game = NodePath("../../../..")
 
 [node name="HintPanel" parent="GameCanvasLayer/background/Panels" instance=ExtResource("10_7jvlm")]
+visible = false
 z_index = 50
 position = Vector2(1460, 1220)
 
 [node name="ShapePanel" parent="GameCanvasLayer/background/Panels" node_paths=PackedStringArray("game", "visualizer") instance=ExtResource("11_qtymf")]
+visible = false
 z_index = 50
 position = Vector2(780, 660)
 game = NodePath("../../../..")
 visualizer = NodePath("../../Visualizer")
 
+[node name="LevelSelector" parent="GameCanvasLayer/background/Panels" node_paths=PackedStringArray("level_manager", "level_anim_player") instance=ExtResource("59_4lqcr")]
+visible = false
+position = Vector2(1260, 660)
+level_manager = NodePath("../../Level Manager")
+level_anim_player = NodePath("../../LevelAnimPlayer")
+
 [node name="Visualizer" parent="GameCanvasLayer/background" node_paths=PackedStringArray("level_manager") instance=ExtResource("12_ypmwd")]
 z_index = 20
 position = Vector2(280, 1160)
-level_manager = NodePath("../Level Manager")
-
-[node name="LevelSelector" parent="GameCanvasLayer/background" node_paths=PackedStringArray("level_manager") instance=ExtResource("59_4lqcr")]
-position = Vector2(1260, 660)
 level_manager = NodePath("../Level Manager")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="GameCanvasLayer/background"]
@@ -262,9 +566,48 @@ shrink_panel = NodePath("../Panels/ShrinkPanel")
 flip_panel = NodePath("../Panels/FlipPanel")
 combine_panel = NodePath("../Panels/CombinePanel")
 inventory_panel = NodePath("../Panels/InventoryPanel")
-level_selector = NodePath("../LevelSelector")
+level_selector = NodePath("../Panels/LevelSelector")
+
+[node name="NewButton" type="TextureButton" parent="GameCanvasLayer/background"]
+layout_mode = 0
+offset_left = 2000.0
+offset_top = 1160.0
+offset_right = 2320.0
+offset_bottom = 1240.0
+texture_normal = ExtResource("89_r1pxr")
+texture_pressed = ExtResource("90_8s3bd")
+texture_hover = ExtResource("91_8s3bd")
+
+[node name="Title" type="Node2D" parent="GameCanvasLayer/background"]
+
+[node name="Waveform" type="Sprite2D" parent="GameCanvasLayer/background/Title"]
+position = Vector2(1280, -130)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("92_n6kei")
+
+[node name="Generator" type="Sprite2D" parent="GameCanvasLayer/background/Title"]
+position = Vector2(1280, -130)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("93_wqd0x")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GameCanvasLayer/background"]
+libraries = {
+&"": SubResource("AnimationLibrary_c2yya")
+}
+autoplay = "startup"
+
+[node name="gradients" type="Sprite2D" parent="GameCanvasLayer/background"]
+modulate = Color(1, 1, 1, 0)
+texture = ExtResource("94_wqd0x")
+centered = false
+
+[node name="LevelAnimPlayer" type="AnimationPlayer" parent="GameCanvasLayer/background"]
+libraries = {
+&"": SubResource("AnimationLibrary_osbsx")
+}
 
 [connection signal="mouse_exited" from="GameCanvasLayer/background/Music Slider" to="." method="_on_music_slider_mouse_exited"]
 [connection signal="value_changed" from="GameCanvasLayer/background/Music Slider" to="." method="_on_music_slider_value_changed"]
 [connection signal="mouse_exited" from="GameCanvasLayer/background/SFX Slider" to="." method="_on_sfx_slider_mouse_exited"]
 [connection signal="value_changed" from="GameCanvasLayer/background/SFX Slider" to="." method="_on_sfx_slider_value_changed"]
+[connection signal="button_up" from="GameCanvasLayer/background/NewButton" to="." method="_on_new_button_button_up"]

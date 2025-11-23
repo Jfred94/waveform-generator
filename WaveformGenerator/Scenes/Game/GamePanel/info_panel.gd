@@ -5,7 +5,7 @@ class_name InfoPanel
 
 var info_string: String = "[wave amp=20 freq=1.0][b]INFO PANEL[/b]\nDetailed information about every part of the interface goes here\nHover over a panel to display its info[/wave]"
 var visualizer_string: String = "[wave amp=20 freq=1.0][b]VISUALIZER[/b]\nThe created shape generates a waveform\nTry to match the example waveform in the background by adjusting the drawn shape[/wave]"
-var hint_string: String = "[wave amp=20 freq=1.0][b]EMPTY PANEL[/b]\nidk what to put here[/wave]"
+var hint_string: String = "[wave amp=20 freq=1.0][/wave]"
 var inventory_string: String = "[wave amp=20 freq=1.0][b]INVENTORY PANEL[/b]\nAll shapes are catalogued here, click and hold to drag a tile out\nWhenever you discover a new shape, it will unlock in the inventory[/wave]"
 var rotate_string: String = "[wave amp=20 freq=1.0][b]ROTATE PANEL[/b]\nInsert a tile here to rotate it 90 degrees clockwise[/wave]"
 var shrink_string: String = "[wave amp=20 freq=1.0][b]SHRINK PANEL[/b]\nInsert a tile here to scale it down by half\nA tile that has already been scaled down cannot be scaled down again[/wave]"

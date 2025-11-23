@@ -14,6 +14,10 @@ var buttons: Array[TextureButton]
 
 @export var selector: Sprite2D
 
+@export var level_anim_player: AnimationPlayer
+@export var square_anim_player: AnimationPlayer
+@export var scaling_square: Sprite2D
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	for i in range(25):
@@ -57,3 +61,6 @@ func _on_button_up(button: TextureButton) -> void:
 
 func on_finish(_level: int) -> void:
 	buttons[_level - 1].get_child(0).modulate = Color(0.541, 0.569, 1.0)
+	level_anim_player.play("finish")
+	scaling_square.position = Vector2(-150 + ((level_manager.level - 1) % 5) * 80, -150 + int((level_manager.level - 1) / 5) * 80)
+	square_anim_player.play("scale")

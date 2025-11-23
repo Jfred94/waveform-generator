@@ -29,7 +29,7 @@ var was_correct: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	background.texture = backgrounds[level]
+	background.texture = true_background
 	radius = visualizer.radius
 	if (level == 1):
 		shrink_panel.position = Vector2(3020, 900)
