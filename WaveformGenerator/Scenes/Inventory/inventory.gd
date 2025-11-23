@@ -6,6 +6,8 @@ class_name Inventory
 
 @export var tile_source_array: Array[TileSource]
 
+@export var scroll_container: ScrollContainer
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	for i in range(vbox_container.get_children().size()):

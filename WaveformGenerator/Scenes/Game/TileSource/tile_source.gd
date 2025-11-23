@@ -15,6 +15,8 @@ var is_locked: bool = false
 
 @export var is_base_tile: bool = false
 
+@export var square_anim_player: AnimationPlayer
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if (inventory_panel != null):
@@ -54,6 +56,7 @@ func unlock() -> void:
 	background.texture = inventory_panel.unlocked_background_texture
 	shape_sprite.texture = game.shape_textures[shape_type]
 	update_background()
+	square_anim_player.play("scale")
 
 func update_background() -> void:
 	if (shape_type == Game.Shape.SMALL_CIRCLE || shape_type == Game.Shape.SMALL_SQUARE || shape_type == Game.Shape.SMALL_DIAMOND || shape_type == Game.Shape.SMALL_RECTANGLE || shape_type == Game.Shape.SMALL_RECTANGLE_F):

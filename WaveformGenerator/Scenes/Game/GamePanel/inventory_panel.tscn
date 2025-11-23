@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dlp3ptm7lb6p0"]
+[gd_scene load_steps=18 format=3 uid="uid://dlp3ptm7lb6p0"]
 
 [ext_resource type="Script" uid="uid://dvmswan56sgth" path="res://Scenes/Game/GamePanel/inventory_panel.gd" id="1_vkvl0"]
 [ext_resource type="Texture2D" uid="uid://cfjeyf0e6tmcd" path="res://Sprites/inventory panel.png" id="2_clja0"]
@@ -101,7 +101,44 @@ _data = {
 &"hover out": SubResource("Animation_hjxo7")
 }
 
-[node name="InventoryPanel" type="Node2D" node_paths=PackedStringArray("inventory", "hover_anim_player", "diamond_source", "rectangle_source")]
+[sub_resource type="Animation" id="Animation_gf422"]
+resource_name = "unlock"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:unlock_swing_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.19999999),
+"transitions": PackedFloat32Array(0.3, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_fak3f"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:unlock_swing_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fak3f"]
+_data = {
+&"RESET": SubResource("Animation_fak3f"),
+&"unlock": SubResource("Animation_gf422")
+}
+
+[node name="InventoryPanel" type="Node2D" node_paths=PackedStringArray("inventory", "hover_anim_player", "diamond_source", "rectangle_source", "inventory_anim_player")]
 script = ExtResource("1_vkvl0")
 locked_slot_texture = ExtResource("2_xff7h")
 unlocked_background_texture = ExtResource("3_88h5v")
@@ -112,6 +149,7 @@ both_tile_background_texture = ExtResource("6_xd1ap")
 hover_anim_player = NodePath("HoverAnimationPlayer")
 diamond_source = NodePath("Tile Sources/TileSource3")
 rectangle_source = NodePath("Tile Sources/TileSource4")
+inventory_anim_player = NodePath("InventoryAnimationPlayer")
 metadata/_custom_type_script = "uid://vqkbotyl66y0"
 
 [node name="background" type="Sprite2D" parent="."]
@@ -162,4 +200,9 @@ centered = false
 [node name="HoverAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_gf422")
+}
+
+[node name="InventoryAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_fak3f")
 }
