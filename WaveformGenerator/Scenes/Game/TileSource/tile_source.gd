@@ -16,6 +16,7 @@ var is_locked: bool = false
 @export var is_base_tile: bool = false
 
 @export var square_anim_player: AnimationPlayer
+@export var unlock_anim_player: AnimationPlayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

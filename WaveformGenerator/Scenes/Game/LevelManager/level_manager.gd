@@ -27,6 +27,8 @@ var was_correct: bool = false
 
 @export var level_selector: LevelSelector
 
+@export var game_anim_player: AnimationPlayer
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	background.texture = true_background
@@ -94,13 +96,18 @@ func next_level() -> void:
 		background.texture = true_background
 	if (level == 5):
 		inventory_panel.diamond_source.position = Vector2(80, -200)
+		inventory_panel.diamond_source.unlock_anim_player.play("unlock")
 	elif (level == 8):
 		shrink_panel.position = Vector2(2020, 900)
+		game_anim_player.play("shrink")
 	elif (level == 13):
 		inventory_panel.rectangle_source.position = Vector2(240, -200)
+		inventory_panel.rectangle_source.unlock_anim_player.play("unlock")
 		flip_panel.position = Vector2(2340, 900)
+		game_anim_player.play("flip")
 	elif (level == 18):
 		combine_panel.position = Vector2(2080, 1220)
+		game_anim_player.play("combine")
 	elif (level == 22):
 		combine_panel.exclusive_button.visible = true
 
