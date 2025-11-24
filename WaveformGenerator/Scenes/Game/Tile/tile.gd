@@ -28,6 +28,8 @@ var is_destroying: bool = false
 @export var bl: Sprite2D
 @export var tr: Sprite2D
 
+@export var transform_anim_player: AnimationPlayer
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	update_background()
@@ -47,6 +49,11 @@ func _process(delta: float) -> void:
 	
 	bl.visible = is_hovering && !is_held && !is_destroying
 	tr.visible = is_hovering && !is_held && !is_destroying
+	
+	if (shape_sprite.rotation_degrees - shape_rotation > 180):
+		shape_sprite.rotation_degrees -= 360
+	shape_sprite.rotation_degrees = lerpf(shape_sprite.rotation_degrees, shape_rotation, delta * 50.0)
+	
 
 func check_hovering() -> void:
 	is_hovering = get_local_mouse_position().x >= -62 && get_local_mouse_position().x <= 62 && get_local_mouse_position().y >= -62 && get_local_mouse_position().y <= 62
@@ -80,7 +87,6 @@ func hold(delta: float) -> void:
 
 func update_shape() -> void:
 	shape_sprite.texture = game.shape_textures[shape_type]
-	shape_sprite.rotation_degrees = shape_rotation
 	update_background()
 	if (shape_type >= 4):
 		game.inventory_panel.unlock_tile_source(shape_type)

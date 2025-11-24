@@ -109,3 +109,5 @@ func transform_tile(tile: Tile) -> void:
 	else:
 		slot.docked_tile.shape_rotation = Tile.ShapeRotation.BOTTOM_LEFT
 	slot.docked_tile.update_shape()
+	slot.docked_tile.transform_anim_player.stop()
+	slot.docked_tile.transform_anim_player.play("flip")

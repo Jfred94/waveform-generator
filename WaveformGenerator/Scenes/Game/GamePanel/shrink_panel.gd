@@ -73,3 +73,5 @@ func transform_tile(tile: Tile) -> void:
 	else:
 		pass
 	slot.docked_tile.update_shape()
+	slot.docked_tile.transform_anim_player.stop()
+	slot.docked_tile.transform_anim_player.play("shrink")
