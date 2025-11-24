@@ -71,6 +71,8 @@ var is_in_menu: bool = true
 @export var shape_panel: ShapePanel
 @export var anim_player: AnimationPlayer
 
+var is_holding_tile: bool = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	AudioServer.set_bus_volume_linear(music_bus_index, music_slider.value)

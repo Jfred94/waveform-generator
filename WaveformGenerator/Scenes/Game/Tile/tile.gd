@@ -25,6 +25,9 @@ var shape_rotation: ShapeRotation = ShapeRotation.TOP_LEFT
 
 var is_destroying: bool = false
 
+@export var bl: Sprite2D
+@export var tr: Sprite2D
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	update_background()
@@ -41,10 +44,13 @@ func _process(delta: float) -> void:
 				docked_slot.undock()
 		else:
 			hold(delta)
-			
+	
+	bl.visible = is_hovering && !is_held && !is_destroying
+	tr.visible = is_hovering && !is_held && !is_destroying
 
 func check_hovering() -> void:
 	is_hovering = get_local_mouse_position().x >= -62 && get_local_mouse_position().x <= 62 && get_local_mouse_position().y >= -62 && get_local_mouse_position().y <= 62
+	
 
 func initialize(_shape_type: Game.Shape, _is_held: bool, _game: Game) -> void:
 	shape_type = _shape_type
@@ -55,11 +61,13 @@ func initialize(_shape_type: Game.Shape, _is_held: bool, _game: Game) -> void:
 
 func hold(delta: float) -> void:
 	global_position = Vector2(lerpf(global_position.x, get_global_mouse_position().x, delta * 30), lerpf(global_position.y, get_global_mouse_position().y, delta * 30))
-	z_index = 1175
+	z_index = 2175
 	modulate = Color.WHITE
+	game.is_holding_tile = true
 	if (Input.is_action_just_released("lmb")):
 		z_index = 1170
 		is_held = false
+		game.is_holding_tile = false
 		var hovered_slot_id: int = -1
 		for i in range(game.slots.size()):
 			if (get_global_mouse_position().x >= game.slots[i].global_position.x - 62 && get_global_mouse_position().x <= game.slots[i].global_position.x + 62 && get_global_mouse_position().y >= game.slots[i].global_position.y - 62 && get_global_mouse_position().y <= game.slots[i].global_position.y + 62):

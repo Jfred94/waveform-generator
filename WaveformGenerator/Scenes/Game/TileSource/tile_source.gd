@@ -18,6 +18,9 @@ var is_locked: bool = false
 @export var square_anim_player: AnimationPlayer
 @export var unlock_anim_player: AnimationPlayer
 
+@export var bl: Sprite2D
+@export var tr: Sprite2D
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if (inventory_panel != null):
@@ -42,9 +45,13 @@ func _process(delta: float) -> void:
 	if (is_hovering && Input.is_action_just_pressed("lmb") && !is_locked):
 		if ((is_base_tile && get_global_mouse_position().y < inventory_panel.position.y-100) || (!is_base_tile && get_global_mouse_position().y > inventory_panel.position.y-100 && get_global_mouse_position().y < inventory_panel.position.y+300)):
 			spawn_tile()
+	
+	bl.visible = is_hovering && !is_locked
+	tr.visible = is_hovering && !is_locked
 
 func check_hovering() -> void:
 	is_hovering = get_local_mouse_position().x >= -62 && get_local_mouse_position().x <= 62 && get_local_mouse_position().y >= -62 && get_local_mouse_position().y <= 62
+	
 
 func spawn_tile() -> void:
 	var tile: Tile = tile_scene.instantiate()
