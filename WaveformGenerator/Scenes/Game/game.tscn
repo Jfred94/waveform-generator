@@ -1,4 +1,4 @@
-[gd_scene load_steps=107 format=3 uid="uid://e0j4pqwpg7y8"]
+[gd_scene load_steps=109 format=3 uid="uid://e0j4pqwpg7y8"]
 
 [ext_resource type="Script" uid="uid://bokmmg3v1fgoy" path="res://Scenes/Game/game.gd" id="1_mv0hc"]
 [ext_resource type="Texture2D" uid="uid://dy6gawgjmjt1r" path="res://Sprites/shapes/circle.png" id="2_8trit"]
@@ -58,6 +58,8 @@
 [ext_resource type="Texture2D" uid="uid://b2uov2hdrlyg6" path="res://Sprites/shapes/small rectangle f x small inv circle.png" id="46_bcbly"]
 [ext_resource type="Texture2D" uid="uid://y7jtu5yp1v0m" path="res://Sprites/pure background w grid.png" id="47_a4qm0"]
 [ext_resource type="Texture2D" uid="uid://jkvcp3mw7hvg" path="res://Sprites/purple background.png" id="48_lis5c"]
+[ext_resource type="Texture2D" uid="uid://bv8nla1ktgwwo" path="res://Sprites/bar hider V.png" id="49_yuuq1"]
+[ext_resource type="Texture2D" uid="uid://btno700bv5a2g" path="res://Sprites/bar hider H.png" id="50_uur6h"]
 [ext_resource type="PackedScene" uid="uid://bhgy1gthk4cn6" path="res://Scenes/Game/LevelSelector/level_selector.tscn" id="59_4lqcr"]
 [ext_resource type="FontFile" uid="uid://dqqmv5ve5h81v" path="res://Fonts/AGENCYR.TTF" id="60_4lqcr"]
 [ext_resource type="Texture2D" uid="uid://cgifr78oodpj6" path="res://Sprites/buttons/handle N.png" id="60_pxakk"]
@@ -244,6 +246,38 @@ tracks/10/keys = {
 "values": [true]
 }
 
+[sub_resource type="Animation" id="Animation_5s13o"]
+resource_name = "combine"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panels/CombinePanel:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.1, 0.16666667, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_l47d4"]
+resource_name = "flip"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panels/FlipPanel:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+
 [sub_resource type="Animation" id="Animation_c2yya"]
 resource_name = "new"
 tracks/0/type = "value"
@@ -360,6 +394,22 @@ tracks/8/keys = {
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.5058824), Color(1, 1, 1, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_osbsx"]
+resource_name = "shrink"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panels/ShrinkPanel:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+
 [sub_resource type="Animation" id="Animation_n6kei"]
 resource_name = "startup"
 tracks/0/type = "value"
@@ -385,54 +435,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(0.2, 1),
 "update": 0,
 "values": [Vector2(1280, -130), Vector2(1280, 640)]
-}
-
-[sub_resource type="Animation" id="Animation_osbsx"]
-resource_name = "shrink"
-length = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Panels/ShrinkPanel:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.033333335, 0.1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [true, false, true]
-}
-
-[sub_resource type="Animation" id="Animation_l47d4"]
-resource_name = "flip"
-length = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Panels/FlipPanel:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.033333335, 0.1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [true, false, true]
-}
-
-[sub_resource type="Animation" id="Animation_5s13o"]
-resource_name = "combine"
-length = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Panels/CombinePanel:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.033333335, 0.1, 0.16666667, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [true, false, true, false, true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_c2yya"]
@@ -516,6 +518,16 @@ texture = ExtResource("47_a4qm0")
 [node name="backgroundest" type="Sprite2D" parent="GameCanvasLayer/background"]
 z_index = -1000
 texture = ExtResource("48_lis5c")
+centered = false
+
+[node name="bar hider V" type="Sprite2D" parent="GameCanvasLayer/background"]
+position = Vector2(31, 278)
+texture = ExtResource("49_yuuq1")
+centered = false
+
+[node name="bar hider H" type="Sprite2D" parent="GameCanvasLayer/background"]
+position = Vector2(518, 1392)
+texture = ExtResource("50_uur6h")
 centered = false
 
 [node name="Test Visualizer" parent="GameCanvasLayer/background" instance=ExtResource("3_qikps")]

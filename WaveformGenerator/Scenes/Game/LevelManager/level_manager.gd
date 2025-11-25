@@ -413,7 +413,7 @@ func check_if_correct() -> bool:
 		return false
 
 
-var close_to_zero: float = 0.001
+var close_to_zero: float = 1.0
 
 func close_enough(v1: Vector2, v2: Vector2) -> bool:
 	return (abs(v1.x - v2.x) < close_to_zero && abs(v1.y - v2.y) < close_to_zero && !visualizer.debug_mode)
