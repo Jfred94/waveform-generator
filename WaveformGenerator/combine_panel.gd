@@ -15,6 +15,9 @@ var tiles: Node2D
 @export var additive_button: TextureButton
 @export var exclusive_button: TextureButton
 
+@export var level_manager: LevelManager
+
+var red_flash_value: float = 0.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -24,9 +27,18 @@ func _ready() -> void:
 
 
 var is_hovering: bool = false
+var is_hovering_additive: bool = false
+var is_hovering_exclusive: bool = false
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	check_hovering()
+	if (slot1.is_occupied && slot2.is_occupied):
+		slot1.docked_tile.modulate = Color(1.0, 1.0 - red_flash_value * 0.5, 1.0 - red_flash_value * 0.5, 1.0)
+		slot2.docked_tile.modulate = Color(1.0, 1.0 - red_flash_value * 0.5, 1.0 - red_flash_value * 0.5, 1.0)
+	red_flash_value -= delta
+	if (red_flash_value < 0.0):
+		red_flash_value = 0.0
 
 func check_hovering() -> void:
 	var was_hovering: bool = is_hovering
@@ -35,6 +47,11 @@ func check_hovering() -> void:
 		hover_anim_player.play("hover in")
 	elif (!is_hovering && was_hovering):
 		hover_anim_player.play("hover out")
+	
+	is_hovering_additive = get_local_mouse_position().x >= 240 && get_local_mouse_position().x <= 320 && get_local_mouse_position().y >= -100 && get_local_mouse_position().y <= -20
+	is_hovering_exclusive = get_local_mouse_position().x >= 240 && get_local_mouse_position().x <= 320 && get_local_mouse_position().y >= 20 && get_local_mouse_position().y <= 100
+	if (level_manager.level <= 21):
+		is_hovering_exclusive = false
 
 
 
@@ -486,11 +503,11 @@ func _on_additive_button_button_up() -> void:
 			else:
 				pass
 		else:
-			pass
+			red_flash_value = 1.0
 		
 		
 		if (t3 == Game.Shape.EMPTY):
-			pass
+			red_flash_value = 1.0
 		else:
 			slot1.docked_tile.destroy()
 			slot2.docked_tile.destroy()
@@ -977,11 +994,11 @@ func _on_exclusive_button_button_up() -> void:
 			else:
 				pass
 		else:
-			pass
+			red_flash_value = 1.0
 		
 		
 		if (t3 == Game.Shape.EMPTY):
-			pass
+			red_flash_value = 1.0
 		else:
 			slot1.docked_tile.destroy()
 			slot2.docked_tile.destroy()

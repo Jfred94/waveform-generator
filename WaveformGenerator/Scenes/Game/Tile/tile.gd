@@ -30,6 +30,8 @@ var is_destroying: bool = false
 
 @export var transform_anim_player: AnimationPlayer
 
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	update_background()
@@ -76,14 +78,25 @@ func hold(delta: float) -> void:
 		is_held = false
 		game.is_holding_tile = false
 		var hovered_slot_id: int = -1
+		var hovered_slot_ids: Array[int]
 		for i in range(game.slots.size()):
-			if (get_global_mouse_position().x >= game.slots[i].global_position.x - 62 && get_global_mouse_position().x <= game.slots[i].global_position.x + 62 && get_global_mouse_position().y >= game.slots[i].global_position.y - 62 && get_global_mouse_position().y <= game.slots[i].global_position.y + 62):
-				hovered_slot_id = i
-		if (hovered_slot_id == -1):
+			if (get_global_mouse_position().x >= game.slots[i].global_position.x - 124 && get_global_mouse_position().x <= game.slots[i].global_position.x + 124 && get_global_mouse_position().y >= game.slots[i].global_position.y - 124 && get_global_mouse_position().y <= game.slots[i].global_position.y + 124):
+				hovered_slot_ids.append(i)
+		if (hovered_slot_ids.size() == 0):
 			destroy()
+			return
+		elif (hovered_slot_ids.size() == 1):
+			hovered_slot_id = hovered_slot_ids[0]
 		else:
-			docked_slot = game.slots[hovered_slot_id]
-			docked_slot.dock(self)
+			print("sdfsdf")
+			var closest_slot_id: int = hovered_slot_ids[0]
+			for i in range(hovered_slot_ids.size()):
+				if (game.slots[hovered_slot_ids[i]].global_position.distance_to(get_global_mouse_position()) < game.slots[closest_slot_id].global_position.distance_to(get_global_mouse_position())):
+					closest_slot_id = hovered_slot_ids[i]
+			hovered_slot_id = closest_slot_id
+		docked_slot = game.slots[hovered_slot_id]
+		docked_slot.dock(self)
+		
 
 func update_shape() -> void:
 	shape_sprite.texture = game.shape_textures[shape_type]

@@ -10,9 +10,12 @@ var inventory_string: String = "[wave amp=20 freq=1.0][b]INVENTORY PANEL[/b]\nAl
 var rotate_string: String = "[wave amp=20 freq=1.0][b]ROTATE PANEL[/b]\nInsert a tile here to rotate it 90 degrees clockwise[/wave]"
 var shrink_string: String = "[wave amp=20 freq=1.0][b]SHRINK PANEL[/b]\nInsert a tile here to scale it down by half\nA tile that has already been scaled down cannot be scaled down again[/wave]"
 var flip_string: String = "[wave amp=20 freq=1.0][b]FLIP PANEL[/b]\nInsert a tile here to flip it horizontally[/wave]"
-var combine_string: String = "[wave amp=20 freq=1.0][b]COMBINE PANEL[/b]\nInsert 2 tiles here to combine them\nAdditive combine takes the longest point from the center\nExclusive combine takes the shortest point from the center\nA tile that has already been combined cannot be combined again[/wave]"
+var combine_string: String = "[wave amp=20 freq=1.0][b]COMBINE PANEL[/b]\nInsert 2 tiles here and click the button to combine them\nA tile that has already been combined cannot be combined again[/wave]"
 var shape_string: String = "[wave amp=20 freq=1.0][b]SHAPE PANEL[/b]\nInsert 4 tiles here to construct the visualizer shape\nIf a tile cannot be placed in this rotation, it will be highlighted in red[/wave]"
 var selector_string: String = "[wave amp=20 freq=1.0][b]LEVEL SELECT[/b]\nAll 25 levels are available here[/wave]"
+
+var additive_string: String = "[wave amp=20 freq=1.0][b]ADDITIVE COMBINE[/b]\nAdditive combine takes the longest point from the center[/wave]"
+var exclusive_string: String = "[wave amp=20 freq=1.0][b]EXCLUSIVE COMBINE[/b]\nExclusive combine takes the shortest point from the center[/wave]"
 
 @export var visualizer: Visualizer
 @export var hint_panel: HintPanel
@@ -52,6 +55,10 @@ func _process(delta: float) -> void:
 		label.text = flip_string
 	elif (combine_panel.is_hovering):
 		label.text = combine_string
+		if (combine_panel.is_hovering_additive):
+			label.text = additive_string
+		elif (combine_panel.is_hovering_exclusive):
+			label.text = exclusive_string
 	elif (shape_panel.is_hovering):
 		label.text = shape_string
 	elif (level_selector.is_hovering):

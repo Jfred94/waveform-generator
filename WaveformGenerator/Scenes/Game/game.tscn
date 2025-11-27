@@ -573,10 +573,11 @@ z_index = 50
 position = Vector2(2340, 900)
 game = NodePath("../../../..")
 
-[node name="CombinePanel" parent="GameCanvasLayer/background/Panels" node_paths=PackedStringArray("game") instance=ExtResource("9_huoen")]
+[node name="CombinePanel" parent="GameCanvasLayer/background/Panels" node_paths=PackedStringArray("game", "level_manager") instance=ExtResource("9_huoen")]
 z_index = 50
 position = Vector2(2080, 1220)
 game = NodePath("../../../..")
+level_manager = NodePath("../../Level Manager")
 
 [node name="HintPanel" parent="GameCanvasLayer/background/Panels" instance=ExtResource("10_7jvlm")]
 visible = false

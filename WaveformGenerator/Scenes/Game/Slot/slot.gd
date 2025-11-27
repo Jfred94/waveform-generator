@@ -27,7 +27,7 @@ func _process(delta: float) -> void:
 		color_rect.visible = game.is_holding_tile && is_hovering
 
 func check_hovering() -> void:
-	is_hovering = get_local_mouse_position().x >= -62 && get_local_mouse_position().x <= 62 && get_local_mouse_position().y >= -62 && get_local_mouse_position().y <= 62
+	is_hovering = get_local_mouse_position().x >= -124 && get_local_mouse_position().x <= 124 && get_local_mouse_position().y >= -124 && get_local_mouse_position().y <= 124
 
 func initialize(_game: Game) -> void:
 	_game.slots.append(self)

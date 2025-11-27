@@ -116,20 +116,36 @@ func load_level(_level: int) -> void:
 		level = _level
 		background.texture = backgrounds[level]
 		shrink_panel.position = Vector2(3020, 900)
+		if (shrink_panel.slot.is_occupied):
+			shrink_panel.slot.docked_tile.position = Vector2(3020, 900)
 		flip_panel.position = Vector2(3340, 900)
+		if (flip_panel.slot.is_occupied):
+			flip_panel.slot.docked_tile.position = Vector2(3340, 900)
 		combine_panel.position = Vector2(3080, 1220)
 		combine_panel.exclusive_button.visible = false
+		if (combine_panel.slot1.is_occupied):
+			combine_panel.slot1.docked_tile.position = Vector2(2820, 1220)
+		if (combine_panel.slot2.is_occupied):
+			combine_panel.slot2.docked_tile.position = Vector2(2980, 1220)
 		inventory_panel.diamond_source.position = Vector2(1080, -200)
 		inventory_panel.rectangle_source.position = Vector2(1240, -200)
 		if (level >= 5):
 			inventory_panel.diamond_source.position = Vector2(80, -200)
 		if (level >= 8):
 			shrink_panel.position = Vector2(2020, 900)
+			if (shrink_panel.slot.is_occupied):
+				shrink_panel.slot.docked_tile.position = Vector2(2020, 900)
 		if (level >= 13):
 			inventory_panel.rectangle_source.position = Vector2(240, -200)
 			flip_panel.position = Vector2(2340, 900)
+			if (flip_panel.slot.is_occupied):
+				flip_panel.slot.docked_tile.position = Vector2(2340, 900)
 		if (level >= 18):
 			combine_panel.position = Vector2(2080, 1220)
+			if (combine_panel.slot1.is_occupied):
+				combine_panel.slot1.docked_tile.position = Vector2(1820, 1220)
+			if (combine_panel.slot2.is_occupied):
+				combine_panel.slot2.docked_tile.position = Vector2(1980, 1220)
 		if (level >= 22):
 			combine_panel.exclusive_button.visible = true
 		is_incorrect = true
@@ -413,7 +429,7 @@ func check_if_correct() -> bool:
 		return false
 
 
-var close_to_zero: float = 1.0
+var close_to_zero: float = 5.0
 
 func close_enough(v1: Vector2, v2: Vector2) -> bool:
 	return (abs(v1.x - v2.x) < close_to_zero && abs(v1.y - v2.y) < close_to_zero && !visualizer.debug_mode)
