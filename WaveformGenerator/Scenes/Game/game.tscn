@@ -1,4 +1,4 @@
-[gd_scene load_steps=109 format=3 uid="uid://e0j4pqwpg7y8"]
+[gd_scene load_steps=111 format=3 uid="uid://e0j4pqwpg7y8"]
 
 [ext_resource type="Script" uid="uid://bokmmg3v1fgoy" path="res://Scenes/Game/game.gd" id="1_mv0hc"]
 [ext_resource type="Texture2D" uid="uid://dy6gawgjmjt1r" path="res://Sprites/shapes/circle.png" id="2_8trit"]
@@ -57,6 +57,7 @@
 [ext_resource type="Texture2D" uid="uid://dpqxrpnc8qmsr" path="res://Sprites/shapes/small rectangle x small inv circle.png" id="45_5s13o"]
 [ext_resource type="Texture2D" uid="uid://b2uov2hdrlyg6" path="res://Sprites/shapes/small rectangle f x small inv circle.png" id="46_bcbly"]
 [ext_resource type="Texture2D" uid="uid://y7jtu5yp1v0m" path="res://Sprites/pure background w grid.png" id="47_a4qm0"]
+[ext_resource type="AudioStream" uid="uid://dtd8cfhc423tp" path="res://Audio/wg_loop.wav" id="47_osbsx"]
 [ext_resource type="Texture2D" uid="uid://jkvcp3mw7hvg" path="res://Sprites/purple background.png" id="48_lis5c"]
 [ext_resource type="Texture2D" uid="uid://bv8nla1ktgwwo" path="res://Sprites/bar hider V.png" id="49_yuuq1"]
 [ext_resource type="Texture2D" uid="uid://btno700bv5a2g" path="res://Sprites/bar hider H.png" id="50_uur6h"]
@@ -96,6 +97,7 @@
 [ext_resource type="Texture2D" uid="uid://cwtqh0bp7ums3" path="res://Sprites/title waveform.png" id="92_n6kei"]
 [ext_resource type="Texture2D" uid="uid://c0owr5txsx2w4" path="res://Sprites/title generator.png" id="93_wqd0x"]
 [ext_resource type="Texture2D" uid="uid://eo7ulfr4mg1s" path="res://Sprites/gradients.png" id="94_wqd0x"]
+[ext_resource type="AudioStream" uid="uid://u76ua4g0igkp" path="res://Audio/wg_start.wav" id="97_uur6h"]
 
 [sub_resource type="Environment" id="Environment_qikps"]
 background_mode = 3
@@ -483,7 +485,7 @@ _data = {
 &"finish": SubResource("Animation_yuuq1")
 }
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("tiles", "inventory_panel", "music_slider", "sfx_slider", "new_button", "panels", "level_manager", "shape_panel", "anim_player")]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("tiles", "inventory_panel", "music_slider", "sfx_slider", "new_button", "panels", "level_manager", "shape_panel", "anim_player", "music_stream_player")]
 script = ExtResource("1_mv0hc")
 shape_textures = Array[Texture2D]([ExtResource("2_8trit"), ExtResource("3_71giq"), ExtResource("4_3mdsk"), ExtResource("5_a4qm0"), ExtResource("6_2gid3"), ExtResource("7_lis5c"), ExtResource("8_858on"), ExtResource("9_l5fxq"), ExtResource("10_jcrx1"), ExtResource("11_u2cvy"), ExtResource("12_wwos8"), ExtResource("13_d85t2"), ExtResource("14_53spd"), ExtResource("15_4qu01"), ExtResource("16_qqdjj"), ExtResource("17_x8opw"), ExtResource("18_ntkbw"), ExtResource("19_d4puy"), ExtResource("20_xft3b"), ExtResource("21_yuvyg"), ExtResource("22_hb4p8"), ExtResource("23_h1l72"), ExtResource("24_scdd5"), ExtResource("25_cjj5m"), ExtResource("26_fhxkh"), ExtResource("27_qspya"), ExtResource("28_tgfhl"), ExtResource("29_254l5"), ExtResource("30_5waul"), ExtResource("31_ytvwr"), ExtResource("32_pxakk"), ExtResource("33_4lqcr"), ExtResource("34_5stw6"), ExtResource("35_r1pxr"), ExtResource("36_8s3bd"), ExtResource("37_4ughv"), ExtResource("38_n6kei"), ExtResource("39_wqd0x"), ExtResource("40_c2yya"), ExtResource("41_yuuq1"), ExtResource("42_uur6h"), ExtResource("43_osbsx"), ExtResource("44_l47d4"), ExtResource("45_5s13o"), ExtResource("46_bcbly")])
 tiles = NodePath("GameCanvasLayer/background/Tiles")
@@ -495,6 +497,8 @@ panels = NodePath("GameCanvasLayer/background/Panels")
 level_manager = NodePath("GameCanvasLayer/background/Level Manager")
 shape_panel = NodePath("GameCanvasLayer/background/Panels/ShapePanel")
 anim_player = NodePath("GameCanvasLayer/background/AnimationPlayer")
+music_stream_player = NodePath("MusicStreamPlayer")
+music_loop_stream = ExtResource("47_osbsx")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_qikps")
@@ -707,8 +711,14 @@ libraries = {
 &"": SubResource("AnimationLibrary_osbsx")
 }
 
+[node name="MusicStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("97_uur6h")
+autoplay = true
+bus = &"Music"
+
 [connection signal="mouse_exited" from="GameCanvasLayer/background/Music Slider" to="." method="_on_music_slider_mouse_exited"]
 [connection signal="value_changed" from="GameCanvasLayer/background/Music Slider" to="." method="_on_music_slider_value_changed"]
 [connection signal="mouse_exited" from="GameCanvasLayer/background/SFX Slider" to="." method="_on_sfx_slider_mouse_exited"]
 [connection signal="value_changed" from="GameCanvasLayer/background/SFX Slider" to="." method="_on_sfx_slider_value_changed"]
 [connection signal="button_up" from="GameCanvasLayer/background/NewButton" to="." method="_on_new_button_button_up"]
+[connection signal="finished" from="MusicStreamPlayer" to="." method="_on_music_stream_player_finished"]

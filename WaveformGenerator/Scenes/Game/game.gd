@@ -73,6 +73,9 @@ var is_in_menu: bool = true
 
 var is_holding_tile: bool = false
 
+@export var music_stream_player: AudioStreamPlayer
+@export var music_loop_stream: AudioStream
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	AudioServer.set_bus_volume_linear(music_bus_index, music_slider.value)
@@ -117,3 +120,8 @@ func on_shape_panel_appear() -> void:
 func on_flash() -> void:
 	level_manager.background.texture = level_manager.backgrounds[1]
 	is_in_menu = false
+
+
+func _on_music_stream_player_finished() -> void:
+	music_stream_player.stream = music_loop_stream
+	music_stream_player.play()
