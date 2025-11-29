@@ -45,8 +45,10 @@ func check_hovering() -> void:
 	is_hovering = get_local_mouse_position().x >= -406 && get_local_mouse_position().x <= 406 && get_local_mouse_position().y >= -146 && get_local_mouse_position().y <= 146
 	if (is_hovering && !was_hovering):
 		hover_anim_player.play("hover in")
+		game.panel_hover_in_audio_stream_player.play()
 	elif (!is_hovering && was_hovering):
 		hover_anim_player.play("hover out")
+		game.panel_hover_out_audio_stream_player.play()
 	
 	is_hovering_additive = get_local_mouse_position().x >= 240 && get_local_mouse_position().x <= 320 && get_local_mouse_position().y >= -100 && get_local_mouse_position().y <= -20
 	is_hovering_exclusive = get_local_mouse_position().x >= 240 && get_local_mouse_position().x <= 320 && get_local_mouse_position().y >= 20 && get_local_mouse_position().y <= 100

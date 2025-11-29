@@ -1,4 +1,4 @@
-[gd_scene load_steps=114 format=3 uid="uid://e0j4pqwpg7y8"]
+[gd_scene load_steps=119 format=3 uid="uid://e0j4pqwpg7y8"]
 
 [ext_resource type="Script" uid="uid://bokmmg3v1fgoy" path="res://Scenes/Game/game.gd" id="1_mv0hc"]
 [ext_resource type="Texture2D" uid="uid://dy6gawgjmjt1r" path="res://Sprites/shapes/circle.png" id="2_8trit"]
@@ -101,6 +101,11 @@
 [ext_resource type="AudioStream" uid="uid://c0hrsphiqrmru" path="res://Audio/SFX/button_hover_in.wav" id="99_bcbly"]
 [ext_resource type="AudioStream" uid="uid://doqjix5xfcf31" path="res://Audio/SFX/button_hover_out.wav" id="100_mblbl"]
 [ext_resource type="AudioStream" uid="uid://cfuiri1403m27" path="res://Audio/SFX/button_click.wav" id="101_26oar"]
+[ext_resource type="AudioStream" uid="uid://2lve1bhk1sl6" path="res://Audio/SFX/new_game.wav" id="102_mblbl"]
+[ext_resource type="AudioStream" uid="uid://va3ewrma8lxx" path="res://Audio/SFX/panel hover in.wav" id="103_53l7k"]
+[ext_resource type="AudioStream" uid="uid://djo320a10vlm1" path="res://Audio/SFX/panel hover out.wav" id="104_jxu7g"]
+[ext_resource type="AudioStream" uid="uid://dxl8uw64s21wg" path="res://Audio/SFX/finish.wav" id="105_jxu7g"]
+[ext_resource type="AudioStream" uid="uid://baef5bin47c7b" path="res://Audio/SFX/charging.wav" id="106_1ai8e"]
 
 [sub_resource type="Environment" id="Environment_qikps"]
 background_mode = 3
@@ -488,7 +493,7 @@ _data = {
 &"finish": SubResource("Animation_yuuq1")
 }
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("tiles", "inventory_panel", "music_slider", "sfx_slider", "new_button", "panels", "level_manager", "shape_panel", "anim_player", "music_stream_player", "button_hover_in_audio_stream_player", "button_hover_out_audio_stream_player", "button_click_audio_stream_player")]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("tiles", "inventory_panel", "music_slider", "sfx_slider", "new_button", "panels", "level_manager", "shape_panel", "anim_player", "music_stream_player", "button_hover_in_audio_stream_player", "button_hover_out_audio_stream_player", "button_click_audio_stream_player", "new_game_audio_stream_player", "panel_hover_in_audio_stream_player", "panel_hover_out_audio_stream_player", "finish_audio_stream_player", "charging_audio_stream_player")]
 script = ExtResource("1_mv0hc")
 shape_textures = Array[Texture2D]([ExtResource("2_8trit"), ExtResource("3_71giq"), ExtResource("4_3mdsk"), ExtResource("5_a4qm0"), ExtResource("6_2gid3"), ExtResource("7_lis5c"), ExtResource("8_858on"), ExtResource("9_l5fxq"), ExtResource("10_jcrx1"), ExtResource("11_u2cvy"), ExtResource("12_wwos8"), ExtResource("13_d85t2"), ExtResource("14_53spd"), ExtResource("15_4qu01"), ExtResource("16_qqdjj"), ExtResource("17_x8opw"), ExtResource("18_ntkbw"), ExtResource("19_d4puy"), ExtResource("20_xft3b"), ExtResource("21_yuvyg"), ExtResource("22_hb4p8"), ExtResource("23_h1l72"), ExtResource("24_scdd5"), ExtResource("25_cjj5m"), ExtResource("26_fhxkh"), ExtResource("27_qspya"), ExtResource("28_tgfhl"), ExtResource("29_254l5"), ExtResource("30_5waul"), ExtResource("31_ytvwr"), ExtResource("32_pxakk"), ExtResource("33_4lqcr"), ExtResource("34_5stw6"), ExtResource("35_r1pxr"), ExtResource("36_8s3bd"), ExtResource("37_4ughv"), ExtResource("38_n6kei"), ExtResource("39_wqd0x"), ExtResource("40_c2yya"), ExtResource("41_yuuq1"), ExtResource("42_uur6h"), ExtResource("43_osbsx"), ExtResource("44_l47d4"), ExtResource("45_5s13o"), ExtResource("46_bcbly")])
 tiles = NodePath("GameCanvasLayer/background/Tiles")
@@ -505,6 +510,11 @@ music_loop_stream = ExtResource("47_osbsx")
 button_hover_in_audio_stream_player = NodePath("SFX/ButtonHoverInStreamPlayer")
 button_hover_out_audio_stream_player = NodePath("SFX/ButtonHoverOutStreamPlayer")
 button_click_audio_stream_player = NodePath("SFX/ButtonClickStreamPlayer")
+new_game_audio_stream_player = NodePath("SFX/NewGameAudioStreamPlayer")
+panel_hover_in_audio_stream_player = NodePath("SFX/PanelHoverInAudioStreamPlayer")
+panel_hover_out_audio_stream_player = NodePath("SFX/PanelHoverOutAudioStreamPlayer2")
+finish_audio_stream_player = NodePath("SFX/FinishAudioStreamPlayer")
+charging_audio_stream_player = NodePath("SFX/ChargingAudioStreamPlayer")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_qikps")
@@ -547,7 +557,7 @@ position = Vector2(1092, 782)
 [node name="Panels" type="Node2D" parent="GameCanvasLayer/background"]
 position = Vector2(2560, 0)
 
-[node name="InfoPanel" parent="GameCanvasLayer/background/Panels" node_paths=PackedStringArray("visualizer", "hint_panel", "inventory_panel", "rotate_panel", "shrink_panel", "flip_panel", "combine_panel", "shape_panel", "level_selector") instance=ExtResource("4_i1e5p")]
+[node name="InfoPanel" parent="GameCanvasLayer/background/Panels" node_paths=PackedStringArray("visualizer", "hint_panel", "inventory_panel", "rotate_panel", "shrink_panel", "flip_panel", "combine_panel", "shape_panel", "level_selector", "game") instance=ExtResource("4_i1e5p")]
 visible = false
 z_index = 50
 position = Vector2(1280, 200)
@@ -560,6 +570,7 @@ flip_panel = NodePath("../FlipPanel")
 combine_panel = NodePath("../CombinePanel")
 shape_panel = NodePath("../ShapePanel")
 level_selector = NodePath("../LevelSelector")
+game = NodePath("../../../..")
 
 [node name="InventoryPanel" parent="GameCanvasLayer/background/Panels" node_paths=PackedStringArray("game") instance=ExtResource("5_ciybh")]
 visible = false
@@ -668,7 +679,7 @@ value = 0.25
 [node name="Tiles" type="Node2D" parent="GameCanvasLayer/background"]
 z_index = 105
 
-[node name="Level Manager" parent="GameCanvasLayer/background" node_paths=PackedStringArray("background", "visualizer", "shrink_panel", "flip_panel", "combine_panel", "inventory_panel", "level_selector", "game_anim_player") instance=ExtResource("61_2gid3")]
+[node name="Level Manager" parent="GameCanvasLayer/background" node_paths=PackedStringArray("background", "visualizer", "shrink_panel", "flip_panel", "combine_panel", "inventory_panel", "level_selector", "game_anim_player", "game") instance=ExtResource("61_2gid3")]
 position = Vector2(280, 1160)
 background = NodePath("..")
 visualizer = NodePath("../Visualizer")
@@ -679,6 +690,7 @@ combine_panel = NodePath("../Panels/CombinePanel")
 inventory_panel = NodePath("../Panels/InventoryPanel")
 level_selector = NodePath("../Panels/LevelSelector")
 game_anim_player = NodePath("../AnimationPlayer")
+game = NodePath("../../..")
 
 [node name="NewButton" type="TextureButton" parent="GameCanvasLayer/background"]
 layout_mode = 0
@@ -736,6 +748,31 @@ bus = &"SFX"
 
 [node name="ButtonClickStreamPlayer" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("101_26oar")
+bus = &"SFX"
+
+[node name="NewGameAudioStreamPlayer" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("102_mblbl")
+bus = &"SFX"
+
+[node name="PanelHoverInAudioStreamPlayer" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("103_53l7k")
+volume_db = 10.0
+bus = &"SFX"
+
+[node name="PanelHoverOutAudioStreamPlayer2" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("104_jxu7g")
+volume_db = 10.0
+bus = &"SFX"
+
+[node name="FinishAudioStreamPlayer" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("105_jxu7g")
+volume_db = 5.0
+bus = &"SFX"
+
+[node name="ChargingAudioStreamPlayer" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("106_1ai8e")
+volume_db = -80.0
+autoplay = true
 bus = &"SFX"
 
 [connection signal="drag_started" from="GameCanvasLayer/background/Music Slider" to="." method="_on_music_slider_drag_started"]

@@ -29,6 +29,8 @@ var exclusive_string: String = "[wave amp=20 freq=1.0][b]EXCLUSIVE COMBINE[/b]\n
 
 @export var hover_anim_player: AnimationPlayer
 
+@export var game: Game
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	label.text = ""
@@ -73,5 +75,7 @@ func check_hovering() -> void:
 	is_hovering = get_local_mouse_position().x >= -446 && get_local_mouse_position().x <= 446 && get_local_mouse_position().y >= -126 && get_local_mouse_position().y <= 126
 	if (is_hovering && !was_hovering):
 		hover_anim_player.play("hover in")
+		game.panel_hover_in_audio_stream_player.play()
 	elif (!is_hovering && was_hovering):
 		hover_anim_player.play("hover out")
+		game.panel_hover_out_audio_stream_player.play()

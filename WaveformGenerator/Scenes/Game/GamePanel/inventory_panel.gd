@@ -40,8 +40,10 @@ func check_hovering() -> void:
 	is_hovering = get_local_mouse_position().x >= -346 && get_local_mouse_position().x <= 346 && get_local_mouse_position().y >= -306 && get_local_mouse_position().y <= 306
 	if (is_hovering && !was_hovering):
 		hover_anim_player.play("hover in")
+		game.panel_hover_in_audio_stream_player.play()
 	elif (!is_hovering && was_hovering):
 		hover_anim_player.play("hover out")
+		game.panel_hover_out_audio_stream_player.play()
 
 func unlock_tile_source(shape_type: Game.Shape) -> void:
 	if (inventory.tile_source_array[shape_type - 4].is_locked):

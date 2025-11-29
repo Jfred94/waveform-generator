@@ -79,8 +79,10 @@ func check_hovering() -> void:
 	is_hovering = get_local_mouse_position().x >= -186 && get_local_mouse_position().x <= 186 && get_local_mouse_position().y >= -186 && get_local_mouse_position().y <= 186
 	if (is_hovering && !was_hovering):
 		hover_anim_player.play("hover in")
+		game.panel_hover_in_audio_stream_player.play()
 	elif (!is_hovering && was_hovering):
 		hover_anim_player.play("hover out")
+		game.panel_hover_out_audio_stream_player.play()
 
 func update_spinny_spinny():
 	if (visualizer.angle >= 0.0 && visualizer.angle < PI * 0.5):

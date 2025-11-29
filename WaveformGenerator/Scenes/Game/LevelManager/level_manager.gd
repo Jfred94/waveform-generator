@@ -29,6 +29,8 @@ var was_correct: bool = false
 
 @export var game_anim_player: AnimationPlayer
 
+@export var game: Game
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	background.texture = true_background
@@ -62,6 +64,9 @@ func _process(delta: float) -> void:
 			bar2.add_point(Vector2(0, -240 - angle * (320 / PI)))
 			bar2.add_point(Vector2(0, -240 - angle * (320 / PI)))
 			bar2.modulate = Color(0.541, 0.569, 1.0, 0.5)
+			
+			if (!game.is_in_menu):
+				game.charging_audio_stream_player.volume_db = 5.0
 		else:
 			var bar: Line2D = bars.get_child(-1)
 			bar.set_point_position(1, Vector2(240 + angle * (320 / PI), 0))
@@ -71,6 +76,8 @@ func _process(delta: float) -> void:
 		was_correct = true
 	else:
 		is_incorrect = true
+		game.charging_audio_stream_player.volume_db = -80.0
+		
 		was_correct = false
 	
 	
@@ -110,6 +117,7 @@ func next_level() -> void:
 		game_anim_player.play("combine")
 	elif (level == 22):
 		combine_panel.exclusive_button.visible = true
+	game.finish_audio_stream_player.play()
 
 func load_level(_level: int) -> void:
 	if (level != _level):

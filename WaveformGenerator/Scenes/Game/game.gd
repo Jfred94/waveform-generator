@@ -82,9 +82,11 @@ var is_holding_tile: bool = false
 @export var button_hover_in_audio_stream_player: AudioStreamPlayer
 @export var button_hover_out_audio_stream_player: AudioStreamPlayer
 @export var button_click_audio_stream_player: AudioStreamPlayer
-
-
-
+@export var new_game_audio_stream_player: AudioStreamPlayer
+@export var panel_hover_in_audio_stream_player: AudioStreamPlayer
+@export var panel_hover_out_audio_stream_player: AudioStreamPlayer
+@export var finish_audio_stream_player: AudioStreamPlayer
+@export var charging_audio_stream_player: AudioStreamPlayer
 
 
 
@@ -124,6 +126,7 @@ func _on_new_button_button_up() -> void:
 	new_button.visible = false
 	panels.position = Vector2.ZERO
 	anim_player.play("new")
+	new_game_audio_stream_player.play()
 
 func on_shape_panel_appear() -> void:
 	shape_panel.slot1.update_docked_tile_position()
