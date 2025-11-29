@@ -76,6 +76,18 @@ var is_holding_tile: bool = false
 @export var music_stream_player: AudioStreamPlayer
 @export var music_loop_stream: AudioStream
 
+
+
+
+@export var button_hover_in_audio_stream_player: AudioStreamPlayer
+@export var button_hover_out_audio_stream_player: AudioStreamPlayer
+@export var button_click_audio_stream_player: AudioStreamPlayer
+
+
+
+
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	AudioServer.set_bus_volume_linear(music_bus_index, music_slider.value)
@@ -89,12 +101,14 @@ func _process(delta: float) -> void:
 
 func _on_music_slider_mouse_exited() -> void:
 	music_slider.release_focus()
+	button_hover_out_audio_stream_player.play()
 
 
 
 
 func _on_sfx_slider_mouse_exited() -> void:
 	sfx_slider.release_focus()
+	button_hover_out_audio_stream_player.play()
 
 
 func _on_music_slider_value_changed(value: float) -> void:
@@ -125,3 +139,31 @@ func on_flash() -> void:
 func _on_music_stream_player_finished() -> void:
 	music_stream_player.stream = music_loop_stream
 	music_stream_player.play()
+
+
+func _on_new_button_mouse_entered() -> void:
+	button_hover_in_audio_stream_player.play()
+
+
+func _on_new_button_mouse_exited() -> void:
+	button_hover_out_audio_stream_player.play()
+
+
+func _on_new_button_button_down() -> void:
+	button_click_audio_stream_player.play()
+
+
+func _on_music_slider_mouse_entered() -> void:
+	button_hover_in_audio_stream_player.play()
+
+
+func _on_music_slider_drag_started() -> void:
+	button_click_audio_stream_player.play()
+
+
+func _on_sfx_slider_mouse_entered() -> void:
+	button_hover_in_audio_stream_player.play()
+
+
+func _on_sfx_slider_drag_started() -> void:
+	button_click_audio_stream_player.play()

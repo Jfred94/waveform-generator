@@ -1011,3 +1011,27 @@ func _on_exclusive_button_button_up() -> void:
 			tile.docked_slot = slot3
 			slot3.dock(tile)
 			tile.initialize_as_combined()
+
+
+func _on_additive_button_mouse_entered() -> void:
+	game.button_hover_in_audio_stream_player.play()
+
+
+func _on_additive_button_mouse_exited() -> void:
+	game.button_hover_out_audio_stream_player.play()
+
+
+func _on_additive_button_button_down() -> void:
+	game.button_click_audio_stream_player.play()
+
+
+func _on_exclusive_button_mouse_entered() -> void:
+	game.button_hover_in_audio_stream_player.play()
+
+
+func _on_exclusive_button_mouse_exited() -> void:
+	game.button_hover_out_audio_stream_player.play()
+
+
+func _on_exclusive_button_button_down() -> void:
+	game.button_click_audio_stream_player.play()

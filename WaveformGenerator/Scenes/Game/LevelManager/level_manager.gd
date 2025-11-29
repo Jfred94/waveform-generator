@@ -149,6 +149,7 @@ func load_level(_level: int) -> void:
 		if (level >= 22):
 			combine_panel.exclusive_button.visible = true
 		is_incorrect = true
+		was_correct = false
 		for bar in bars.get_children():
 			bar.queue_free()
 		for bar in bars2.get_children():

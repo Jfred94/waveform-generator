@@ -18,6 +18,8 @@ var buttons: Array[TextureButton]
 @export var square_anim_player: AnimationPlayer
 @export var scaling_square: Sprite2D
 
+@export var game: Game
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	for i in range(25):
@@ -44,6 +46,10 @@ func _ready() -> void:
 		button.position = Vector2(-180 + (i % 5) * 80, -180 + int(i / 5) * 80)
 		button.button_up.connect(func(): _on_button_up(button))
 		button.name = str(i+1)
+		
+		button.mouse_entered.connect(_on_button_mouse_entered)
+		button.mouse_exited.connect(_on_button_mouse_exited)
+		button.button_down.connect(_on_button_button_down)
 
 var is_hovering: bool = false
 
@@ -64,3 +70,14 @@ func on_finish(_level: int) -> void:
 	level_anim_player.play("finish")
 	scaling_square.position = Vector2(-150 + ((level_manager.level - 1) % 5) * 80, -150 + int((level_manager.level - 1) / 5) * 80)
 	square_anim_player.play("scale")
+
+func _on_button_mouse_entered() -> void:
+	game.button_hover_in_audio_stream_player.play()
+
+
+func _on_button_mouse_exited() -> void:
+	game.button_hover_out_audio_stream_player.play()
+
+
+func _on_button_button_down() -> void:
+	game.button_click_audio_stream_player.play()

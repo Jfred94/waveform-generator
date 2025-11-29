@@ -160,5 +160,11 @@ libraries = {
 &"": SubResource("AnimationLibrary_oi3l8")
 }
 
+[connection signal="button_down" from="Additive Button" to="." method="_on_additive_button_button_down"]
 [connection signal="button_up" from="Additive Button" to="." method="_on_additive_button_button_up"]
+[connection signal="mouse_entered" from="Additive Button" to="." method="_on_additive_button_mouse_entered"]
+[connection signal="mouse_exited" from="Additive Button" to="." method="_on_additive_button_mouse_exited"]
+[connection signal="button_down" from="Exclusive Button" to="." method="_on_exclusive_button_button_down"]
 [connection signal="button_up" from="Exclusive Button" to="." method="_on_exclusive_button_button_up"]
+[connection signal="mouse_entered" from="Exclusive Button" to="." method="_on_exclusive_button_mouse_entered"]
+[connection signal="mouse_exited" from="Exclusive Button" to="." method="_on_exclusive_button_mouse_exited"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=111 format=3 uid="uid://e0j4pqwpg7y8"]
+[gd_scene load_steps=114 format=3 uid="uid://e0j4pqwpg7y8"]
 
 [ext_resource type="Script" uid="uid://bokmmg3v1fgoy" path="res://Scenes/Game/game.gd" id="1_mv0hc"]
 [ext_resource type="Texture2D" uid="uid://dy6gawgjmjt1r" path="res://Sprites/shapes/circle.png" id="2_8trit"]
@@ -57,7 +57,7 @@
 [ext_resource type="Texture2D" uid="uid://dpqxrpnc8qmsr" path="res://Sprites/shapes/small rectangle x small inv circle.png" id="45_5s13o"]
 [ext_resource type="Texture2D" uid="uid://b2uov2hdrlyg6" path="res://Sprites/shapes/small rectangle f x small inv circle.png" id="46_bcbly"]
 [ext_resource type="Texture2D" uid="uid://y7jtu5yp1v0m" path="res://Sprites/pure background w grid.png" id="47_a4qm0"]
-[ext_resource type="AudioStream" uid="uid://dtd8cfhc423tp" path="res://Audio/wg_loop.wav" id="47_osbsx"]
+[ext_resource type="AudioStream" uid="uid://dtd8cfhc423tp" path="res://Audio/Music/wg_loop.wav" id="47_osbsx"]
 [ext_resource type="Texture2D" uid="uid://jkvcp3mw7hvg" path="res://Sprites/purple background.png" id="48_lis5c"]
 [ext_resource type="Texture2D" uid="uid://bv8nla1ktgwwo" path="res://Sprites/bar hider V.png" id="49_yuuq1"]
 [ext_resource type="Texture2D" uid="uid://btno700bv5a2g" path="res://Sprites/bar hider H.png" id="50_uur6h"]
@@ -97,7 +97,10 @@
 [ext_resource type="Texture2D" uid="uid://cwtqh0bp7ums3" path="res://Sprites/title waveform.png" id="92_n6kei"]
 [ext_resource type="Texture2D" uid="uid://c0owr5txsx2w4" path="res://Sprites/title generator.png" id="93_wqd0x"]
 [ext_resource type="Texture2D" uid="uid://eo7ulfr4mg1s" path="res://Sprites/gradients.png" id="94_wqd0x"]
-[ext_resource type="AudioStream" uid="uid://u76ua4g0igkp" path="res://Audio/wg_start.wav" id="97_uur6h"]
+[ext_resource type="AudioStream" uid="uid://u76ua4g0igkp" path="res://Audio/Music/wg_start.wav" id="97_uur6h"]
+[ext_resource type="AudioStream" uid="uid://c0hrsphiqrmru" path="res://Audio/SFX/button_hover_in.wav" id="99_bcbly"]
+[ext_resource type="AudioStream" uid="uid://doqjix5xfcf31" path="res://Audio/SFX/button_hover_out.wav" id="100_mblbl"]
+[ext_resource type="AudioStream" uid="uid://cfuiri1403m27" path="res://Audio/SFX/button_click.wav" id="101_26oar"]
 
 [sub_resource type="Environment" id="Environment_qikps"]
 background_mode = 3
@@ -485,7 +488,7 @@ _data = {
 &"finish": SubResource("Animation_yuuq1")
 }
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("tiles", "inventory_panel", "music_slider", "sfx_slider", "new_button", "panels", "level_manager", "shape_panel", "anim_player", "music_stream_player")]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("tiles", "inventory_panel", "music_slider", "sfx_slider", "new_button", "panels", "level_manager", "shape_panel", "anim_player", "music_stream_player", "button_hover_in_audio_stream_player", "button_hover_out_audio_stream_player", "button_click_audio_stream_player")]
 script = ExtResource("1_mv0hc")
 shape_textures = Array[Texture2D]([ExtResource("2_8trit"), ExtResource("3_71giq"), ExtResource("4_3mdsk"), ExtResource("5_a4qm0"), ExtResource("6_2gid3"), ExtResource("7_lis5c"), ExtResource("8_858on"), ExtResource("9_l5fxq"), ExtResource("10_jcrx1"), ExtResource("11_u2cvy"), ExtResource("12_wwos8"), ExtResource("13_d85t2"), ExtResource("14_53spd"), ExtResource("15_4qu01"), ExtResource("16_qqdjj"), ExtResource("17_x8opw"), ExtResource("18_ntkbw"), ExtResource("19_d4puy"), ExtResource("20_xft3b"), ExtResource("21_yuvyg"), ExtResource("22_hb4p8"), ExtResource("23_h1l72"), ExtResource("24_scdd5"), ExtResource("25_cjj5m"), ExtResource("26_fhxkh"), ExtResource("27_qspya"), ExtResource("28_tgfhl"), ExtResource("29_254l5"), ExtResource("30_5waul"), ExtResource("31_ytvwr"), ExtResource("32_pxakk"), ExtResource("33_4lqcr"), ExtResource("34_5stw6"), ExtResource("35_r1pxr"), ExtResource("36_8s3bd"), ExtResource("37_4ughv"), ExtResource("38_n6kei"), ExtResource("39_wqd0x"), ExtResource("40_c2yya"), ExtResource("41_yuuq1"), ExtResource("42_uur6h"), ExtResource("43_osbsx"), ExtResource("44_l47d4"), ExtResource("45_5s13o"), ExtResource("46_bcbly")])
 tiles = NodePath("GameCanvasLayer/background/Tiles")
@@ -499,6 +502,9 @@ shape_panel = NodePath("GameCanvasLayer/background/Panels/ShapePanel")
 anim_player = NodePath("GameCanvasLayer/background/AnimationPlayer")
 music_stream_player = NodePath("MusicStreamPlayer")
 music_loop_stream = ExtResource("47_osbsx")
+button_hover_in_audio_stream_player = NodePath("SFX/ButtonHoverInStreamPlayer")
+button_hover_out_audio_stream_player = NodePath("SFX/ButtonHoverOutStreamPlayer")
+button_click_audio_stream_player = NodePath("SFX/ButtonClickStreamPlayer")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_qikps")
@@ -595,11 +601,12 @@ position = Vector2(780, 660)
 game = NodePath("../../../..")
 visualizer = NodePath("../../Visualizer")
 
-[node name="LevelSelector" parent="GameCanvasLayer/background/Panels" node_paths=PackedStringArray("level_manager", "level_anim_player") instance=ExtResource("59_4lqcr")]
+[node name="LevelSelector" parent="GameCanvasLayer/background/Panels" node_paths=PackedStringArray("level_manager", "level_anim_player", "game") instance=ExtResource("59_4lqcr")]
 visible = false
 position = Vector2(1260, 660)
 level_manager = NodePath("../../Level Manager")
 level_anim_player = NodePath("../../LevelAnimPlayer")
+game = NodePath("../../../..")
 
 [node name="Visualizer" parent="GameCanvasLayer/background" node_paths=PackedStringArray("level_manager") instance=ExtResource("12_ypmwd")]
 z_index = 20
@@ -642,7 +649,7 @@ theme_override_icons/grabber = ExtResource("60_pxakk")
 theme_override_icons/grabber_highlight = ExtResource("61_4lqcr")
 theme_override_styles/slider = SubResource("StyleBoxLine_5stw6")
 max_value = 1.0
-step = 0.001
+step = 0.05
 value = 0.25
 
 [node name="SFX Slider" type="HSlider" parent="GameCanvasLayer/background"]
@@ -655,7 +662,7 @@ theme_override_icons/grabber = ExtResource("60_pxakk")
 theme_override_icons/grabber_highlight = ExtResource("61_4lqcr")
 theme_override_styles/slider = SubResource("StyleBoxLine_5stw6")
 max_value = 1.0
-step = 0.001
+step = 0.05
 value = 0.25
 
 [node name="Tiles" type="Node2D" parent="GameCanvasLayer/background"]
@@ -716,9 +723,31 @@ stream = ExtResource("97_uur6h")
 autoplay = true
 bus = &"Music"
 
+[node name="SFX" type="Node" parent="."]
+
+[node name="ButtonHoverInStreamPlayer" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("99_bcbly")
+bus = &"SFX"
+
+[node name="ButtonHoverOutStreamPlayer" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("100_mblbl")
+volume_db = -5.136
+bus = &"SFX"
+
+[node name="ButtonClickStreamPlayer" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("101_26oar")
+bus = &"SFX"
+
+[connection signal="drag_started" from="GameCanvasLayer/background/Music Slider" to="." method="_on_music_slider_drag_started"]
+[connection signal="mouse_entered" from="GameCanvasLayer/background/Music Slider" to="." method="_on_music_slider_mouse_entered"]
 [connection signal="mouse_exited" from="GameCanvasLayer/background/Music Slider" to="." method="_on_music_slider_mouse_exited"]
 [connection signal="value_changed" from="GameCanvasLayer/background/Music Slider" to="." method="_on_music_slider_value_changed"]
+[connection signal="drag_started" from="GameCanvasLayer/background/SFX Slider" to="." method="_on_sfx_slider_drag_started"]
+[connection signal="mouse_entered" from="GameCanvasLayer/background/SFX Slider" to="." method="_on_sfx_slider_mouse_entered"]
 [connection signal="mouse_exited" from="GameCanvasLayer/background/SFX Slider" to="." method="_on_sfx_slider_mouse_exited"]
 [connection signal="value_changed" from="GameCanvasLayer/background/SFX Slider" to="." method="_on_sfx_slider_value_changed"]
+[connection signal="button_down" from="GameCanvasLayer/background/NewButton" to="." method="_on_new_button_button_down"]
 [connection signal="button_up" from="GameCanvasLayer/background/NewButton" to="." method="_on_new_button_button_up"]
+[connection signal="mouse_entered" from="GameCanvasLayer/background/NewButton" to="." method="_on_new_button_mouse_entered"]
+[connection signal="mouse_exited" from="GameCanvasLayer/background/NewButton" to="." method="_on_new_button_mouse_exited"]
 [connection signal="finished" from="MusicStreamPlayer" to="." method="_on_music_stream_player_finished"]
