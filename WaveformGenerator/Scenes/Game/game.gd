@@ -87,6 +87,15 @@ var is_holding_tile: bool = false
 @export var panel_hover_out_audio_stream_player: AudioStreamPlayer
 @export var finish_audio_stream_player: AudioStreamPlayer
 @export var charging_audio_stream_player: AudioStreamPlayer
+@export var tile_hover_in_audio_stream_player: AudioStreamPlayer
+@export var tile_hover_out_audio_stream_player: AudioStreamPlayer
+@export var tile_click_audio_stream_player: AudioStreamPlayer
+@export var tile_release_audio_stream_player: AudioStreamPlayer
+@export var tile_destroy_audio_stream_player: AudioStreamPlayer
+@export var tile_dock_audio_stream_player: AudioStreamPlayer
+@export var tile_transform_audio_stream_player: AudioStreamPlayer
+@export var tile_unlock_audio_stream_player: AudioStreamPlayer
+@export var combine_error_audio_stream_player: AudioStreamPlayer
 
 
 

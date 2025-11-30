@@ -1,4 +1,4 @@
-[gd_scene load_steps=119 format=3 uid="uid://e0j4pqwpg7y8"]
+[gd_scene load_steps=128 format=3 uid="uid://e0j4pqwpg7y8"]
 
 [ext_resource type="Script" uid="uid://bokmmg3v1fgoy" path="res://Scenes/Game/game.gd" id="1_mv0hc"]
 [ext_resource type="Texture2D" uid="uid://dy6gawgjmjt1r" path="res://Sprites/shapes/circle.png" id="2_8trit"]
@@ -106,6 +106,15 @@
 [ext_resource type="AudioStream" uid="uid://djo320a10vlm1" path="res://Audio/SFX/panel hover out.wav" id="104_jxu7g"]
 [ext_resource type="AudioStream" uid="uid://dxl8uw64s21wg" path="res://Audio/SFX/finish.wav" id="105_jxu7g"]
 [ext_resource type="AudioStream" uid="uid://baef5bin47c7b" path="res://Audio/SFX/charging.wav" id="106_1ai8e"]
+[ext_resource type="AudioStream" uid="uid://cqpattns3vg17" path="res://Audio/SFX/tile_hover_in.wav" id="107_g2wga"]
+[ext_resource type="AudioStream" uid="uid://cnauls5fnmbu1" path="res://Audio/SFX/tile_hover_out.wav" id="108_bhyiv"]
+[ext_resource type="AudioStream" uid="uid://dnxflpqb7s2wh" path="res://Audio/SFX/tile_click.wav" id="109_wlv48"]
+[ext_resource type="AudioStream" uid="uid://p5to7exnr7sc" path="res://Audio/SFX/tile_release.wav" id="110_ffvtn"]
+[ext_resource type="AudioStream" uid="uid://cx5od41firaks" path="res://Audio/SFX/tile_destroy.wav" id="111_7k35c"]
+[ext_resource type="AudioStream" uid="uid://d3qmlm373u7go" path="res://Audio/SFX/tile_dock.wav" id="112_84cj8"]
+[ext_resource type="AudioStream" uid="uid://qyyxukmg87ag" path="res://Audio/SFX/tile_transform.wav" id="113_bd5gs"]
+[ext_resource type="AudioStream" uid="uid://bosnqc7r3t1dg" path="res://Audio/SFX/tile_unlock.wav" id="114_tpd5k"]
+[ext_resource type="AudioStream" uid="uid://cgr13cnofgvgi" path="res://Audio/SFX/combine_error.wav" id="115_j8tbu"]
 
 [sub_resource type="Environment" id="Environment_qikps"]
 background_mode = 3
@@ -493,7 +502,7 @@ _data = {
 &"finish": SubResource("Animation_yuuq1")
 }
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("tiles", "inventory_panel", "music_slider", "sfx_slider", "new_button", "panels", "level_manager", "shape_panel", "anim_player", "music_stream_player", "button_hover_in_audio_stream_player", "button_hover_out_audio_stream_player", "button_click_audio_stream_player", "new_game_audio_stream_player", "panel_hover_in_audio_stream_player", "panel_hover_out_audio_stream_player", "finish_audio_stream_player", "charging_audio_stream_player")]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("tiles", "inventory_panel", "music_slider", "sfx_slider", "new_button", "panels", "level_manager", "shape_panel", "anim_player", "music_stream_player", "button_hover_in_audio_stream_player", "button_hover_out_audio_stream_player", "button_click_audio_stream_player", "new_game_audio_stream_player", "panel_hover_in_audio_stream_player", "panel_hover_out_audio_stream_player", "finish_audio_stream_player", "charging_audio_stream_player", "tile_hover_in_audio_stream_player", "tile_hover_out_audio_stream_player", "tile_click_audio_stream_player", "tile_release_audio_stream_player", "tile_destroy_audio_stream_player", "tile_dock_audio_stream_player", "tile_transform_audio_stream_player", "tile_unlock_audio_stream_player", "combine_error_audio_stream_player")]
 script = ExtResource("1_mv0hc")
 shape_textures = Array[Texture2D]([ExtResource("2_8trit"), ExtResource("3_71giq"), ExtResource("4_3mdsk"), ExtResource("5_a4qm0"), ExtResource("6_2gid3"), ExtResource("7_lis5c"), ExtResource("8_858on"), ExtResource("9_l5fxq"), ExtResource("10_jcrx1"), ExtResource("11_u2cvy"), ExtResource("12_wwos8"), ExtResource("13_d85t2"), ExtResource("14_53spd"), ExtResource("15_4qu01"), ExtResource("16_qqdjj"), ExtResource("17_x8opw"), ExtResource("18_ntkbw"), ExtResource("19_d4puy"), ExtResource("20_xft3b"), ExtResource("21_yuvyg"), ExtResource("22_hb4p8"), ExtResource("23_h1l72"), ExtResource("24_scdd5"), ExtResource("25_cjj5m"), ExtResource("26_fhxkh"), ExtResource("27_qspya"), ExtResource("28_tgfhl"), ExtResource("29_254l5"), ExtResource("30_5waul"), ExtResource("31_ytvwr"), ExtResource("32_pxakk"), ExtResource("33_4lqcr"), ExtResource("34_5stw6"), ExtResource("35_r1pxr"), ExtResource("36_8s3bd"), ExtResource("37_4ughv"), ExtResource("38_n6kei"), ExtResource("39_wqd0x"), ExtResource("40_c2yya"), ExtResource("41_yuuq1"), ExtResource("42_uur6h"), ExtResource("43_osbsx"), ExtResource("44_l47d4"), ExtResource("45_5s13o"), ExtResource("46_bcbly")])
 tiles = NodePath("GameCanvasLayer/background/Tiles")
@@ -512,9 +521,18 @@ button_hover_out_audio_stream_player = NodePath("SFX/ButtonHoverOutStreamPlayer"
 button_click_audio_stream_player = NodePath("SFX/ButtonClickStreamPlayer")
 new_game_audio_stream_player = NodePath("SFX/NewGameAudioStreamPlayer")
 panel_hover_in_audio_stream_player = NodePath("SFX/PanelHoverInAudioStreamPlayer")
-panel_hover_out_audio_stream_player = NodePath("SFX/PanelHoverOutAudioStreamPlayer2")
+panel_hover_out_audio_stream_player = NodePath("SFX/PanelHoverOutAudioStreamPlayer")
 finish_audio_stream_player = NodePath("SFX/FinishAudioStreamPlayer")
 charging_audio_stream_player = NodePath("SFX/ChargingAudioStreamPlayer")
+tile_hover_in_audio_stream_player = NodePath("SFX/TileHoverInAudioStreamPlayer")
+tile_hover_out_audio_stream_player = NodePath("SFX/TileHoverOutAudioStreamPlayer")
+tile_click_audio_stream_player = NodePath("SFX/TileClickAudioStreamPlayer")
+tile_release_audio_stream_player = NodePath("SFX/TileReleaseAudioStreamPlayer")
+tile_destroy_audio_stream_player = NodePath("SFX/TileDestroyAudioStreamPlayer")
+tile_dock_audio_stream_player = NodePath("SFX/TileDockAudioStreamPlayer")
+tile_transform_audio_stream_player = NodePath("SFX/TileTransformAudioStreamPlayer")
+tile_unlock_audio_stream_player = NodePath("SFX/TileUnlockAudioStreamPlayer")
+combine_error_audio_stream_player = NodePath("SFX/CombineErrorAudioStreamPlayer")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_qikps")
@@ -759,7 +777,7 @@ stream = ExtResource("103_53l7k")
 volume_db = 10.0
 bus = &"SFX"
 
-[node name="PanelHoverOutAudioStreamPlayer2" type="AudioStreamPlayer" parent="SFX"]
+[node name="PanelHoverOutAudioStreamPlayer" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("104_jxu7g")
 volume_db = 10.0
 bus = &"SFX"
@@ -773,6 +791,43 @@ bus = &"SFX"
 stream = ExtResource("106_1ai8e")
 volume_db = -80.0
 autoplay = true
+bus = &"SFX"
+
+[node name="TileHoverInAudioStreamPlayer" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("107_g2wga")
+bus = &"SFX"
+
+[node name="TileHoverOutAudioStreamPlayer" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("108_bhyiv")
+bus = &"SFX"
+
+[node name="TileClickAudioStreamPlayer" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("109_wlv48")
+volume_db = -2.0
+bus = &"SFX"
+
+[node name="TileReleaseAudioStreamPlayer" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("110_ffvtn")
+bus = &"SFX"
+
+[node name="TileDestroyAudioStreamPlayer" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("111_7k35c")
+bus = &"SFX"
+
+[node name="TileDockAudioStreamPlayer" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("112_84cj8")
+bus = &"SFX"
+
+[node name="TileTransformAudioStreamPlayer" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("113_bd5gs")
+bus = &"SFX"
+
+[node name="TileUnlockAudioStreamPlayer" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("114_tpd5k")
+bus = &"SFX"
+
+[node name="CombineErrorAudioStreamPlayer" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("115_j8tbu")
 bus = &"SFX"
 
 [connection signal="drag_started" from="GameCanvasLayer/background/Music Slider" to="." method="_on_music_slider_drag_started"]

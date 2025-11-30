@@ -43,6 +43,9 @@ func dock(tile: Tile) -> void:
 	has_transformed = false
 	dock_anim_player.stop()
 	dock_anim_player.play("dock")
+	if (game != null):
+		if (!game.is_in_menu):
+			game.tile_dock_audio_stream_player.play()
 
 func undock() -> void:
 	docked_tile = null

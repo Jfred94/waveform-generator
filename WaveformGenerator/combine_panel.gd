@@ -510,6 +510,7 @@ func _on_additive_button_button_up() -> void:
 		
 		if (t3 == Game.Shape.EMPTY):
 			red_flash_value = 1.0
+			game.combine_error_audio_stream_player.play()
 		else:
 			slot1.docked_tile.destroy()
 			slot2.docked_tile.destroy()
@@ -522,6 +523,7 @@ func _on_additive_button_button_up() -> void:
 			tile.docked_slot = slot3
 			slot3.dock(tile)
 			tile.initialize_as_combined()
+			game.tile_transform_audio_stream_player.play()
 		
 
 
@@ -1001,6 +1003,7 @@ func _on_exclusive_button_button_up() -> void:
 		
 		if (t3 == Game.Shape.EMPTY):
 			red_flash_value = 1.0
+			game.combine_error_audio_stream_player.play()
 		else:
 			slot1.docked_tile.destroy()
 			slot2.docked_tile.destroy()
@@ -1013,6 +1016,7 @@ func _on_exclusive_button_button_up() -> void:
 			tile.docked_slot = slot3
 			slot3.dock(tile)
 			tile.initialize_as_combined()
+			game.tile_transform_audio_stream_player.play()
 
 
 func _on_additive_button_mouse_entered() -> void:

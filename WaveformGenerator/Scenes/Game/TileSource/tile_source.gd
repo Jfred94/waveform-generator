@@ -21,6 +21,8 @@ var is_locked: bool = false
 @export var bl: Sprite2D
 @export var tr: Sprite2D
 
+var was_hovering: bool = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if (inventory_panel != null):
@@ -51,13 +53,18 @@ func _process(delta: float) -> void:
 
 func check_hovering() -> void:
 	is_hovering = get_local_mouse_position().x >= -62 && get_local_mouse_position().x <= 62 && get_local_mouse_position().y >= -62 && get_local_mouse_position().y <= 62
-	
+	if (is_hovering && !was_hovering && !is_locked):
+		game.tile_hover_in_audio_stream_player.play()
+	elif (!is_hovering && was_hovering && !is_locked):
+		game.tile_hover_out_audio_stream_player.play()
+	was_hovering = is_hovering
 
 func spawn_tile() -> void:
 	var tile: Tile = tile_scene.instantiate()
 	tiles.add_child(tile)
 	tile.global_position = global_position
 	tile.initialize(shape_type, true, game)
+	game.tile_click_audio_stream_player.play()
 
 func unlock() -> void:
 	is_locked = false

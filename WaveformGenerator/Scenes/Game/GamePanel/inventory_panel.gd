@@ -70,4 +70,5 @@ func unlock_tile_source(shape_type: Game.Shape) -> void:
 		else:
 			unlock_actual_scroll_value = 1400
 		inventory_anim_player.play("unlock")
+		game.tile_unlock_audio_stream_player.play()
 		

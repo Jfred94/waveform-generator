@@ -30,7 +30,7 @@ var is_destroying: bool = false
 
 @export var transform_anim_player: AnimationPlayer
 
-
+var was_hovering: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -46,6 +46,7 @@ func _process(delta: float) -> void:
 			if (is_hovering && Input.is_action_just_pressed("lmb")):
 				is_held = true
 				docked_slot.undock()
+				game.tile_click_audio_stream_player.play()
 		else:
 			hold(delta)
 	
@@ -59,6 +60,11 @@ func _process(delta: float) -> void:
 
 func check_hovering() -> void:
 	is_hovering = get_local_mouse_position().x >= -62 && get_local_mouse_position().x <= 62 && get_local_mouse_position().y >= -62 && get_local_mouse_position().y <= 62
+	if (is_hovering && !was_hovering):
+		game.tile_hover_in_audio_stream_player.play()
+	elif (!is_hovering && was_hovering):
+		game.tile_hover_out_audio_stream_player.play()
+	was_hovering = is_hovering
 	
 
 func initialize(_shape_type: Game.Shape, _is_held: bool, _game: Game) -> void:
@@ -74,6 +80,7 @@ func hold(delta: float) -> void:
 	modulate = Color.WHITE
 	game.is_holding_tile = true
 	if (Input.is_action_just_released("lmb")):
+		game.tile_release_audio_stream_player.play()
 		z_index = 1170
 		is_held = false
 		game.is_holding_tile = false
@@ -88,7 +95,6 @@ func hold(delta: float) -> void:
 		elif (hovered_slot_ids.size() == 1):
 			hovered_slot_id = hovered_slot_ids[0]
 		else:
-			print("sdfsdf")
 			var closest_slot_id: int = hovered_slot_ids[0]
 			for i in range(hovered_slot_ids.size()):
 				if (game.slots[hovered_slot_ids[i]].global_position.distance_to(get_global_mouse_position()) < game.slots[closest_slot_id].global_position.distance_to(get_global_mouse_position())):
@@ -117,6 +123,7 @@ func destroy() -> void:
 		docked_slot.undock()
 	destroy_anim_player.play("destroy")
 	is_destroying = true
+	game.tile_destroy_audio_stream_player.play()
 
 func on_destroy_anim_end() -> void:
 	queue_free()
