@@ -766,6 +766,7 @@ bus = &"SFX"
 
 [node name="ButtonClickStreamPlayer" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("101_26oar")
+volume_db = -3.0
 bus = &"SFX"
 
 [node name="NewGameAudioStreamPlayer" type="AudioStreamPlayer" parent="SFX"]
@@ -791,7 +792,7 @@ bus = &"SFX"
 stream = ExtResource("106_1ai8e")
 volume_db = -80.0
 autoplay = true
-bus = &"SFX"
+bus = &"Charging"
 
 [node name="TileHoverInAudioStreamPlayer" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("107_g2wga")
@@ -803,7 +804,7 @@ bus = &"SFX"
 
 [node name="TileClickAudioStreamPlayer" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("109_wlv48")
-volume_db = -2.0
+volume_db = -4.0
 bus = &"SFX"
 
 [node name="TileReleaseAudioStreamPlayer" type="AudioStreamPlayer" parent="SFX"]
@@ -820,6 +821,7 @@ bus = &"SFX"
 
 [node name="TileTransformAudioStreamPlayer" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("113_bd5gs")
+volume_db = -5.0
 bus = &"SFX"
 
 [node name="TileUnlockAudioStreamPlayer" type="AudioStreamPlayer" parent="SFX"]
